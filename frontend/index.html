@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 MusicWave - 在线音乐播放器</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MusicWave">
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <div class="app-main">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <span class="logo-icon">🎵</span>
+            <span>MusicWave</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title">浏览</div>
+            <div class="nav-item active" data-view="home">
+              <span class="nav-icon"><script>document.write(icon('house',20))</script></span>
+              <span>发现音乐</span>
+            </div>
+            <div class="nav-item" data-view="search">
+              <span class="nav-icon"><script>document.write(icon('search',20))</script></span>
+              <span>搜索</span>
+            </div>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title">我的</div>
+            <div class="nav-item" data-view="my-playlists">
+              <span class="nav-icon"><script>document.write(icon('listMusic',20))</script></span>
+              <span>我的歌单</span>
+            </div>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title">发现</div>
+            <div class="nav-item" data-view="liked-songs">
+              <span class="nav-icon"><script>document.write(icon('heart',20))</script></span>
+              <span>我喜欢</span>
+            </div>
+            <div class="nav-item" data-view="recent">
+              <span class="nav-icon"><script>document.write(icon('clock',20))</script></span>
+              <span>最近播放</span>
+            </div>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title">
+              <span>收藏的歌单</span>
+              <button class="nav-add-btn" onclick="showCreatePlaylistModal()" title="创建歌单"><script>document.write(icon('plus',15))</script></button>
+            </div>
+            <div id="localPlaylistsNav"></div>
+          </div>
+          <div class="sidebar-playlists" id="sidebarPlaylists">
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="content-area">
+        <!-- Global Top Bar -->
+        <div class="top-bar">
+          <div class="top-bar-right" id="userArea">
+            <button class="login-btn" onclick="openLoginModal()">登录</button>
+          </div>
+        </div>
+        <div class="content-scroll" id="contentScroll">
+          <!-- Home View -->
+          <div class="content-view active" id="viewHome">
+            <div class="hero-banner">
+              <div class="hero-content">
+                <div class="hero-title">🎵 MusicWave</div>
+                <div class="hero-subtitle">发现音乐的无限可能</div>
+                <button class="hero-btn" onclick="switchView('search')"><script>document.write(icon('search',16))</script> 开始探索</button>
+              </div>
+            </div>
+            <div class="section-title">🔥 热门推荐</div>
+            <div class="section-header-controls">
+              <button class="section-refresh-btn" data-type="recommended" title="刷新推荐歌单">🔄</button>
+            </div>
+            <div class="card-grid" id="recommendedPlaylists">
+              <div class="loading-spinner"><div class="spinner"></div></div>
+            </div>
+            <div class="section-title" style="margin-top: 8px;">🏆 精品歌单</div>
+            <div class="section-header-controls">
+              <button class="section-refresh-btn" data-type="top" title="刷新排行榜">🔄</button>
+            </div>
+            <div class="card-grid" id="topPlaylists">
+              <div class="loading-spinner"><div class="spinner"></div></div>
+            </div>
+          </div>
+
+          <!-- Search View -->
+          <div class="content-view" id="viewSearch">
+            <h2 class="content-title" style="margin-bottom:16px;">搜索</h2>
+            <div class="search-row" style="display:flex;gap:8px;margin-bottom:16px;">
+              <div class="search-bar" style="flex:1;">
+                <span class="search-icon"><script>document.write(icon('search',18))</script></span>
+                <input type="text" id="searchInput" placeholder="搜索歌曲、歌手..." oninput="searchSongs()" onkeydown="if(event.key==='Enter') searchSongs(true)">
+              </div>
+              <select id="sourceSelector" class="source-selector" onchange="onSourceChange()">
+                <option value="netease">网易云音乐</option>
+                <option value="gequbao">歌曲宝</option>
+              </select>
+            </div>
+            <div id="searchResults" class="search-results">
+              <div class="empty-state">
+                <div class="empty-icon">🎵</div>
+                <div class="empty-text">搜索你喜欢的音乐</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- My Playlists View -->
+          <div class="content-view" id="viewMyPlaylists">
+            <div class="content-header">
+              <h2 class="content-title">📋 我的歌单</h2>
+            </div>
+            <div class="card-grid" id="myPlaylistsGrid"></div>
+          </div>
+
+          <!-- Liked Songs View -->
+          <div class="content-view" id="viewLikedSongs">
+            <div id="likedSongsContent"></div>
+          </div>
+
+          <!-- Recent Songs View -->
+          <div class="content-view" id="viewRecent">
+            <div id="recentSongsContent"></div>
+          </div>
+
+          <!-- NetEase Playlist Detail View -->
+          <div class="content-view" id="viewPlaylistDetail">
+            <div id="playlistDetailContent"></div>
+          </div>
+
+          <!-- Local Playlist View -->
+          <div class="content-view" id="viewMyLocalPlaylist">
+            <div id="myLocalPlaylistContent"></div>
+          </div>
+        </div>
+
+        <!-- Lyrics Panel -->
+        <div class="lyrics-panel" id="lyricsPanel">
+          <div class="lyrics-content" id="lyricsContent">
+            <div class="lyric-placeholder">🎵</div>
+            <div class="lyric-placeholder">选择一首歌曲开始播放</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Player Bar -->
+    <footer class="player-bar">
+      <canvas id="visualizer" class="player-visualizer"></canvas>
+      <div class="player-song-info">
+        <img class="player-cover" id="playerCover" onclick="openFullscreen()" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' fill='%23282828'/%3E%3Ctext x='28' y='34' text-anchor='middle' font-size='24' fill='%23727272'%3E🎵%3C/text%3E%3C/svg%3E" alt="cover">
+        <div class="player-song-text">
+          <div class="player-song-name" id="playerSongName">未播放</div>
+          <div class="player-song-artist" id="playerSongArtist"></div>
+        </div>
+        <button class="player-btn" id="likeBtn" onclick="Player.toggleLike()" title="收藏" style="flex-shrink:0;display:none;"><script>document.write(icon('heart',16))</script></button>
+      </div>
+
+      <div class="player-controls">
+        <div class="player-buttons">
+          <button class="player-btn" id="shuffleBtn" onclick="toggleShuffle()" title="随机播放"><script>document.write(icon('shuffle',18))</script></button>
+          <button class="player-btn" onclick="prevSong()" title="上一首"><script>document.write(icon('skipBack',18))</script></button>
+          <button class="player-btn-main" id="playBtn" onclick="togglePlay()"><script>document.write(icon('play',22))</script></button>
+          <button class="player-btn" onclick="nextSong()" title="下一首"><script>document.write(icon('skipForward',18))</script></button>
+          <button class="player-btn" id="repeatBtn" onclick="toggleRepeat()" title="循环模式"><script>document.write(icon('repeat',18))</script></button>
+        </div>
+        <div class="player-progress">
+          <span class="player-time" id="currentTime">0:00</span>
+          <div class="progress-bar" id="progressBar" onclick="seekProgress(event)">
+            <div class="progress-fill" id="progressFill" style="width: 0%">
+              <div class="progress-thumb"></div>
+            </div>
+            <div class="progress-hover-time" id="progressHoverTime">0:00</div>
+          </div>
+        <span class="player-time" id="totalTime">0:00</span>
+      </div>
+    </div>
+
+    <div class="player-volume-area">
+        <button class="volume-btn" id="volumeBtn" onclick="toggleMute()" title="音量"><script>document.write(icon('volume2',18))</script></button>
+        <div class="volume-bar" id="volumeBar" onclick="setVolume(event)">
+          <div class="volume-fill" id="volumeFill" style="width: 70%"></div>
+        </div>
+        <div class="player-extra">
+          <button class="player-btn" id="addToPlaylistBtn" onclick="showAddToPlaylistDialog()" title="添加到歌单"><script>document.write(icon('folderPlus',18))</script></button>
+          <button class="lyrics-toggle-btn" id="lyricsToggle" onclick="toggleLyrics()" title="歌词"><script>document.write(icon('headphones',18))</script></button>
+          <button class="playlist-toggle-btn" id="playlistToggle" onclick="togglePlaylistPanel()" title="播放列表">
+            <script>document.write(icon('listMusic',18))</script>
+            <span class="badge" id="playlistBadge">0</span>
+          </button>
+          <button class="lyrics-toggle-btn" id="heartModeBtn" onclick="Player.toggleHeartMode()" title="心动模式" style="color:var(--text-tertiary);">
+            <script>document.write(icon('heart',18))</script>
+          </button>
+          
+          <button class="lyrics-toggle-btn" id="pwaInstallBtn" onclick="installPWA()" title="安装应用" style="display:none;">
+            <script>document.write(icon('download',18))</script>
+          </button>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Playlist Panel (overlay above player) -->
+    <div class="playlist-panel-overlay" id="playlistPanel">
+      <div class="playlist-panel-header">
+        <span class="playlist-panel-title">📜 播放列表</span>
+        <span class="panel-close-btn" onclick="togglePlaylistPanel()"><script>document.write(icon('x',16))</script></span>
+      </div>
+      <div class="playlist-panel-list" id="playlistPanelList">
+        <div class="empty-state">
+          <div class="empty-text">播放列表为空</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Screen Now Playing View -->
+    <div class="fullscreen-overlay" id="fullscreenView" onclick="if(event.target===this)closeFullscreen()">
+      <div class="fullscreen-bg" id="fullscreenBg"></div>
+      <button class="fullscreen-close" onclick="closeFullscreen()"><script>document.write(icon('x',20))</script></button>
+      
+      <div class="fullscreen-content">
+        <!-- Left: CD Cover -->
+        <div class="fullscreen-cd-area">
+          <div class="fullscreen-cd" id="fullscreenCd">
+            <img class="fullscreen-cover" id="fullscreenCover" src="" alt="cover">
+          </div>
+          <div class="fullscreen-song-info">
+            <div class="fullscreen-song-name" id="fullscreenSongName">未播放</div>
+            <div class="fullscreen-song-artist" id="fullscreenSongArtist"></div>
+          </div>
+        </div>
+        
+        <!-- Right: Lyrics -->
+        <div class="fullscreen-lyrics-area">
+          <div class="fullscreen-lyrics" id="fullscreenLyrics">
+            <div class="fullscreen-lyrics-placeholder">🎵 暂无歌词</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom controls -->
+      <div class="fullscreen-controls">
+        <div class="fullscreen-buttons">
+          <button class="fullscreen-btn" onclick="Player.toggleHeartMode()" id="fullscreenHeartModeBtn"><script>document.write(icon('heart',18))</script></button>
+          <button class="fullscreen-btn" onclick="toggleShuffle()" id="fullscreenShuffleBtn"><script>document.write(icon('shuffle',18))</script></button>
+          <button class="fullscreen-btn" onclick="prevSong()"><script>document.write(icon('skipBack',22))</script></button>
+          <button class="fullscreen-btn-main" id="fullscreenPlayBtn" onclick="togglePlay()"><script>document.write(icon('play',28))</script></button>
+          <button class="fullscreen-btn" onclick="nextSong()"><script>document.write(icon('skipForward',22))</script></button>
+          <button class="fullscreen-btn" onclick="toggleRepeat()" id="fullscreenRepeatBtn"><script>document.write(icon('repeat',18))</script></button>
+        </div>
+        <div class="fullscreen-progress">
+          <span class="fullscreen-time" id="fullscreenCurrentTime">0:00</span>
+          <div class="fullscreen-progress-bar" id="fullscreenProgressBar" onclick="seekProgress(event)">
+            <div class="fullscreen-progress-fill" id="fullscreenProgressFill" style="width:0%"></div>
+          </div>
+          <span class="fullscreen-time" id="fullscreenTotalTime">0:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PWA Install Banner -->
+    <div class="pwa-banner" id="pwaBanner" style="display:none;">
+      <div class="pwa-banner-content">
+        <span class="pwa-banner-icon">🎵</span>
+        <div class="pwa-banner-text">
+          <div class="pwa-banner-title">安装 MusicWave</div>
+          <div class="pwa-banner-sub">添加到主屏幕，获得更好的体验</div>
+        </div>
+        <button class="pwa-banner-btn" onclick="installPWA()">安装</button>
+        <button class="pwa-banner-close" onclick="dismissPWA()">✕</button>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Overlay -->
+    <div class="shortcuts-overlay" id="shortcutsOverlay" onclick="if(event.target===this)closeShortcuts()">
+      <div class="shortcuts-modal">
+        <div class="shortcuts-header">
+          <span>⌨️ 快捷键</span>
+          <button class="shortcuts-close" onclick="closeShortcuts()">✕</button>
+        </div>
+        <div class="shortcuts-grid">
+          <div><kbd>Space</kbd><span>播放 / 暂停</span></div>
+          <div><kbd>←</kbd><span>后退 5 秒</span></div>
+          <div><kbd>→</kbd><span>快进 5 秒</span></div>
+          <div><kbd>↑</kbd><span>音量 +</span></div>
+          <div><kbd>↓</kbd><span>音量 -</span></div>
+          <div><kbd>Esc</kbd><span>关闭全屏</span></div>
+          <div><kbd>?</kbd><span>打开此面板</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+      <div class="modal">
+        <div class="modal-title">登录网易云音乐</div>
+        <div class="modal-subtitle">扫码登录，同步你的歌单</div>
+        <div class="qr-container" id="qrContainer">
+          <img class="qr-image" id="qrImage" src="" alt="QR Code">
+          <div class="qr-status" id="qrStatus">正在获取二维码...</div>
+          <button class="qr-refresh-btn" onclick="initQRLogin()">刷新二维码</button>
+        </div>
+        <button style="display:block;margin:16px auto 0;color:var(--text-tertiary);font-size:13px;" onclick="closeLoginModal()">取消</button>
+      </div>
+    </div>
+
+    <!-- Create Playlist Modal -->
+    <div class="modal-overlay" id="createPlaylistModal">
+      <div class="modal">
+        <div class="modal-title">🎵 创建歌单</div>
+        <input class="modal-input" id="newPlaylistName" placeholder="歌单名称" maxlength="50">
+        <input class="modal-input" id="newPlaylistDesc" placeholder="描述（可选）" maxlength="200" style="margin-top:8px;">
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-primary" onclick="confirmCreatePlaylist()">创建</button>
+          <button class="modal-btn modal-btn-secondary" onclick="closeCreatePlaylistModal()">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add to Playlist Dialog -->
+    <div class="modal-overlay" id="addToPlaylistModal">
+      <div class="modal" style="max-height:80vh;overflow-y:auto;">
+        <div class="modal-title">💾 添加到歌单</div>
+        <div id="addToPlaylistList" style="min-height:60px;"></div>
+        <div style="text-align:center;margin-top:12px;">
+          <button class="player-btn" onclick="showCreatePlaylistModal()" style="font-size:13px;">+ 创建新歌单</button>
+        </div>
+        <button style="display:block;margin:12px auto 0;color:var(--text-tertiary);font-size:13px;" onclick="closeAddToPlaylistModal()">取消</button>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer" preload="metadata"></audio>
+  </div>
+
+  <script src="js/netease.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/lyrics.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Register Service Worker for PWA support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+    
+    // Show PWA install banner after a short delay
+    setTimeout(() => {
+      const banner = document.getElementById('pwaBanner');
+      if (banner && !localStorage.getItem('pwa_dismissed')) {
+        banner.style.display = '';
+      }
+    }, 3000);
+    
+    // Also show on beforeinstallprompt
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('pwaBanner').style.display = '';
+    });
+    
+    function installPWA() {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => {
+        deferredPrompt = null;
+        document.getElementById('pwaBanner').style.display = 'none';
+        document.getElementById('pwaInstallBtn').style.display = 'none';
+      });
+    }
+    
+    // Dismiss banner and remember
+    function dismissPWA() {
+      document.getElementById('pwaBanner').style.display = 'none';
+      try { localStorage.setItem('pwa_dismissed', '1'); } catch(e) {}
+    }
+    
+    function openShortcuts() {
+      document.getElementById('shortcutsOverlay').classList.add('active');
+    }
+    function closeShortcuts() {
+      document.getElementById('shortcutsOverlay').classList.remove('active');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '?' && !e.target.matches('input,textarea')) {
+        e.preventDefault();
+        const overlay = document.getElementById('shortcutsOverlay');
+        overlay.classList.toggle('active');
+      }
+    });
+  </script>
+</body>
+</html>

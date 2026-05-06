@@ -1,0 +1,21 @@
+{
+  "name": "music-player-backend",
+  "version": "1.0.0",
+  "description": "Music player backend with NetEase Cloud Music API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@eldment/meting-agent": "^1.6.11",
+    "axios": "^1.7.0",
+    "big-integer": "^1.6.52",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^4.21.0",
+    "lucide-static": "^1.14.0",
+    "netease-cloud-music-api-alger": "^4.30.0",
+    "qq-music-api": "^1.1.2"
+  }
+}

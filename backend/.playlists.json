@@ -1,0 +1,20 @@
+[
+  {
+    "id": "momtt4gmamh1",
+    "name": "测试歌单",
+    "description": "",
+    "songs": [
+      {
+        "id": "255290",
+        "name": "I Am Free",
+        "artist": "刘惜君",
+        "cover": "https://p4.music.126.net/gZ93OHvjWKwnvIwChuRTfA==/109951171315740884.jpg",
+        "duration": 257000,
+        "source": "netease",
+        "addedAt": 1777636219854
+      }
+    ],
+    "createdAt": 1777634709718,
+    "updatedAt": 1777636219854
+  }
+]
