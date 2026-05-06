@@ -1,0 +1,9 @@
+{
+  "name": "music-wave",
+  "version": "1.0.0",
+  "description": "MusicWave - 多源在线音乐播放器",
+  "scripts": {
+    "build": "cd backend && npm install",
+    "start": "cd backend && node server.js"
+  }
+}
