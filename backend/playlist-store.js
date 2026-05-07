@@ -29,12 +29,13 @@ function save(playlists) {
 /**
  * Create a new playlist
  */
-function create(name, description = '') {
+function create(name, description = '', neteaseId = null) {
   const playlists = load();
   const playlist = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
     name,
     description,
+    neteaseId,
     songs: [],
     createdAt: Date.now(),
     updatedAt: Date.now(),
@@ -64,6 +65,14 @@ function list() {
 function get(id) {
   const playlists = load();
   return playlists.find(p => p.id === id) || null;
+}
+
+/**
+ * Find a playlist by NetEase playlist ID
+ */
+function findByNeteaseId(neteaseId) {
+  const playlists = load();
+  return playlists.find(p => p.neteaseId === String(neteaseId)) || null;
 }
 
 /**
@@ -118,4 +127,4 @@ function remove(playlistId) {
   return { success: true };
 }
 
-module.exports = { create, list, get, addSong, removeSong, remove };
+module.exports = { create, list, get, findByNeteaseId, addSong, removeSong, remove };

@@ -374,6 +374,19 @@ input {
 
 .login-btn:hover { transform: scale(1.04); }
 
+.sync-btn {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.sync-btn:hover { transform: scale(1.04); filter: brightness(1.1); }
+.sync-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; filter: none; }
+
 .user-btn {
   display: flex;
   align-items: center;

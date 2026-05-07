@@ -607,6 +607,42 @@ async function loadMyPlaylists() {
   }
 }
 
+// ======== Sync NetEase Playlists ========
+async function syncNeteasePlaylists() {
+  const btn = document.getElementById('syncPlaylistsBtn');
+  if (!btn || btn.disabled) return;
+  
+  btn.disabled = true;
+  btn.textContent = '同步中...';
+  
+  try {
+    const result = await NeteaseAPI.syncNeteasePlaylists();
+    
+    if (result.synced > 0) {
+      Player.showToast(`✅ 已同步 ${result.synced} 个歌单${result.skipped > 0 ? `，${result.skipped} 个已跳过` : ''}`);
+    } else if (result.skipped > 0) {
+      Player.showToast('📋 所有歌单已同步过，无需重复同步');
+    } else {
+      Player.showToast('📋 没有可同步的歌单');
+    }
+    
+    if (result.errors && result.errors.length > 0) {
+      console.warn('同步错误:', result.errors);
+    }
+    
+    // Refresh local playlists sidebar
+    loadLocalPlaylists();
+    
+    // Also refresh the current view to show updated status
+    loadMyPlaylists();
+  } catch (error) {
+    Player.showToast('⚠️ 同步失败: ' + error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '同步歌单';
+  }
+}
+
 // ======== Login ========
 async function checkLoginStatus() {
   try {

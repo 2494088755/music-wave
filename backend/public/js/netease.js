@@ -118,6 +118,13 @@ const NeteaseAPI = {
     return res.json();
   },
 
+  async syncNeteasePlaylists() {
+    const res = await fetch(`${API_BASE}/api/sync/netease-playlists`, { method: 'POST' });
+    const data = await res.json();
+    if (data.code !== 200) throw new Error(data.msg || '同步失败');
+    return data.data;
+  },
+
   // ======== Multi-Source Search ========
   async multiSearch(source, keywords, limit = 20) {
     const res = await fetch(`${API_BASE}/api/multi/search?source=${source}&keywords=${encodeURIComponent(keywords)}&limit=${limit}`);

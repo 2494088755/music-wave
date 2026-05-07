@@ -479,6 +479,76 @@ app.get('/api/user/detail', async (req, res) => {
   }
 });
 
+// ============ Sync Routes ============
+
+/**
+ * POST /api/sync/netease-playlists
+ * Sync all user's NetEase playlists to local playlists
+ */
+app.post('/api/sync/netease-playlists', async (req, res) => {
+  try {
+    const userId = loginUserInfo && loginUserInfo.userId;
+    if (!userId) {
+      return res.json({ code: 400, msg: '请先登录' });
+    }
+
+    // Get user's NetEase playlists
+    const data = await netease.getUserPlaylists(userId, 100, 0);
+    const remotePlaylists = data.playlist || data || [];
+    if (!remotePlaylists.length) {
+      return res.json({ code: 200, data: { synced: 0, skipped: 0, errors: [] } });
+    }
+
+    let synced = 0;
+    let skipped = 0;
+    const errors = [];
+
+    for (const pl of remotePlaylists) {
+      try {
+        // Check if already synced
+        if (playlistStore.findByNeteaseId(pl.id)) {
+          skipped++;
+          continue;
+        }
+
+        // Fetch all tracks
+        const trackData = await netease.getPlaylistTracks(pl.id);
+        const tracks = trackData.tracks || [];
+
+        // Format songs for local storage
+        const songs = tracks.map(t => ({
+          id: t.id,
+          name: t.name || '',
+          artist: (t.ar || []).map(a => a.name).join(' / ') || '未知',
+          cover: (t.al || {}).picUrl || '',
+          duration: t.dt || 0,
+          source: 'netease',
+        }));
+
+        // Create local playlist
+        const localPlaylist = playlistStore.create(
+          pl.name || '未命名歌单',
+          pl.description || '',
+          String(pl.id)
+        );
+
+        // Add all songs
+        for (const song of songs) {
+          playlistStore.addSong(localPlaylist.id, song);
+        }
+
+        synced++;
+      } catch (e) {
+        errors.push({ playlistId: pl.id, name: pl.name, error: e.message });
+      }
+    }
+
+    res.json({ code: 200, data: { synced, skipped, errors } });
+  } catch (error) {
+    res.json({ code: 500, msg: '同步失败', error: error.message });
+  }
+});
+
 // ============ Playlist Routes (local) ============
 
 /**
