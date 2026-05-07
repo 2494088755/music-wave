@@ -263,14 +263,6 @@ async function getRecommendedPlaylists(limit = 10) {
 }
 
 /**
- * Get hot songs from a playlist (first batch)
- */
-async function getPlaylistTracks(playlistId) {
-  // Same as getPlaylistDetail
-  return getPlaylistDetail(playlistId);
-}
-
-/**
  * Get similar songs
  */
 async function getSimilarSongs(songId, cookie = '') {

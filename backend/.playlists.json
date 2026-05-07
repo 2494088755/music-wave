@@ -1,20 +1,3635 @@
 [
   {
-    "id": "momtt4gmamh1",
-    "name": "测试歌单",
+    "id": "movnq52o37gf",
+    "name": "ShukeZouma喜欢的音乐",
     "description": "",
+    "neteaseId": "887162498",
     "songs": [
       {
-        "id": "255290",
+        "id": 255290,
         "name": "I Am Free",
         "artist": "刘惜君",
         "cover": "https://p4.music.126.net/gZ93OHvjWKwnvIwChuRTfA==/109951171315740884.jpg",
         "duration": 257000,
         "source": "netease",
-        "addedAt": 1777636219854
+        "addedAt": 1778168688439
+      },
+      {
+        "id": 307810,
+        "name": "空窗",
+        "artist": "辛晓琪",
+        "cover": "https://p4.music.126.net/uhIvZKLiYd-RJ7BdsENbcg==/109951163718399066.jpg",
+        "duration": 287200,
+        "source": "netease",
+        "addedAt": 1778168688446
+      },
+      {
+        "id": 410519050,
+        "name": "是我不够好",
+        "artist": "李毓芬",
+        "cover": "https://p3.music.126.net/n1dTCaxQKEhz-e1WgzBTVQ==/109951167590429325.jpg",
+        "duration": 217408,
+        "source": "netease",
+        "addedAt": 1778168688453
+      },
+      {
+        "id": 327721,
+        "name": "读心术",
+        "artist": "卓文萱",
+        "cover": "https://p4.music.126.net/QJJRK7Zqx231yshpLhJCyw==/109951171907028802.jpg",
+        "duration": 260300,
+        "source": "netease",
+        "addedAt": 1778168688461
+      },
+      {
+        "id": 273114,
+        "name": "失眠",
+        "artist": "Suki刘舒妤",
+        "cover": "https://p3.music.126.net/pUPZfJ7aN-9_tBvzUUnAFQ==/94558000004350.jpg",
+        "duration": 211301,
+        "source": "netease",
+        "addedAt": 1778168688468
+      },
+      {
+        "id": 2674715528,
+        "name": "我管不住我自己",
+        "artist": "单依纯",
+        "cover": "https://p3.music.126.net/IZxbFVNN0ao32RwMVsCHKg==/109951170479412516.jpg",
+        "duration": 261576,
+        "source": "netease",
+        "addedAt": 1778168688476
+      },
+      {
+        "id": 442867526,
+        "name": "Die For You",
+        "artist": "The Weeknd",
+        "cover": "https://p4.music.126.net/9i2hrhQfRPNbTWD6YVAQXg==/109951167103667631.jpg",
+        "duration": 260253,
+        "source": "netease",
+        "addedAt": 1778168688484
+      },
+      {
+        "id": 223994,
+        "name": "你要的爱",
+        "artist": "戴佩妮",
+        "cover": "https://p3.music.126.net/rskOQly_BrQ2_31NN6hjFA==/109951172402265270.jpg",
+        "duration": 242440,
+        "source": "netease",
+        "addedAt": 1778168688493
+      },
+      {
+        "id": 25642117,
+        "name": "花田错",
+        "artist": "王力宏",
+        "cover": "https://p4.music.126.net/qjiitBkYiSj_qB8fvujfuA==/109951172439951132.jpg",
+        "duration": 228019,
+        "source": "netease",
+        "addedAt": 1778168688502
+      },
+      {
+        "id": 25642151,
+        "name": "心跳",
+        "artist": "王力宏",
+        "cover": "https://p3.music.126.net/qjiitBkYiSj_qB8fvujfuA==/109951172439951132.jpg",
+        "duration": 262866,
+        "source": "netease",
+        "addedAt": 1778168688513
+      },
+      {
+        "id": 300066,
+        "name": "怀念",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/mAqSihl3TPc70vaaEtJMdw==/109951172128566941.jpg",
+        "duration": 201066,
+        "source": "netease",
+        "addedAt": 1778168688523
+      },
+      {
+        "id": 150565,
+        "name": "二十二",
+        "artist": "陶喆",
+        "cover": "https://p4.music.126.net/FLIHPqpkfUBimQZB370agQ==/109951169237251638.jpg",
+        "duration": 261906,
+        "source": "netease",
+        "addedAt": 1778168688533
+      },
+      {
+        "id": 28754096,
+        "name": "都对也都错",
+        "artist": "张惠妹",
+        "cover": "https://p3.music.126.net/R3QLz43nYuEGlK4ucAaNAg==/109951167256508748.jpg",
+        "duration": 212834,
+        "source": "netease",
+        "addedAt": 1778168688544
+      },
+      {
+        "id": 27965209,
+        "name": "那时雨",
+        "artist": "徐良",
+        "cover": "https://p3.music.126.net/Eiq_XiRNqiXJEwmFzLTtow==/109951172050975516.jpg",
+        "duration": 214400,
+        "source": "netease",
+        "addedAt": 1778168688555
+      },
+      {
+        "id": 308353,
+        "name": "钟无艳",
+        "artist": "谢安琪",
+        "cover": "https://p3.music.126.net/e7y_BaALO6o0uM6I-mc5zw==/109951165206845950.jpg",
+        "duration": 279106,
+        "source": "netease",
+        "addedAt": 1778168688566
+      },
+      {
+        "id": 2066756882,
+        "name": "无烟区",
+        "artist": "陈粒",
+        "cover": "https://p4.music.126.net/cGIdZW4EEtPhd3rB775SaQ==/109951168857920159.jpg",
+        "duration": 328451,
+        "source": "netease",
+        "addedAt": 1778168688577
+      },
+      {
+        "id": 548556869,
+        "name": "半句再见",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/lLe5qRI7G9UV1NTEEvLa-g==/109951166155142333.jpg",
+        "duration": 242490,
+        "source": "netease",
+        "addedAt": 1778168688589
+      },
+      {
+        "id": 287398,
+        "name": "我不难过",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/Pzxy6py26NgNmhJjYMf2RQ==/109951169724216323.jpg",
+        "duration": 320400,
+        "source": "netease",
+        "addedAt": 1778168688600
+      },
+      {
+        "id": 454828887,
+        "name": "遇见",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/KZ0VfIoFYsxpjz9sTQuLVQ==/17687843556430013.jpg",
+        "duration": 209760,
+        "source": "netease",
+        "addedAt": 1778168688611
+      },
+      {
+        "id": 233888,
+        "name": "爱情讯息",
+        "artist": "郭静",
+        "cover": "https://p3.music.126.net/-ccXZvLLbvLQc99YEbylUA==/109951171316025348.jpg",
+        "duration": 280680,
+        "source": "netease",
+        "addedAt": 1778168688623
+      },
+      {
+        "id": 299407,
+        "name": "我也不想这样",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/oMftvOfez0-iTRuUs1CHlA==/19178781323558220.jpg",
+        "duration": 296573,
+        "source": "netease",
+        "addedAt": 1778168688634
+      },
+      {
+        "id": 1890530891,
+        "name": "如果可以",
+        "artist": "韦礼安",
+        "cover": "https://p3.music.126.net/znTzn19zZvZ4IdlKEOhWRg==/109951166564931690.jpg",
+        "duration": 274599,
+        "source": "netease",
+        "addedAt": 1778168688645
+      },
+      {
+        "id": 191316,
+        "name": "我爱你",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/kQgYR6s-lDEUFPC09Nux3A==/109951166118021561.jpg",
+        "duration": 310160,
+        "source": "netease",
+        "addedAt": 1778168688656
+      },
+      {
+        "id": 110215,
+        "name": "风吹麦浪",
+        "artist": "李健",
+        "cover": "https://p4.music.126.net/AFbJ1KzfXApdFO9owHCEfA==/109951163432573502.jpg",
+        "duration": 247000,
+        "source": "netease",
+        "addedAt": 1778168688667
+      },
+      {
+        "id": 2062623445,
+        "name": "想你时风起",
+        "artist": "单依纯",
+        "cover": "https://p4.music.126.net/jdtkAVxASgsZtN243m19NA==/109951168728196721.jpg",
+        "duration": 276519,
+        "source": "netease",
+        "addedAt": 1778168688678
+      },
+      {
+        "id": 1301736461,
+        "name": "爱错",
+        "artist": "王力宏",
+        "cover": "https://p3.music.126.net/febOkiCikU5OcjVLqGNLlg==/109951165994484307.jpg",
+        "duration": 238826,
+        "source": "netease",
+        "addedAt": 1778168688689
+      },
+      {
+        "id": 426027829,
+        "name": "带走我",
+        "artist": "戴佩妮",
+        "cover": "https://p3.music.126.net/uytzbNOwA2S17QKWRnMwDA==/109951171780048792.jpg",
+        "duration": 232242,
+        "source": "netease",
+        "addedAt": 1778168688701
+      },
+      {
+        "id": 1380260564,
+        "name": "爱完不完",
+        "artist": "陈粒",
+        "cover": "https://p4.music.126.net/Mcjz0duR5fF23-5JMXueXA==/109951169683298305.jpg",
+        "duration": 238245,
+        "source": "netease",
+        "addedAt": 1778168688712
+      },
+      {
+        "id": 421563711,
+        "name": "芳草地",
+        "artist": "陈粒",
+        "cover": "https://p4.music.126.net/HQxTggMCB7AHUXN-ZFEtmA==/1371091013186741.jpg",
+        "duration": 237146,
+        "source": "netease",
+        "addedAt": 1778168688723
+      },
+      {
+        "id": 1482494784,
+        "name": "骆驼",
+        "artist": "LKF34",
+        "cover": "https://p4.music.126.net/vl3gspeKp9g5wT9Wf2TFxQ==/109951165346129604.jpg",
+        "duration": 190093,
+        "source": "netease",
+        "addedAt": 1778168688734
+      },
+      {
+        "id": 28283351,
+        "name": "雨还是不停地落下",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/IpXZzvX4xgseWGfZhXHCyQ==/109951163115291601.jpg",
+        "duration": 291040,
+        "source": "netease",
+        "addedAt": 1778168688746
+      },
+      {
+        "id": 297904,
+        "name": "夜照亮了夜",
+        "artist": "万芳",
+        "cover": "https://p4.music.126.net/13AhPkwaHhUzVreMdW71PQ==/109951163346612179.jpg",
+        "duration": 226600,
+        "source": "netease",
+        "addedAt": 1778168688757
+      },
+      {
+        "id": 1301835417,
+        "name": "越来越不懂",
+        "artist": "野小马",
+        "cover": "https://p4.music.126.net/cJ0sCVWQc9qpvMbZwD6jKg==/109951165847550201.jpg",
+        "duration": 208520,
+        "source": "netease",
+        "addedAt": 1778168688768
+      },
+      {
+        "id": 64093,
+        "name": "孤独患者",
+        "artist": "陈奕迅",
+        "cover": "https://p3.music.126.net/Po0tJTtv4aBaYozWlnojHg==/18546562139313276.jpg",
+        "duration": 271226,
+        "source": "netease",
+        "addedAt": 1778168688780
+      },
+      {
+        "id": 297951,
+        "name": "不确定",
+        "artist": "万芳",
+        "cover": "https://p4.music.126.net/wwCLKnZxT_x-X1jeCrQdUA==/109951170145111206.jpg",
+        "duration": 276294,
+        "source": "netease",
+        "addedAt": 1778168688791
+      },
+      {
+        "id": 150561,
+        "name": "蝴蝶",
+        "artist": "陶喆",
+        "cover": "https://p4.music.126.net/FLIHPqpkfUBimQZB370agQ==/109951169237251638.jpg",
+        "duration": 283200,
+        "source": "netease",
+        "addedAt": 1778168688802
+      },
+      {
+        "id": 25703013,
+        "name": "立秋",
+        "artist": "筠子",
+        "cover": "https://p3.music.126.net/1C1hVHEsIhT0lumGtKySbA==/109951163067297063.jpg",
+        "duration": 315786,
+        "source": "netease",
+        "addedAt": 1778168688814
+      },
+      {
+        "id": 233931,
+        "name": "泡沫",
+        "artist": "G.E.M.邓紫棋",
+        "cover": "https://p3.music.126.net/3XEICRFzQPrHPUMD0xm1Jw==/109951163069323980.jpg",
+        "duration": 258866,
+        "source": "netease",
+        "addedAt": 1778168688825
+      },
+      {
+        "id": 516657213,
+        "name": "风衣",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/_VjuIgInJqwxdyoy4FF3IA==/18357446138140955.jpg",
+        "duration": 242951,
+        "source": "netease",
+        "addedAt": 1778168688836
+      },
+      {
+        "id": 1331876115,
+        "name": "原来你什么都不要",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/J1P3aOAgUhX82oatLW_aYw==/109951163711555014.jpg",
+        "duration": 223000,
+        "source": "netease",
+        "addedAt": 1778168688848
+      },
+      {
+        "id": 28613731,
+        "name": "好きだよ。~100回の後悔~ (English Ver.)",
+        "artist": "Che'Nelle",
+        "cover": "https://p3.music.126.net/u7S3pgVUGmjkGlQsUg0E-Q==/109951169237167354.jpg",
+        "duration": 306466,
+        "source": "netease",
+        "addedAt": 1778168688859
+      },
+      {
+        "id": 1306112195,
+        "name": "生活倒影",
+        "artist": "苏运莹",
+        "cover": "https://p4.music.126.net/ZAGSQxIY3Xcx3eslDRdSuQ==/109951163722875135.jpg",
+        "duration": 275923,
+        "source": "netease",
+        "addedAt": 1778168688871
+      },
+      {
+        "id": 287071,
+        "name": "漩涡",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/hIOFATG-3vNyYHOj31Tyew==/109951169829283327.jpg",
+        "duration": 291373,
+        "source": "netease",
+        "addedAt": 1778168688883
+      },
+      {
+        "id": 300342,
+        "name": "影子",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/zhN5DBMRA2dd0MySXJ_0dg==/109951169217254588.jpg",
+        "duration": 294493,
+        "source": "netease",
+        "addedAt": 1778168688894
+      },
+      {
+        "id": 300490,
+        "name": "执迷不悔(国)",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/UIJZ36yhBSBrCFvoit_A4A==/109951169124300739.jpg",
+        "duration": 266893,
+        "source": "netease",
+        "addedAt": 1778168688906
+      },
+      {
+        "id": 150667,
+        "name": "流沙",
+        "artist": "陶喆",
+        "cover": "https://p3.music.126.net/vcyUJw7mfEzzMCgbJry31w==/109951169507121139.jpg",
+        "duration": 242625,
+        "source": "netease",
+        "addedAt": 1778168688917
+      },
+      {
+        "id": 212162,
+        "name": "二缺一",
+        "artist": "蔡卓妍",
+        "cover": "https://p3.music.126.net/bPyV-yRjGnT_w8GWW4qASQ==/109951163309667154.jpg",
+        "duration": 215483,
+        "source": "netease",
+        "addedAt": 1778168688929
+      },
+      {
+        "id": 150633,
+        "name": "天天",
+        "artist": "陶喆",
+        "cover": "https://p4.music.126.net/tMQXBMTy8pGjGggX1j0YNQ==/109951169389595068.jpg",
+        "duration": 255200,
+        "source": "netease",
+        "addedAt": 1778168688941
+      },
+      {
+        "id": 431357712,
+        "name": "你在终点等我",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/ddhcDeGSl9VhXJLfOsNDEA==/3433774824740403.jpg",
+        "duration": 285373,
+        "source": "netease",
+        "addedAt": 1778168688952
+      },
+      {
+        "id": 422132597,
+        "name": "尘埃",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/ClnBZfVCRnjXQV8RaaLF_w==/3413983621484782.jpg",
+        "duration": 301041,
+        "source": "netease",
+        "addedAt": 1778168688964
+      },
+      {
+        "id": 255858,
+        "name": "词不达意",
+        "artist": "林忆莲",
+        "cover": "https://p4.music.126.net/SPjHBZjn1GrSvfKjYDBhsw==/109951172084678518.jpg",
+        "duration": 266466,
+        "source": "netease",
+        "addedAt": 1778168688975
+      },
+      {
+        "id": 299258,
+        "name": "乘客",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/dJ27T2jealkaq370KDH7tQ==/109951169790154351.jpg",
+        "duration": 280226,
+        "source": "netease",
+        "addedAt": 1778168688986
+      },
+      {
+        "id": 300129,
+        "name": "矜持",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/R5IFVIOZMFhGrC0jQuAeaw==/109951169124308027.jpg",
+        "duration": 279466,
+        "source": "netease",
+        "addedAt": 1778168688998
+      },
+      {
+        "id": 26387325,
+        "name": "拉过勾的",
+        "artist": "陆虎",
+        "cover": "https://p3.music.126.net/x-r68cAnC3yefRnibe9POg==/109951163077575462.jpg",
+        "duration": 218653,
+        "source": "netease",
+        "addedAt": 1778168689009
+      },
+      {
+        "id": 156736,
+        "name": "泪桥",
+        "artist": "伍佰 & China Blue",
+        "cover": "https://p4.music.126.net/ibz3f2b4NWKqYarb3aOyBA==/109951171998891782.jpg",
+        "duration": 225186,
+        "source": "netease",
+        "addedAt": 1778168689021
+      },
+      {
+        "id": 2712271599,
+        "name": "童话镇",
+        "artist": "小土豆",
+        "cover": "https://p3.music.126.net/3ptZKA86_15lers_43sJsA==/109951171264252378.jpg",
+        "duration": 274677,
+        "source": "netease",
+        "addedAt": 1778168689033
+      },
+      {
+        "id": 247821,
+        "name": "阳光下的星星",
+        "artist": "金海心",
+        "cover": "https://p3.music.126.net/qx1f3oMS-vPSrfdvYZMl8A==/109951167193041941.jpg",
+        "duration": 283520,
+        "source": "netease",
+        "addedAt": 1778168689045
+      },
+      {
+        "id": 1479528036,
+        "name": "镜面人",
+        "artist": "彭席彦",
+        "cover": "https://p3.music.126.net/Iv6sD9K_Fpfo3Y6iXsb6Cw==/109951165354411346.jpg",
+        "duration": 214400,
+        "source": "netease",
+        "addedAt": 1778168689056
+      },
+      {
+        "id": 286959,
+        "name": "当冬夜渐暖",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/I9O-KpO4bLC6LWOKYfJj4Q==/109951165992337446.jpg",
+        "duration": 287853,
+        "source": "netease",
+        "addedAt": 1778168689067
+      },
+      {
+        "id": 169185,
+        "name": "认真的雪",
+        "artist": "薛之谦",
+        "cover": "https://p3.music.126.net/fqiX7ZmISM4fHm7v4GrV2Q==/109951171269232420.jpg",
+        "duration": 255587,
+        "source": "netease",
+        "addedAt": 1778168689079
+      },
+      {
+        "id": 32507038,
+        "name": "演员",
+        "artist": "薛之谦",
+        "cover": "https://p3.music.126.net/vu7SHbVlMuszmSuKR2SKAQ==/109951168707343730.jpg",
+        "duration": 261249,
+        "source": "netease",
+        "addedAt": 1778168689090
+      },
+      {
+        "id": 287719,
+        "name": "开始懂了",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/1HJILQwc62AfvcXkGgVJHQ==/109951165549820772.jpg",
+        "duration": 271493,
+        "source": "netease",
+        "addedAt": 1778168689103
+      },
+      {
+        "id": 247936,
+        "name": "最后一页",
+        "artist": "江语晨",
+        "cover": "https://p4.music.126.net/3UVDYMN--zrYB8RK53-4Fg==/109951171932414834.jpg",
+        "duration": 245547,
+        "source": "netease",
+        "addedAt": 1778168689114
+      },
+      {
+        "id": 1415642779,
+        "name": "温柔 #MaydayBlue20th",
+        "artist": "五月天 / 孙燕姿",
+        "cover": "https://p4.music.126.net/Zydi4cMFExGjgtY1CT9jhg==/109951168165043075.jpg",
+        "duration": 271018,
+        "source": "netease",
+        "addedAt": 1778168689125
+      },
+      {
+        "id": 1405283464,
+        "name": "句号",
+        "artist": "G.E.M.邓紫棋",
+        "cover": "https://p3.music.126.net/KTo5oSxH3CPA5PBTeFKDyA==/109951164581432409.jpg",
+        "duration": 235632,
+        "source": "netease",
+        "addedAt": 1778168689137
+      },
+      {
+        "id": 186046,
+        "name": "半岛铁盒",
+        "artist": "周杰伦",
+        "cover": "https://p3.music.126.net/eDfuSni9ZWToHdqilVRI_w==/109951166698447900.jpg",
+        "duration": 319400,
+        "source": "netease",
+        "addedAt": 1778168689148
+      },
+      {
+        "id": 186162,
+        "name": "反方向的钟",
+        "artist": "周杰伦",
+        "cover": "https://p3.music.126.net/Gd-HAk9hKC85L0wNtfRs1g==/7946170535396804.jpg",
+        "duration": 258000,
+        "source": "netease",
+        "addedAt": 1778168689160
+      },
+      {
+        "id": 185701,
+        "name": "兰亭序",
+        "artist": "周杰伦",
+        "cover": "https://p3.music.126.net/HBanuZpt8SD2kf15AFa6Og==/109951163200234839.jpg",
+        "duration": 253000,
+        "source": "netease",
+        "addedAt": 1778168689171
+      },
+      {
+        "id": 26584886,
+        "name": "微风细雨 (Live)",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/EQ1Hz29saSTFN8HXKFPaiw==/109951163266918585.jpg",
+        "duration": 201377,
+        "source": "netease",
+        "addedAt": 1778168689182
+      },
+      {
+        "id": 1399112638,
+        "name": "心似烟火",
+        "artist": "陈壹千",
+        "cover": "https://p3.music.126.net/pE_xbRjFKTza8i7CKfmDuQ==/109951164447654929.jpg",
+        "duration": 271632,
+        "source": "netease",
+        "addedAt": 1778168689194
+      },
+      {
+        "id": 1806926997,
+        "name": "睡在风里",
+        "artist": "彭席彦",
+        "cover": "https://p4.music.126.net/Qt2NyiePED3f_GZ-zen8ig==/109951165566413235.jpg",
+        "duration": 228421,
+        "source": "netease",
+        "addedAt": 1778168689205
+      },
+      {
+        "id": 1897927044,
+        "name": "习惯失恋",
+        "artist": "容祖儿",
+        "cover": "https://p4.music.126.net/4VieTORK0uoITPFlZyzJrQ==/109951166656376814.jpg",
+        "duration": 236640,
+        "source": "netease",
+        "addedAt": 1778168689217
+      },
+      {
+        "id": 185697,
+        "name": "花海",
+        "artist": "周杰伦",
+        "cover": "https://p4.music.126.net/HBanuZpt8SD2kf15AFa6Og==/109951163200234839.jpg",
+        "duration": 264000,
+        "source": "netease",
+        "addedAt": 1778168689228
+      },
+      {
+        "id": 287231,
+        "name": "小小",
+        "artist": "容祖儿",
+        "cover": "https://p3.music.126.net/WDcYhuw0EejVMVCxgFl0Bg==/120946279068536.jpg",
+        "duration": 264601,
+        "source": "netease",
+        "addedAt": 1778168689240
+      },
+      {
+        "id": 5272610,
+        "name": "相约一九九八",
+        "artist": "那英 / 王菲",
+        "cover": "https://p4.music.126.net/_W32COgI9Y3aCOw2TZNREw==/125344325584417.jpg",
+        "duration": 308067,
+        "source": "netease",
+        "addedAt": 1778168689251
+      },
+      {
+        "id": 299182,
+        "name": "新房客 (Live)",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/ONC86p75_gWxhXx1PVOo_g==/109951166194929451.jpg",
+        "duration": 277266,
+        "source": "netease",
+        "addedAt": 1778168689263
+      },
+      {
+        "id": 300136,
+        "name": "暗涌",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/wLyizxpiR3ad575seG4tlQ==/109951172414956705.jpg",
+        "duration": 260600,
+        "source": "netease",
+        "addedAt": 1778168689274
+      },
+      {
+        "id": 25640795,
+        "name": "因为爱情",
+        "artist": "陈奕迅 / 王菲",
+        "cover": "https://p3.music.126.net/0POVOSSjqgVoOUGc5haWBQ==/109951163392311918.jpg",
+        "duration": 216893,
+        "source": "netease",
+        "addedAt": 1778168689286
+      },
+      {
+        "id": 299116,
+        "name": "约定",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/4NoMzpTqzOzhKipDhdPlmA==/109951172586363415.jpg",
+        "duration": 266746,
+        "source": "netease",
+        "addedAt": 1778168689297
+      },
+      {
+        "id": 31514406,
+        "name": "匆匆那年",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/YCq17CaVbRTyFtJG6G5oDg==/7816428162584348.jpg",
+        "duration": 240991,
+        "source": "netease",
+        "addedAt": 1778168689309
+      },
+      {
+        "id": 299604,
+        "name": "给自己的情书",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/E0ynLFbtqou5cu1iJrvUEQ==/109951163081327547.jpg",
+        "duration": 267600,
+        "source": "netease",
+        "addedAt": 1778168689320
+      },
+      {
+        "id": 557581476,
+        "name": "去年夏天",
+        "artist": "王大毛",
+        "cover": "https://p3.music.126.net/5M7Qvv32HaFmMrLN8uehuA==/109951163293243877.jpg",
+        "duration": 245026,
+        "source": "netease",
+        "addedAt": 1778168689332
+      },
+      {
+        "id": 1330348068,
+        "name": "起风了",
+        "artist": "买辣椒也用券",
+        "cover": "https://p3.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
+        "duration": 325868,
+        "source": "netease",
+        "addedAt": 1778168689343
+      },
+      {
+        "id": 299601,
+        "name": "笑忘书",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/E0ynLFbtqou5cu1iJrvUEQ==/109951163081327547.jpg",
+        "duration": 267933,
+        "source": "netease",
+        "addedAt": 1778168689355
+      },
+      {
+        "id": 300062,
+        "name": "人间",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/mAqSihl3TPc70vaaEtJMdw==/109951172128566941.jpg",
+        "duration": 285266,
+        "source": "netease",
+        "addedAt": 1778168689366
+      },
+      {
+        "id": 299650,
+        "name": "百年孤寂",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/EMaPiyf7GOhu8bcc1Fd63w==/109951166214524967.jpg",
+        "duration": 317426,
+        "source": "netease",
+        "addedAt": 1778168689378
+      },
+      {
+        "id": 299757,
+        "name": "红豆",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/62SmuCNsZRdyY_GEZWk_Ag==/109951163416516218.jpg",
+        "duration": 260000,
+        "source": "netease",
+        "addedAt": 1778168689389
+      },
+      {
+        "id": 298880,
+        "name": "容易受伤的女人",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/4Ln6P1iMVWNyDeKgvVH_Cg==/109951169124297468.jpg",
+        "duration": 259853,
+        "source": "netease",
+        "addedAt": 1778168689401
+      },
+      {
+        "id": 28854182,
+        "name": "惊鸿一面",
+        "artist": "许嵩 / 黄龄",
+        "cover": "https://p4.music.126.net/NBjIuSJ7LRugXdATt3j8AA==/109951172321467418.jpg",
+        "duration": 256418,
+        "source": "netease",
+        "addedAt": 1778168689413
+      },
+      {
+        "id": 186057,
+        "name": "米兰的小铁匠",
+        "artist": "周杰伦",
+        "cover": "https://p3.music.126.net/eDfuSni9ZWToHdqilVRI_w==/109951166698447900.jpg",
+        "duration": 238654,
+        "source": "netease",
+        "addedAt": 1778168689424
+      },
+      {
+        "id": 29814898,
+        "name": "可惜没如果",
+        "artist": "林俊杰",
+        "cover": "https://p4.music.126.net/2e__sKuIQsTSVVGr5Hk1FA==/109951170313536564.jpg",
+        "duration": 298293,
+        "source": "netease",
+        "addedAt": 1778168689435
+      },
+      {
+        "id": 186016,
+        "name": "晴天",
+        "artist": "周杰伦",
+        "cover": "https://p3.music.126.net/ZGffiDQZrGj5s_hnR1CNbg==/109951165566379710.jpg",
+        "duration": 269000,
+        "source": "netease",
+        "addedAt": 1778168689447
+      },
+      {
+        "id": 189602,
+        "name": "青花",
+        "artist": "周传雄",
+        "cover": "https://p4.music.126.net/prDyYpF9EsrLA4O13Tf5hw==/109951169874952327.jpg",
+        "duration": 297506,
+        "source": "netease",
+        "addedAt": 1778168689459
+      },
+      {
+        "id": 26524510,
+        "name": "我好想你",
+        "artist": "苏打绿",
+        "cover": "https://p4.music.126.net/t3yhufmRdlQZPfkLlxlgOA==/109951163240602374.jpg",
+        "duration": 326948,
+        "source": "netease",
+        "addedAt": 1778168689470
+      },
+      {
+        "id": 185906,
+        "name": "发如雪",
+        "artist": "周杰伦",
+        "cover": "https://p4.music.126.net/c6UWJU9iGaHGits7IqecRQ==/109951167749320136.jpg",
+        "duration": 299000,
+        "source": "netease",
+        "addedAt": 1778168689482
+      },
+      {
+        "id": 185924,
+        "name": "一路向北",
+        "artist": "周杰伦",
+        "cover": "https://p4.music.126.net/c6UWJU9iGaHGits7IqecRQ==/109951167749320136.jpg",
+        "duration": 295692,
+        "source": "netease",
+        "addedAt": 1778168689493
+      },
+      {
+        "id": 5244031,
+        "name": "夜曲",
+        "artist": "周杰伦",
+        "cover": "https://p4.music.126.net/UBVFgk4X-2B2wFh2VC2xkQ==/45079976755876.jpg",
+        "duration": 226826,
+        "source": "netease",
+        "addedAt": 1778168689505
+      },
+      {
+        "id": 185912,
+        "name": "枫",
+        "artist": "周杰伦",
+        "cover": "https://p4.music.126.net/c6UWJU9iGaHGits7IqecRQ==/109951167749320136.jpg",
+        "duration": 275000,
+        "source": "netease",
+        "addedAt": 1778168689516
+      },
+      {
+        "id": 189545,
+        "name": "冬天的秘密",
+        "artist": "周传雄",
+        "cover": "https://p3.music.126.net/RicH6-Q0z6lSerW1H5yWBw==/109951169200522014.jpg",
+        "duration": 272560,
+        "source": "netease",
+        "addedAt": 1778168689528
+      },
+      {
+        "id": 1979274315,
+        "name": "是否",
+        "artist": "程响",
+        "cover": "https://p3.music.126.net/SL6w8cgdxgITRaw4Rt6uJg==/109951169397828907.jpg",
+        "duration": 221702,
+        "source": "netease",
+        "addedAt": 1778168689539
+      },
+      {
+        "id": 307018,
+        "name": "遗憾",
+        "artist": "许美静",
+        "cover": "https://p4.music.126.net/dHogorPKN4h7yO3T04H9uA==/109951171998895620.jpg",
+        "duration": 281054,
+        "source": "netease",
+        "addedAt": 1778168689551
+      },
+      {
+        "id": 1993733911,
+        "name": "活着",
+        "artist": "九小姐",
+        "cover": "https://p4.music.126.net/xRbBKlN673pHIuy-svp9XQ==/109951168011273904.jpg",
+        "duration": 198144,
+        "source": "netease",
+        "addedAt": 1778168689563
+      },
+      {
+        "id": 255219,
+        "name": "怎么唱情歌",
+        "artist": "刘惜君",
+        "cover": "https://p4.music.126.net/JV8lqscPUSPJ-SXY-FSgJQ==/109951171315739471.jpg",
+        "duration": 299800,
+        "source": "netease",
+        "addedAt": 1778168689574
+      },
+      {
+        "id": 2025533834,
+        "name": "我们的歌",
+        "artist": "刘大拿",
+        "cover": "https://p4.music.126.net/Gm2v1KrDe2TwplzxcmTxYg==/109951168428025131.jpg",
+        "duration": 188918,
+        "source": "netease",
+        "addedAt": 1778168689586
+      },
+      {
+        "id": 442869203,
+        "name": "保留",
+        "artist": "郭顶",
+        "cover": "https://p3.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+        "duration": 270133,
+        "source": "netease",
+        "addedAt": 1778168689598
+      },
+      {
+        "id": 92821,
+        "name": "One Night in Shanghai",
+        "artist": "胡彦斌",
+        "cover": "https://p4.music.126.net/_zYzyYUidI7mfXeHKiSS0g==/109951166701711136.jpg",
+        "duration": 242360,
+        "source": "netease",
+        "addedAt": 1778168689609
+      },
+      {
+        "id": 483937795,
+        "name": "撒野",
+        "artist": "凯瑟喵",
+        "cover": "https://p3.music.126.net/cTMQotCcZqabLkv7c1zntA==/109951166267066450.jpg",
+        "duration": 248058,
+        "source": "netease",
+        "addedAt": 1778168689622
+      },
+      {
+        "id": 1968781675,
+        "name": "一直很安静",
+        "artist": "王贰浪",
+        "cover": "https://p3.music.126.net/d3P6hiIEDH4Gp9cApS5b3A==/109951167740623345.jpg",
+        "duration": 228565,
+        "source": "netease",
+        "addedAt": 1778168689634
+      },
+      {
+        "id": 1986180622,
+        "name": "日子很难",
+        "artist": "SwordsAndWalk / 生鱼片",
+        "cover": "https://p4.music.126.net/G15Bh15N9bZuD558Rmn56Q==/109951167927526606.jpg",
+        "duration": 203028,
+        "source": "netease",
+        "addedAt": 1778168689646
+      },
+      {
+        "id": 286966,
+        "name": "180度",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/I9O-KpO4bLC6LWOKYfJj4Q==/109951165992337446.jpg",
+        "duration": 303680,
+        "source": "netease",
+        "addedAt": 1778168689657
+      },
+      {
+        "id": 286970,
+        "name": "愚人的国度",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/I9O-KpO4bLC6LWOKYfJj4Q==/109951165992337446.jpg",
+        "duration": 248693,
+        "source": "netease",
+        "addedAt": 1778168689669
+      },
+      {
+        "id": 449577636,
+        "name": "开往早晨的午夜",
+        "artist": "张碧晨",
+        "cover": "https://p4.music.126.net/GEpjDKW2JikzF0sy-3LCPg==/109951163940907760.jpg",
+        "duration": 287933,
+        "source": "netease",
+        "addedAt": 1778168689681
+      },
+      {
+        "id": 1937340367,
+        "name": "A Thousand Years",
+        "artist": "Jada Facer / Kyson Facer",
+        "cover": "https://p4.music.126.net/tRGhTb7BSRLqc_oQa_lllw==/109951170516120477.jpg",
+        "duration": 212169,
+        "source": "netease",
+        "addedAt": 1778168689692
+      },
+      {
+        "id": 1981557398,
+        "name": "孤雏",
+        "artist": "高睿",
+        "cover": "https://p3.music.126.net/TJt6WkKj1ZWM466upbk60w==/109951167879363210.jpg",
+        "duration": 206613,
+        "source": "netease",
+        "addedAt": 1778168689704
+      },
+      {
+        "id": 493735012,
+        "name": "无人之岛",
+        "artist": "任然",
+        "cover": "https://p4.music.126.net/mIUtHBPTJ52H78_FhHzcWg==/19188676928210304.jpg",
+        "duration": 285234,
+        "source": "netease",
+        "addedAt": 1778168689716
+      },
+      {
+        "id": 436346833,
+        "name": "凄美地",
+        "artist": "郭顶",
+        "cover": "https://p4.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+        "duration": 250653,
+        "source": "netease",
+        "addedAt": 1778168689727
+      },
+      {
+        "id": 86503,
+        "name": "爱与诚",
+        "artist": "古巨基",
+        "cover": "https://p4.music.126.net/sx6kCHFgbJLjFF2KdPEiEQ==/109951165264470249.jpg",
+        "duration": 223907,
+        "source": "netease",
+        "addedAt": 1778168689739
+      },
+      {
+        "id": 2006448864,
+        "name": "失语者",
+        "artist": "刘大拿",
+        "cover": "https://p4.music.126.net/jgLldiqVBTcVtCL72YQycQ==/109951168150572289.jpg",
+        "duration": 188314,
+        "source": "netease",
+        "addedAt": 1778168689750
+      },
+      {
+        "id": 108914,
+        "name": "江南",
+        "artist": "林俊杰",
+        "cover": "https://p3.music.126.net/Gk4t93WwafRZtt9nTS77Iw==/109951171891430447.jpg",
+        "duration": 267946,
+        "source": "netease",
+        "addedAt": 1778168689762
+      },
+      {
+        "id": 2021373243,
+        "name": "如果爱忘了",
+        "artist": "王贰浪",
+        "cover": "https://p4.music.126.net/3rxX9wTHUFBBaT6Ud1tv5w==/109951168305751852.jpg",
+        "duration": 194592,
+        "source": "netease",
+        "addedAt": 1778168689773
+      },
+      {
+        "id": 2008927428,
+        "name": "吴哥窟",
+        "artist": "吴雨霏",
+        "cover": "https://p4.music.126.net/qLGxolYlugrKAHfAADxfzg==/109951168680699389.jpg",
+        "duration": 223013,
+        "source": "netease",
+        "addedAt": 1778168689785
+      },
+      {
+        "id": 5234477,
+        "name": "达尔文",
+        "artist": "蔡健雅",
+        "cover": "https://p3.music.126.net/rcGG58RFPous1aKTeu5BgQ==/605830906916387.jpg",
+        "duration": 265106,
+        "source": "netease",
+        "addedAt": 1778168689797
+      },
+      {
+        "id": 26830207,
+        "name": "僕が死のうと思ったのは",
+        "artist": "中島美嘉",
+        "cover": "https://p3.music.126.net/CM5a_RkJfD3B6v_HyQmsSA==/109951170423101269.jpg",
+        "duration": 382866,
+        "source": "netease",
+        "addedAt": 1778168689808
+      },
+      {
+        "id": 25884677,
+        "name": "仰望",
+        "artist": "杨丞琳",
+        "cover": "https://p3.music.126.net/HV_fUllcrF-QpIF8tYFJAw==/109951165958775197.jpg",
+        "duration": 214157,
+        "source": "netease",
+        "addedAt": 1778168689820
+      },
+      {
+        "id": 509704150,
+        "name": "那时窗外开满花",
+        "artist": "王金金",
+        "cover": "https://p3.music.126.net/0QFvFlgvU0fmc7v7FAYJ0g==/109951166120604841.jpg",
+        "duration": 215616,
+        "source": "netease",
+        "addedAt": 1778168689831
+      },
+      {
+        "id": 307606,
+        "name": "爱要坦荡荡",
+        "artist": "萧潇",
+        "cover": "https://p4.music.126.net/7XL7NVSgsUdzvgbr0kKTpw==/109951170618602533.jpg",
+        "duration": 238000,
+        "source": "netease",
+        "addedAt": 1778168689843
+      },
+      {
+        "id": 316108,
+        "name": "匿名的好友",
+        "artist": "杨丞琳",
+        "cover": "https://p4.music.126.net/Qt6sfLxRCscFZVXhbQ4bfg==/109951172020385959.jpg",
+        "duration": 262840,
+        "source": "netease",
+        "addedAt": 1778168689855
+      },
+      {
+        "id": 1372060183,
+        "name": "空",
+        "artist": "徐海俏",
+        "cover": "https://p3.music.126.net/loPUgrajdDnixh2Jemk2EQ==/109951164150451518.jpg",
+        "duration": 310470,
+        "source": "netease",
+        "addedAt": 1778168689867
+      },
+      {
+        "id": 1445990834,
+        "name": "风居住的街道(钢琴+小提琴完美演绎版)-風の住む街",
+        "artist": "浅绯色的喵",
+        "cover": "https://p4.music.126.net/hVPUfLNsSnnWbUSa5kaPqg==/109951164927740327.jpg",
+        "duration": 155976,
+        "source": "netease",
+        "addedAt": 1778168689878
+      },
+      {
+        "id": 1838505400,
+        "name": "我们打着光脚在风车下跑，手上的狗尾巴草摇啊摇",
+        "artist": "等一下就回家 / -艾兜",
+        "cover": "https://p3.music.126.net/fSLTPArWnHVdFDIIiBJ3rA==/109951165904744434.jpg",
+        "duration": 152354,
+        "source": "netease",
+        "addedAt": 1778168689889
+      },
+      {
+        "id": 1403318151,
+        "name": "把回忆拼好给你",
+        "artist": "王贰浪",
+        "cover": "https://p3.music.126.net/CBx2K_jEN3SNWwYztagPPw==/109951164485969446.jpg",
+        "duration": 381000,
+        "source": "netease",
+        "addedAt": 1778168689901
+      },
+      {
+        "id": 5240533,
+        "name": "爱得太迟",
+        "artist": "古巨基",
+        "cover": "https://p3.music.126.net/N5wXEFt3Kp4HSGxfVdnQgQ==/48378511634527.jpg",
+        "duration": 231067,
+        "source": "netease",
+        "addedAt": 1778168689912
+      },
+      {
+        "id": 35403523,
+        "name": "陪你度过漫长岁月",
+        "artist": "陈奕迅",
+        "cover": "https://p4.music.126.net/Nm5rwMYaH_20Zh61XhGn8Q==/109951166600775221.jpg",
+        "duration": 242400,
+        "source": "netease",
+        "addedAt": 1778168689924
+      },
+      {
+        "id": 1468957767,
+        "name": "红豆",
+        "artist": "徐泽（要不要买菜）",
+        "cover": "https://p3.music.126.net/S9vpC0pua4NDmCfcZviFew==/109951165212014716.jpg",
+        "duration": 204179,
+        "source": "netease",
+        "addedAt": 1778168689935
+      },
+      {
+        "id": 276936,
+        "name": "阴天",
+        "artist": "莫文蔚",
+        "cover": "https://p3.music.126.net/QZ0Wr5O2Kr5eF27IPGqtEQ==/109951165958716927.jpg",
+        "duration": 242416,
+        "source": "netease",
+        "addedAt": 1778168689947
+      },
+      {
+        "id": 26127565,
+        "name": "遗失的心跳",
+        "artist": "萧亚轩",
+        "cover": "https://p4.music.126.net/r7-Olcy0Pvfv_u7viE6VYg==/109951163858443507.jpg",
+        "duration": 216093,
+        "source": "netease",
+        "addedAt": 1778168689958
+      },
+      {
+        "id": 234014,
+        "name": "写不完的温柔",
+        "artist": "G.E.M.邓紫棋",
+        "cover": "https://p3.music.126.net/Ucjk_bkpGOHX1lYnezd4qw==/109951172128640538.jpg",
+        "duration": 238880,
+        "source": "netease",
+        "addedAt": 1778168689970
+      },
+      {
+        "id": 1867217766,
+        "name": "致你",
+        "artist": "yihuik苡慧",
+        "cover": "https://p3.music.126.net/VDmN2dNpIFu4gTv4bZe6KQ==/109951166254691365.jpg",
+        "duration": 271666,
+        "source": "netease",
+        "addedAt": 1778168689981
+      },
+      {
+        "id": 475479888,
+        "name": "在你的身边",
+        "artist": "盛哲",
+        "cover": "https://p4.music.126.net/AYNBdRxJ8EdZo4xFjp7b4Q==/109951163191178425.jpg",
+        "duration": 262251,
+        "source": "netease",
+        "addedAt": 1778168689992
+      },
+      {
+        "id": 1961495328,
+        "name": "mystery of love年糕长笛演奏版",
+        "artist": "HannaYao年糕",
+        "cover": "https://p3.music.126.net/Kj5KgXxKvB0YdUWrbGDC5A==/109951167553307635.jpg",
+        "duration": 168143,
+        "source": "netease",
+        "addedAt": 1778168690004
+      },
+      {
+        "id": 1894094482,
+        "name": "漠河舞厅·2022",
+        "artist": "柳爽",
+        "cover": "https://p4.music.126.net/m8BMzRWR53lMu2uaMYV2mA==/109951166609630672.jpg",
+        "duration": 304195,
+        "source": "netease",
+        "addedAt": 1778168690016
+      },
+      {
+        "id": 409031573,
+        "name": "分分钟需要你",
+        "artist": "林忆莲",
+        "cover": "https://p3.music.126.net/s-DaX0MS33slSZuvsijLbg==/109951165992337902.jpg",
+        "duration": 252453,
+        "source": "netease",
+        "addedAt": 1778168690028
+      },
+      {
+        "id": 26601310,
+        "name": "风度",
+        "artist": "汪苏泷",
+        "cover": "https://p4.music.126.net/XcyX-0bM9x4edUpbYltAhQ==/3420580736305046.jpg",
+        "duration": 222830,
+        "source": "netease",
+        "addedAt": 1778168690039
+      },
+      {
+        "id": 1897928897,
+        "name": "不浪漫罪名",
+        "artist": "王杰",
+        "cover": "https://p4.music.126.net/qznzoktI3hO7TXzomFONSA==/109951168146576277.jpg",
+        "duration": 287573,
+        "source": "netease",
+        "addedAt": 1778168690051
+      },
+      {
+        "id": 441491828,
+        "name": "水星记",
+        "artist": "郭顶",
+        "cover": "https://p4.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg",
+        "duration": 325266,
+        "source": "netease",
+        "addedAt": 1778168690063
+      },
+      {
+        "id": 308299,
+        "name": "喜帖街",
+        "artist": "谢安琪",
+        "cover": "https://p4.music.126.net/lw4uRA7f3wxjwqpjuAd47A==/109951172846518060.jpg",
+        "duration": 211493,
+        "source": "netease",
+        "addedAt": 1778168690075
+      },
+      {
+        "id": 1480380030,
+        "name": "第一次爱的人",
+        "artist": "王心凌",
+        "cover": "https://p4.music.126.net/Ab50uJzhEKY--PT6iZs38Q==/109951165325705447.jpg",
+        "duration": 229250,
+        "source": "netease",
+        "addedAt": 1778168690087
+      },
+      {
+        "id": 5260328,
+        "name": "必杀技",
+        "artist": "古巨基",
+        "cover": "https://p4.music.126.net/Oix4KKx3qsuL8UGiLKcDiA==/43980465127856.jpg",
+        "duration": 232408,
+        "source": "netease",
+        "addedAt": 1778168690099
+      },
+      {
+        "id": 208891,
+        "name": "Letting Go",
+        "artist": "蔡健雅",
+        "cover": "https://p3.music.126.net/5TTqb3sID_G-u2YOS2P0aA==/109951171536245206.jpg",
+        "duration": 263453,
+        "source": "netease",
+        "addedAt": 1778168690111
+      },
+      {
+        "id": 354352,
+        "name": "月牙湾",
+        "artist": "F.I.R.",
+        "cover": "https://p4.music.126.net/Kk1nN9Wlg4sCFscPK839cA==/109951172303751220.jpg",
+        "duration": 305991,
+        "source": "netease",
+        "addedAt": 1778168690123
+      },
+      {
+        "id": 157288,
+        "name": "挪威的森林",
+        "artist": "伍佰 & China Blue",
+        "cover": "https://p3.music.126.net/2oI02UZgag5rYV1z76OFTQ==/109951170729177304.jpg",
+        "duration": 391026,
+        "source": "netease",
+        "addedAt": 1778168690135
+      },
+      {
+        "id": 108931,
+        "name": "美人鱼",
+        "artist": "林俊杰",
+        "cover": "https://p3.music.126.net/Gk4t93WwafRZtt9nTS77Iw==/109951171891430447.jpg",
+        "duration": 254040,
+        "source": "netease",
+        "addedAt": 1778168690148
+      },
+      {
+        "id": 1883408617,
+        "name": "Komorebi(钢琴+小提琴版)",
+        "artist": "浅绯色的喵",
+        "cover": "https://p4.music.126.net/xpEqUFOCvTqbKOVSofF_ww==/109951166266978593.jpg",
+        "duration": 133642,
+        "source": "netease",
+        "addedAt": 1778168690159
+      },
+      {
+        "id": 421423808,
+        "name": "虚拟",
+        "artist": "陈粒",
+        "cover": "https://p3.music.126.net/HQxTggMCB7AHUXN-ZFEtmA==/1371091013186741.jpg",
+        "duration": 240626,
+        "source": "netease",
+        "addedAt": 1778168690171
+      },
+      {
+        "id": 1487946556,
+        "name": "Merry Christmas Mr. Lawrence(钢琴+小提琴)",
+        "artist": "浅绯色的喵",
+        "cover": "https://p3.music.126.net/huGeMOgW7jHtjk4Drllojw==/109951165394157853.jpg",
+        "duration": 78419,
+        "source": "netease",
+        "addedAt": 1778168690183
+      },
+      {
+        "id": 306665,
+        "name": "一样的月光",
+        "artist": "徐佳莹",
+        "cover": "https://p3.music.126.net/b1hZLgWA9ihXkivZeqo81g==/109951168296446353.jpg",
+        "duration": 240386,
+        "source": "netease",
+        "addedAt": 1778168690195
+      },
+      {
+        "id": 29759733,
+        "name": "可乐",
+        "artist": "赵紫骅",
+        "cover": "https://p3.music.126.net/qOfVT6izV4mBe4IyQn489Q==/18190320370401891.jpg",
+        "duration": 345211,
+        "source": "netease",
+        "addedAt": 1778168690207
+      },
+      {
+        "id": 1459935719,
+        "name": "我看过",
+        "artist": "周星星",
+        "cover": "https://p3.music.126.net/YnjEZ_xE7iNn7CiQYaESlQ==/109951165115143053.jpg",
+        "duration": 164140,
+        "source": "netease",
+        "addedAt": 1778168690219
+      },
+      {
+        "id": 287063,
+        "name": "我怀念的",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/hIOFATG-3vNyYHOj31Tyew==/109951169829283327.jpg",
+        "duration": 289066,
+        "source": "netease",
+        "addedAt": 1778168690231
+      },
+      {
+        "id": 35678875,
+        "name": "呼吸决定",
+        "artist": "Fine乐团",
+        "cover": "https://p3.music.126.net/qfDmwQk_TfyKXHODEdAaLw==/17771406439828281.jpg",
+        "duration": 246268,
+        "source": "netease",
+        "addedAt": 1778168690243
+      },
+      {
+        "id": 212233,
+        "name": "千千阙歌",
+        "artist": "陈慧娴",
+        "cover": "https://p3.music.126.net/xvdDMvUoTiREN40AUObttQ==/109951172341269304.jpg",
+        "duration": 299106,
+        "source": "netease",
+        "addedAt": 1778168690254
+      },
+      {
+        "id": 186513,
+        "name": "私奔",
+        "artist": "郑钧",
+        "cover": "https://p4.music.126.net/5pOpnbQHkUnUESO1xsGsXQ==/18932490718960959.jpg",
+        "duration": 318000,
+        "source": "netease",
+        "addedAt": 1778168690266
+      },
+      {
+        "id": 5275363,
+        "name": "灰姑娘",
+        "artist": "郑钧",
+        "cover": "https://p4.music.126.net/UjM9OZ5RmFRb1WPWRkpmZQ==/109951169838317730.jpg",
+        "duration": 304065,
+        "source": "netease",
+        "addedAt": 1778168690278
+      },
+      {
+        "id": 255589,
+        "name": "灰姑娘",
+        "artist": "梁咏琪",
+        "cover": "https://p4.music.126.net/OD5mxXU1eRYPfOCOkuYvRg==/109951165529533415.jpg",
+        "duration": 212200,
+        "source": "netease",
+        "addedAt": 1778168690289
+      },
+      {
+        "id": 1394009857,
+        "name": "别让我放下",
+        "artist": "MINGYANG",
+        "cover": "https://p3.music.126.net/hyv9Iv7dtGh45l5JEG0YYQ==/109951165129143352.jpg",
+        "duration": 270196,
+        "source": "netease",
+        "addedAt": 1778168690301
+      },
+      {
+        "id": 167873,
+        "name": "多余的解释",
+        "artist": "许嵩",
+        "cover": "https://p4.music.126.net/Zg4XDfsiRi5vawjSWPP8Ng==/109951172899966259.jpg",
+        "duration": 277040,
+        "source": "netease",
+        "addedAt": 1778168690313
+      },
+      {
+        "id": 167827,
+        "name": "素颜",
+        "artist": "许嵩 / 何曼婷",
+        "cover": "https://p4.music.126.net/t3ogpTd1bIJpwokhkpBtwQ==/109951169829246225.jpg",
+        "duration": 238608,
+        "source": "netease",
+        "addedAt": 1778168690325
+      },
+      {
+        "id": 1842025914,
+        "name": "这世界那么多人",
+        "artist": "莫文蔚",
+        "cover": "https://p4.music.126.net/LOTxqRjFm03VJEOHJbUqMw==/109951165944804127.jpg",
+        "duration": 285884,
+        "source": "netease",
+        "addedAt": 1778168690337
+      },
+      {
+        "id": 1453957944,
+        "name": "寂寞沙洲冷",
+        "artist": "于潼",
+        "cover": "https://p3.music.126.net/-GVV1FnjB3iawDY0yyHOBg==/109951165048523233.jpg",
+        "duration": 237418,
+        "source": "netease",
+        "addedAt": 1778168690349
+      },
+      {
+        "id": 133998,
+        "name": "老街",
+        "artist": "李荣浩",
+        "cover": "https://p3.music.126.net/i3E6Y0tNyVub89_q0L_zZg==/109951170731461412.jpg",
+        "duration": 318826,
+        "source": "netease",
+        "addedAt": 1778168690361
+      },
+      {
+        "id": 5145746,
+        "name": "Thank You",
+        "artist": "Dido",
+        "cover": "https://p3.music.126.net/iRkt6pHKwcQKDch6-VNXZQ==/1751522023059530.jpg",
+        "duration": 192000,
+        "source": "netease",
+        "addedAt": 1778168690373
+      },
+      {
+        "id": 1408941888,
+        "name": "广寒谣",
+        "artist": "伊格赛听 / 不靠谱组合",
+        "cover": "https://p4.music.126.net/VQ4bemCFWvtQL5Xao5G3oQ==/109951164542688776.jpg",
+        "duration": 185984,
+        "source": "netease",
+        "addedAt": 1778168690384
+      },
+      {
+        "id": 316100,
+        "name": "雨爱",
+        "artist": "杨丞琳",
+        "cover": "https://p3.music.126.net/Qt6sfLxRCscFZVXhbQ4bfg==/109951172020385959.jpg",
+        "duration": 260480,
+        "source": "netease",
+        "addedAt": 1778168690398
+      },
+      {
+        "id": 1447055617,
+        "name": "The Box (Lofi Remix)",
+        "artist": "Lofi / Lofi Hip Hop / Lofi Music",
+        "cover": "https://p4.music.126.net/1hnIAcqOZTiCIFbgIwx2Ew==/109951164975621280.jpg",
+        "duration": 219846,
+        "source": "netease",
+        "addedAt": 1778168690410
+      },
+      {
+        "id": 1430174791,
+        "name": "什么样的爱情",
+        "artist": "你与六便士",
+        "cover": "https://p3.music.126.net/Wv7r77exagUvT-S_q6yIuw==/109951167999117802.jpg",
+        "duration": 196444,
+        "source": "netease",
+        "addedAt": 1778168690422
+      },
+      {
+        "id": 541687281,
+        "name": "慢慢喜欢你",
+        "artist": "莫文蔚",
+        "cover": "https://p4.music.126.net/VYZejIv5M-K4RsHKkyXQFQ==/109951165958895028.jpg",
+        "duration": 221447,
+        "source": "netease",
+        "addedAt": 1778168690434
+      },
+      {
+        "id": 557584804,
+        "name": "Bonus ~ Last Summer",
+        "artist": "barnes blvd.",
+        "cover": "https://p4.music.126.net/1cb3zkiL7LY68UGU3KiL5Q==/109951166210611320.jpg",
+        "duration": 139909,
+        "source": "netease",
+        "addedAt": 1778168690446
+      },
+      {
+        "id": 5255441,
+        "name": "说爱你",
+        "artist": "蔡依林",
+        "cover": "https://p4.music.126.net/pGjJLj81b0FmUr0v506PNg==/109951165641566083.jpg",
+        "duration": 226533,
+        "source": "netease",
+        "addedAt": 1778168690458
+      },
+      {
+        "id": 1804586207,
+        "name": "伯虎说 (feat.唐伯虎Annie) 无鼠来宝版",
+        "artist": "伯爵Johnny / 唐伯虎Annie",
+        "cover": "https://p3.music.126.net/0TVcp5_x6GuBnBa9rJhFvQ==/109951165500305096.jpg",
+        "duration": 203180,
+        "source": "netease",
+        "addedAt": 1778168690470
+      },
+      {
+        "id": 27937429,
+        "name": "盛夏的果实",
+        "artist": "莫文蔚",
+        "cover": "https://p4.music.126.net/lAn76HMjRiiWJawCZ0kCNA==/109951165884867482.jpg",
+        "duration": 250171,
+        "source": "netease",
+        "addedAt": 1778168690482
+      },
+      {
+        "id": 1331593956,
+        "name": "大眠",
+        "artist": "王心凌",
+        "cover": "https://p3.music.126.net/6Qeq9dtJBlo_G-ny8nB_jg==/109951168901461189.jpg",
+        "duration": 239555,
+        "source": "netease",
+        "addedAt": 1778168690493
+      },
+      {
+        "id": 1394183562,
+        "name": "犯错",
+        "artist": "小眼鑫",
+        "cover": "https://p3.music.126.net/cvheBrlhDK1JxwfYxyQ5dw==/109951164569337415.jpg",
+        "duration": 205911,
+        "source": "netease",
+        "addedAt": 1778168690505
+      },
+      {
+        "id": 1454732243,
+        "name": "只对你有感觉",
+        "artist": "徐泽（要不要买菜）",
+        "cover": "https://p4.music.126.net/sU7i7tfR_rnWHmbYNAKnhA==/109951165056414335.jpg",
+        "duration": 211978,
+        "source": "netease",
+        "addedAt": 1778168690517
+      },
+      {
+        "id": 1454415688,
+        "name": "白山茶（翻自 陈雪凝）",
+        "artist": "马越敏",
+        "cover": "https://p3.music.126.net/p3sJoZXgdfeJDJf_dHoFaA==/109951165234857137.jpg",
+        "duration": 182134,
+        "source": "netease",
+        "addedAt": 1778168690529
+      },
+      {
+        "id": 1808492017,
+        "name": "错位时空",
+        "artist": "艾辰",
+        "cover": "https://p3.music.126.net/8C0lwLE88j9ZwLyPQ9a4FA==/109951165595770076.jpg",
+        "duration": 203930,
+        "source": "netease",
+        "addedAt": 1778168690541
+      },
+      {
+        "id": 2587943,
+        "name": "Glamorous",
+        "artist": "Fergie",
+        "cover": "https://p4.music.126.net/UK1CZbX9y4f1P35xbhgozw==/18168330138192296.jpg",
+        "duration": 247080,
+        "source": "netease",
+        "addedAt": 1778168690553
+      },
+      {
+        "id": 1426649237,
+        "name": "海底",
+        "artist": "一支榴莲",
+        "cover": "https://p4.music.126.net/swcW0FE-__ihfjnJqU22Qg==/109951164696345792.jpg",
+        "duration": 104544,
+        "source": "netease",
+        "addedAt": 1778168690565
+      },
+      {
+        "id": 1406642934,
+        "name": "我要找到你",
+        "artist": "冯子晨",
+        "cover": "https://p4.music.126.net/A4uSU0kJZT0xpw-S0fGg2Q==/109951164539421824.jpg",
+        "duration": 183991,
+        "source": "netease",
+        "addedAt": 1778168690577
+      },
+      {
+        "id": 1398508295,
+        "name": "多情种",
+        "artist": "徐泽（要不要买菜）",
+        "cover": "https://p3.music.126.net/ZYgsZKTn5dclbcDVrLnxdw==/109951164442715619.jpg",
+        "duration": 214714,
+        "source": "netease",
+        "addedAt": 1778168690589
+      },
+      {
+        "id": 362998,
+        "name": "老男孩",
+        "artist": "筷子兄弟",
+        "cover": "https://p4.music.126.net/cTIg4WjhzKXJAf1tnCivIg==/95657511628674.jpg",
+        "duration": 300026,
+        "source": "netease",
+        "addedAt": 1778168690601
+      },
+      {
+        "id": 1293953338,
+        "name": "History",
+        "artist": "88rising / Rich Brian",
+        "cover": "https://p3.music.126.net/ureUNTAXz0AslZRtdGqX4g==/109951170318402844.jpg",
+        "duration": 207307,
+        "source": "netease",
+        "addedAt": 1778168690614
+      },
+      {
+        "id": 487885426,
+        "name": "余香",
+        "artist": "张小九",
+        "cover": "https://p4.music.126.net/LNN2f6W5_s6GFQs-l3gnaw==/109951165221750422.jpg",
+        "duration": 246019,
+        "source": "netease",
+        "addedAt": 1778168690626
+      },
+      {
+        "id": 1401267466,
+        "name": "最爱",
+        "artist": "阿梨粤",
+        "cover": "https://p3.music.126.net/5o2FTeoQiyqMUSoTvRFuUw==/109951164470407520.jpg",
+        "duration": 250475,
+        "source": "netease",
+        "addedAt": 1778168690638
+      },
+      {
+        "id": 421423806,
+        "name": "小半",
+        "artist": "陈粒",
+        "cover": "https://p4.music.126.net/HQxTggMCB7AHUXN-ZFEtmA==/1371091013186741.jpg",
+        "duration": 297240,
+        "source": "netease",
+        "addedAt": 1778168690650
+      },
+      {
+        "id": 1399413450,
+        "name": "I Never Told You",
+        "artist": "杨飞机",
+        "cover": "https://p4.music.126.net/2lTC3zspumISDlLLIaGzlw==/109951166585044403.jpg",
+        "duration": 93440,
+        "source": "netease",
+        "addedAt": 1778168690664
+      },
+      {
+        "id": 1381305582,
+        "name": "见过水星",
+        "artist": "姜鹏Calm / 很美味",
+        "cover": "https://p3.music.126.net/Sj6Rcpifvq7CSH1_MrlH1Q==/109951164389861702.jpg",
+        "duration": 212000,
+        "source": "netease",
+        "addedAt": 1778168690676
+      },
+      {
+        "id": 1351219081,
+        "name": "Old Town Road",
+        "artist": "Lil Nas X",
+        "cover": "https://p4.music.126.net/Waq693_WIQ2b5hCXcL1iTA==/109951163926711430.jpg",
+        "duration": 113000,
+        "source": "netease",
+        "addedAt": 1778168690688
+      },
+      {
+        "id": 28100900,
+        "name": "惊梦 feat. Himawari",
+        "artist": "Aosaki / Himawari",
+        "cover": "https://p3.music.126.net/c-IbHUj4S-ui6rm3GW1lMw==/5836207720351566.jpg",
+        "duration": 238862,
+        "source": "netease",
+        "addedAt": 1778168690700
+      },
+      {
+        "id": 459925763,
+        "name": "Take It All In",
+        "artist": "Russ / Rexx Life Raj",
+        "cover": "https://p3.music.126.net/5ay3gVKLEzLRalqUyc2ouw==/109951164939152455.jpg",
+        "duration": 184685,
+        "source": "netease",
+        "addedAt": 1778168690712
+      },
+      {
+        "id": 1333596703,
+        "name": "盗墓笔记·十年人间",
+        "artist": "易先生 / 曼姝",
+        "cover": "https://p4.music.126.net/ybnKr7ZFEbShvdGIZXN9AA==/109951163727111482.jpg",
+        "duration": 282488,
+        "source": "netease",
+        "addedAt": 1778168690724
+      },
+      {
+        "id": 864648032,
+        "name": "冷",
+        "artist": "KADA.C / Vyan",
+        "cover": "https://p4.music.126.net/-MkcpbHIIuUkCxzrtidqkg==/109951164256445171.jpg",
+        "duration": 224450,
+        "source": "netease",
+        "addedAt": 1778168690736
+      },
+      {
+        "id": 500538107,
+        "name": "盛夏的舞",
+        "artist": "Heyo",
+        "cover": "https://p3.music.126.net/a5965EpRHp35DYt9UGEkXQ==/109951163008016014.jpg",
+        "duration": 246500,
+        "source": "netease",
+        "addedAt": 1778168690748
+      },
+      {
+        "id": 1381755293,
+        "name": "山楂树之恋",
+        "artist": "程佳佳",
+        "cover": "https://p4.music.126.net/G00sAe86sPi5gFQyuJHU7A==/109951164260611202.jpg",
+        "duration": 184535,
+        "source": "netease",
+        "addedAt": 1778168690760
+      },
+      {
+        "id": 1336866526,
+        "name": "moonlight",
+        "artist": "mich",
+        "cover": "https://p3.music.126.net/CAH6rIfmbBjjU-HEbgTxBQ==/109951163812197144.jpg",
+        "duration": 146454,
+        "source": "netease",
+        "addedAt": 1778168690772
+      },
+      {
+        "id": 494751622,
+        "name": "恍若如梦（夜钢五）",
+        "artist": "羽飞",
+        "cover": "https://p4.music.126.net/pfZ7DfA13qKEQrxNW21Kjw==/109951162990776953.jpg",
+        "duration": 146159,
+        "source": "netease",
+        "addedAt": 1778168690784
+      },
+      {
+        "id": 1349465795,
+        "name": "游",
+        "artist": "余生",
+        "cover": "https://p4.music.126.net/PLPrwYq-7fN1zqzoDT8Lhg==/109951163676678119.jpg",
+        "duration": 271304,
+        "source": "netease",
+        "addedAt": 1778168690795
+      },
+      {
+        "id": 1299570939,
+        "name": "Once Upon a Time",
+        "artist": "Max Oazo / Moonessa",
+        "cover": "https://p4.music.126.net/Ih0GQRKYyd_yRaWa-jwmVA==/109951167480965715.jpg",
+        "duration": 206373,
+        "source": "netease",
+        "addedAt": 1778168690807
+      },
+      {
+        "id": 27937466,
+        "name": "忽然之间",
+        "artist": "莫文蔚",
+        "cover": "https://p4.music.126.net/lAn76HMjRiiWJawCZ0kCNA==/109951165884867482.jpg",
+        "duration": 202301,
+        "source": "netease",
+        "addedAt": 1778168690819
+      },
+      {
+        "id": 190808,
+        "name": "夕阳醉了",
+        "artist": "张学友",
+        "cover": "https://p3.music.126.net/p-UQp6MMszY9IhDkD8zxDg==/109951167135046423.jpg",
+        "duration": 305813,
+        "source": "netease",
+        "addedAt": 1778168690831
+      },
+      {
+        "id": 1322041120,
+        "name": "rain（prod.bycon，feat snow）",
+        "artist": "Shining安吉 / SNØW",
+        "cover": "https://p3.music.126.net/arSoeP99wSg-0tms-SSXiQ==/109951165631059904.jpg",
+        "duration": 202894,
+        "source": "netease",
+        "addedAt": 1778168690843
+      },
+      {
+        "id": 1356350562,
+        "name": "这一生关于你的风景",
+        "artist": "枯木逢春",
+        "cover": "https://p3.music.126.net/zFZ-zwCo231Luti9-VS5jQ==/109951170699878376.jpg",
+        "duration": 263298,
+        "source": "netease",
+        "addedAt": 1778168690855
+      },
+      {
+        "id": 1350121233,
+        "name": "Luh Kel So Sick Freestyle",
+        "artist": "Luh Kel",
+        "cover": "https://p3.music.126.net/Jo72-S9bOEVhuUrF1awMaw==/109951169312138949.jpg",
+        "duration": 33855,
+        "source": "netease",
+        "addedAt": 1778168690867
+      },
+      {
+        "id": 1315812476,
+        "name": "为你写诗(吉他版)",
+        "artist": "李瑨瑶",
+        "cover": "https://p3.music.126.net/TnKpmcPwKVjzzEiFX6f58A==/109951163277582604.jpg",
+        "duration": 157779,
+        "source": "netease",
+        "addedAt": 1778168690880
+      },
+      {
+        "id": 479598964,
+        "name": "椿",
+        "artist": "沈以诚",
+        "cover": "https://p3.music.126.net/CpwIPy2YUWC6ksF88eGNyw==/109951162931819035.jpg",
+        "duration": 217640,
+        "source": "netease",
+        "addedAt": 1778168690892
+      },
+      {
+        "id": 553755659,
+        "name": "可不可以",
+        "artist": "张紫豪",
+        "cover": "https://p4.music.126.net/WafK2OQfEtqXitdDXJ772Q==/109951163252847249.jpg",
+        "duration": 240889,
+        "source": "netease",
+        "addedAt": 1778168690904
+      },
+      {
+        "id": 30431376,
+        "name": "易燃易爆炸",
+        "artist": "陈粒",
+        "cover": "https://p4.music.126.net/VuJFMbXzpAProbJPoXLv7g==/7721870161993398.jpg",
+        "duration": 200347,
+        "source": "netease",
+        "addedAt": 1778168690916
+      },
+      {
+        "id": 30431367,
+        "name": "走马",
+        "artist": "陈粒",
+        "cover": "https://p3.music.126.net/VuJFMbXzpAProbJPoXLv7g==/7721870161993398.jpg",
+        "duration": 235555,
+        "source": "netease",
+        "addedAt": 1778168690928
+      },
+      {
+        "id": 33911781,
+        "name": "secret base ~君がくれたもの~ (10 years after Ver.)",
+        "artist": "茅野愛衣 / 戸松遥 / 早見沙織",
+        "cover": "https://p4.music.126.net/qMg2-kgxvYwMRvABdQJ91Q==/109951166198069948.jpg",
+        "duration": 355218,
+        "source": "netease",
+        "addedAt": 1778168690940
+      },
+      {
+        "id": 506092654,
+        "name": "我看着你的时候",
+        "artist": "李荣浩",
+        "cover": "https://p3.music.126.net/Mi_esXN5SuzR58mlUdzigA==/109951163692949297.jpg",
+        "duration": 293405,
+        "source": "netease",
+        "addedAt": 1778168690951
+      },
+      {
+        "id": 65536,
+        "name": "爱情转移",
+        "artist": "陈奕迅",
+        "cover": "https://p3.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+        "duration": 259986,
+        "source": "netease",
+        "addedAt": 1778168690963
+      },
+      {
+        "id": 64634,
+        "name": "一丝不挂",
+        "artist": "陈奕迅",
+        "cover": "https://p3.music.126.net/90Hf_rzZe79hWdf5S-wiAg==/109951170448806800.jpg",
+        "duration": 242280,
+        "source": "netease",
+        "addedAt": 1778168690975
+      },
+      {
+        "id": 65766,
+        "name": "富士山下",
+        "artist": "陈奕迅",
+        "cover": "https://p3.music.126.net/oSMs7RzJFx0TgWCqRC8XjA==/109951171844247587.jpg",
+        "duration": 258902,
+        "source": "netease",
+        "addedAt": 1778168690987
+      },
+      {
+        "id": 118261,
+        "name": "七友",
+        "artist": "梁汉文",
+        "cover": "https://p3.music.126.net/Bl_xdJtNTcp4RDdI5huaZA==/6632254138820634.jpg",
+        "duration": 257369,
+        "source": "netease",
+        "addedAt": 1778168690998
+      },
+      {
+        "id": 434871406,
+        "name": "夏の喚く",
+        "artist": "邱有句",
+        "cover": "https://p3.music.126.net/7BPYzlYTQp285WXdO-u2Ug==/18215609137826245.jpg",
+        "duration": 296774,
+        "source": "netease",
+        "addedAt": 1778168691011
+      },
+      {
+        "id": 65800,
+        "name": "最佳损友",
+        "artist": "陈奕迅",
+        "cover": "https://p3.music.126.net/3mi073axgjg-g-79ObwwEQ==/109951171836582062.jpg",
+        "duration": 233560,
+        "source": "netease",
+        "addedAt": 1778168691023
+      },
+      {
+        "id": 65533,
+        "name": "红玫瑰",
+        "artist": "陈奕迅",
+        "cover": "https://p4.music.126.net/o_OjL_NZNoeog9fIjBXAyw==/18782957139233959.jpg",
+        "duration": 239973,
+        "source": "netease",
+        "addedAt": 1778168691034
+      },
+      {
+        "id": 30352891,
+        "name": "牵丝戏",
+        "artist": "银临 / Aki阿杰",
+        "cover": "https://p4.music.126.net/Nd86SOcyCxU5Qu7jdZn_MQ==/7725168696876736.jpg",
+        "duration": 239302,
+        "source": "netease",
+        "addedAt": 1778168691047
+      },
+      {
+        "id": 409650851,
+        "name": "霜雪千年",
+        "artist": "双笙（陈元汐） / 封茗囧菌",
+        "cover": "https://p3.music.126.net/MlJ3IKOYOGJyrHtCTuLrqg==/18198016951567518.jpg",
+        "duration": 246909,
+        "source": "netease",
+        "addedAt": 1778168691058
+      },
+      {
+        "id": 139774,
+        "name": "The truth that you leave",
+        "artist": "Pianoboy高至豪",
+        "cover": "https://p3.music.126.net/9idkdzbel_-lYBP7Dv_dVQ==/102254581395289.jpg",
+        "duration": 223467,
+        "source": "netease",
+        "addedAt": 1778168691071
+      },
+      {
+        "id": 468517654,
+        "name": "动物世界",
+        "artist": "薛之谦",
+        "cover": "https://p4.music.126.net/fNbj5uDwltSDLbETdnEYYQ==/109951163069265719.jpg",
+        "duration": 230457,
+        "source": "netease",
+        "addedAt": 1778168691083
       }
     ],
-    "createdAt": 1777634709718,
-    "updatedAt": 1777636219854
+    "createdAt": 1778168688432,
+    "updatedAt": 1778168691083
+  },
+  {
+    "id": "movnq7xaxbvv",
+    "name": "ShukeZouma的2025年度歌单（纯净版）",
+    "description": "",
+    "neteaseId": "17607732242",
+    "songs": [
+      {
+        "id": 247821,
+        "name": "阳光下的星星",
+        "artist": "金海心",
+        "cover": "https://p4.music.126.net/qx1f3oMS-vPSrfdvYZMl8A==/109951167193041941.jpg",
+        "duration": 283520,
+        "source": "netease",
+        "addedAt": 1778168692138
+      },
+      {
+        "id": 2062623445,
+        "name": "想你时风起",
+        "artist": "单依纯",
+        "cover": "https://p4.music.126.net/jdtkAVxASgsZtN243m19NA==/109951168728196721.jpg",
+        "duration": 276519,
+        "source": "netease",
+        "addedAt": 1778168692150
+      },
+      {
+        "id": 1890530891,
+        "name": "如果可以",
+        "artist": "韦礼安",
+        "cover": "https://p4.music.126.net/znTzn19zZvZ4IdlKEOhWRg==/109951166564931690.jpg",
+        "duration": 274599,
+        "source": "netease",
+        "addedAt": 1778168692163
+      },
+      {
+        "id": 1301736461,
+        "name": "爱错",
+        "artist": "王力宏",
+        "cover": "https://p4.music.126.net/febOkiCikU5OcjVLqGNLlg==/109951165994484307.jpg",
+        "duration": 238826,
+        "source": "netease",
+        "addedAt": 1778168692174
+      },
+      {
+        "id": 1380260564,
+        "name": "爱完不完",
+        "artist": "陈粒",
+        "cover": "https://p3.music.126.net/Mcjz0duR5fF23-5JMXueXA==/109951169683298305.jpg",
+        "duration": 238245,
+        "source": "netease",
+        "addedAt": 1778168692186
+      },
+      {
+        "id": 110215,
+        "name": "风吹麦浪",
+        "artist": "李健",
+        "cover": "https://p3.music.126.net/AFbJ1KzfXApdFO9owHCEfA==/109951163432573502.jpg",
+        "duration": 247000,
+        "source": "netease",
+        "addedAt": 1778168692198
+      },
+      {
+        "id": 150561,
+        "name": "蝴蝶",
+        "artist": "陶喆",
+        "cover": "https://p4.music.126.net/FLIHPqpkfUBimQZB370agQ==/109951169237251638.jpg",
+        "duration": 283200,
+        "source": "netease",
+        "addedAt": 1778168692210
+      },
+      {
+        "id": 150633,
+        "name": "天天",
+        "artist": "陶喆",
+        "cover": "https://p4.music.126.net/tMQXBMTy8pGjGggX1j0YNQ==/109951169389595068.jpg",
+        "duration": 255200,
+        "source": "netease",
+        "addedAt": 1778168692222
+      },
+      {
+        "id": 426027829,
+        "name": "带走我",
+        "artist": "戴佩妮",
+        "cover": "https://p4.music.126.net/uytzbNOwA2S17QKWRnMwDA==/109951171780048792.jpg",
+        "duration": 232242,
+        "source": "netease",
+        "addedAt": 1778168692234
+      },
+      {
+        "id": 255858,
+        "name": "词不达意",
+        "artist": "林忆莲",
+        "cover": "https://p3.music.126.net/SPjHBZjn1GrSvfKjYDBhsw==/109951172084678518.jpg",
+        "duration": 266466,
+        "source": "netease",
+        "addedAt": 1778168692246
+      }
+    ],
+    "createdAt": 1778168692126,
+    "updatedAt": 1778168692246
+  },
+  {
+    "id": "movnq8tc0k8s",
+    "name": "ShukeZouma的2024年度歌单",
+    "description": "",
+    "neteaseId": "13052041927",
+    "songs": [
+      {
+        "id": 431357712,
+        "name": "你在终点等我",
+        "artist": "王菲",
+        "cover": "https://p4.music.126.net/ddhcDeGSl9VhXJLfOsNDEA==/3433774824740403.jpg",
+        "duration": 285373,
+        "source": "netease",
+        "addedAt": 1778168693293
+      },
+      {
+        "id": 26584886,
+        "name": "微风细雨 (Live)",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/EQ1Hz29saSTFN8HXKFPaiw==/109951163266918585.jpg",
+        "duration": 201377,
+        "source": "netease",
+        "addedAt": 1778168693305
+      },
+      {
+        "id": 287231,
+        "name": "小小",
+        "artist": "容祖儿",
+        "cover": "https://p3.music.126.net/WDcYhuw0EejVMVCxgFl0Bg==/120946279068536.jpg",
+        "duration": 264601,
+        "source": "netease",
+        "addedAt": 1778168693317
+      },
+      {
+        "id": 150667,
+        "name": "流沙",
+        "artist": "陶喆",
+        "cover": "https://p3.music.126.net/vcyUJw7mfEzzMCgbJry31w==/109951169507121139.jpg",
+        "duration": 242625,
+        "source": "netease",
+        "addedAt": 1778168693330
+      },
+      {
+        "id": 189602,
+        "name": "青花",
+        "artist": "周传雄",
+        "cover": "https://p3.music.126.net/prDyYpF9EsrLA4O13Tf5hw==/109951169874952327.jpg",
+        "duration": 297506,
+        "source": "netease",
+        "addedAt": 1778168693342
+      },
+      {
+        "id": 25884677,
+        "name": "仰望",
+        "artist": "杨丞琳",
+        "cover": "https://p3.music.126.net/HV_fUllcrF-QpIF8tYFJAw==/109951165958775197.jpg",
+        "duration": 214157,
+        "source": "netease",
+        "addedAt": 1778168693354
+      },
+      {
+        "id": 306665,
+        "name": "一样的月光",
+        "artist": "徐佳莹",
+        "cover": "https://p3.music.126.net/b1hZLgWA9ihXkivZeqo81g==/109951168296446353.jpg",
+        "duration": 240386,
+        "source": "netease",
+        "addedAt": 1778168693366
+      },
+      {
+        "id": 26387325,
+        "name": "拉过勾的",
+        "artist": "陆虎",
+        "cover": "https://p3.music.126.net/x-r68cAnC3yefRnibe9POg==/109951163077575462.jpg",
+        "duration": 218653,
+        "source": "netease",
+        "addedAt": 1778168693378
+      },
+      {
+        "id": 2608751155,
+        "name": "高能流行",
+        "artist": "Zouma",
+        "cover": "https://p4.music.126.net/_Sm7wIlGPSk6w8XAPLVK_Q==/109951169783458063.jpg",
+        "duration": 264752,
+        "source": "netease",
+        "addedAt": 1778168693390
+      },
+      {
+        "id": 286970,
+        "name": "愚人的国度",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/I9O-KpO4bLC6LWOKYfJj4Q==/109951165992337446.jpg",
+        "duration": 248693,
+        "source": "netease",
+        "addedAt": 1778168693402
+      }
+    ],
+    "createdAt": 1778168693280,
+    "updatedAt": 1778168693402
+  },
+  {
+    "id": "movnq9m9kiaf",
+    "name": "Zouma的纯音乐",
+    "description": "",
+    "neteaseId": "7660736323",
+    "songs": [
+      {
+        "id": 3357653408,
+        "name": "下一篇章",
+        "artist": "无尾兔",
+        "cover": "https://p3.music.126.net/2FImP21KcKE2qct0r7XTvA==/109951172864644918.jpg",
+        "duration": 132333,
+        "source": "netease",
+        "addedAt": 1778168694334
+      },
+      {
+        "id": 3343261126,
+        "name": "Birdeos",
+        "artist": "眠舸",
+        "cover": "https://p3.music.126.net/zyu3R1lz8trlhLFOKo_pFg==/109951172645370124.jpg",
+        "duration": 176980,
+        "source": "netease",
+        "addedAt": 1778168694346
+      },
+      {
+        "id": 2023293303,
+        "name": "爱的供养（纯音乐）",
+        "artist": "Сумасшедший",
+        "cover": "https://p4.music.126.net/DrZNW76NKhTdyqPGzUIEtA==/109951168081878426.jpg",
+        "duration": 96391,
+        "source": "netease",
+        "addedAt": 1778168694359
+      },
+      {
+        "id": 28578763,
+        "name": "Hanabi",
+        "artist": "Sharman Rock",
+        "cover": "https://p3.music.126.net/lYY6IxXlrUPYQb7og5oJzA==/109951169424849804.jpg",
+        "duration": 300721,
+        "source": "netease",
+        "addedAt": 1778168694372
+      },
+      {
+        "id": 2690875842,
+        "name": "Uniqueness",
+        "artist": "iphonk",
+        "cover": "https://p3.music.126.net/wH9ctrCgqZVd9a13YzyBkA==/109951170683367579.jpg",
+        "duration": 142967,
+        "source": "netease",
+        "addedAt": 1778168694384
+      },
+      {
+        "id": 1849645731,
+        "name": "Luvsic remix dj Soulstarz Remix 纯音乐",
+        "artist": "无敌西红柿",
+        "cover": "https://p3.music.126.net/fXMtzBDppqt90w2-W9jN1A==/109951166050557348.jpg",
+        "duration": 218383,
+        "source": "netease",
+        "addedAt": 1778168694397
+      },
+      {
+        "id": 2684510360,
+        "name": "英雄主义",
+        "artist": "在虚无中永存",
+        "cover": "https://p4.music.126.net/NPiFBAj_ojVMOMlGUCyV1A==/109951170610489186.jpg",
+        "duration": 127118,
+        "source": "netease",
+        "addedAt": 1778168694409
+      },
+      {
+        "id": 1939751157,
+        "name": "Lullaby",
+        "artist": "Enzalla",
+        "cover": "https://p4.music.126.net/tR8VUMlinkieEe3oRmYjug==/109951167317020395.jpg",
+        "duration": 163057,
+        "source": "netease",
+        "addedAt": 1778168694422
+      },
+      {
+        "id": 857983,
+        "name": "Unchanged Mind",
+        "artist": "Valentin",
+        "cover": "https://p4.music.126.net/d53Toq30QswqMhYiWsJtHg==/109951170165182414.jpg",
+        "duration": 307186,
+        "source": "netease",
+        "addedAt": 1778168694435
+      },
+      {
+        "id": 28191836,
+        "name": "Merry Christmas Mr. Lawrence",
+        "artist": "坂本龍一 / Jaques Morelenbaum / Judy Kang",
+        "cover": "https://p3.music.126.net/IiYz3klkS75rNffGDkHHCw==/109951172057518307.jpg",
+        "duration": 335106,
+        "source": "netease",
+        "addedAt": 1778168694448
+      },
+      {
+        "id": 468176711,
+        "name": "城南花已开",
+        "artist": "三亩地",
+        "cover": "https://p4.music.126.net/i-7ktILRPImJ0NwiH8DABg==/109951162885959979.jpg",
+        "duration": 271016,
+        "source": "netease",
+        "addedAt": 1778168694460
+      },
+      {
+        "id": 494751622,
+        "name": "恍若如梦（夜钢五）",
+        "artist": "羽飞",
+        "cover": "https://p3.music.126.net/pfZ7DfA13qKEQrxNW21Kjw==/109951162990776953.jpg",
+        "duration": 146159,
+        "source": "netease",
+        "addedAt": 1778168694473
+      },
+      {
+        "id": 1364800914,
+        "name": "Alan Walker-Faded（Hare Je remix）",
+        "artist": "Hare Je",
+        "cover": "https://p3.music.126.net/lxJva4PjL3_8KF_FDoFZsA==/109951164067063653.jpg",
+        "duration": 115095,
+        "source": "netease",
+        "addedAt": 1778168694486
+      },
+      {
+        "id": 1324155053,
+        "name": "陷 入 愛 河 與 杀 戮",
+        "artist": "别网恋",
+        "cover": "https://p3.music.126.net/y5rUi8LMvsd7gAK_1d_FPA==/109951163656672551.jpg",
+        "duration": 188182,
+        "source": "netease",
+        "addedAt": 1778168694498
+      },
+      {
+        "id": 1908182683,
+        "name": "Forest Mixtape",
+        "artist": "Christina Kuong",
+        "cover": "https://p4.music.126.net/lbaNBDgE_fgFjlPIcvHGxA==/109951169410329444.jpg",
+        "duration": 140000,
+        "source": "netease",
+        "addedAt": 1778168694512
+      },
+      {
+        "id": 2027256293,
+        "name": "Marked",
+        "artist": "Alexander Nakarada",
+        "cover": "https://p3.music.126.net/ThEVSKwz_bwkKtsKHvEEvw==/109951169219064563.jpg",
+        "duration": 152540,
+        "source": "netease",
+        "addedAt": 1778168694525
+      },
+      {
+        "id": 1812567710,
+        "name": "Forest Walk",
+        "artist": "Alexander Nakarada",
+        "cover": "https://p3.music.126.net/CcqmY-W3qki7QME2zQz5og==/109951169722248038.jpg",
+        "duration": 218000,
+        "source": "netease",
+        "addedAt": 1778168694538
+      },
+      {
+        "id": 1372188635,
+        "name": "Daylight",
+        "artist": "Seredris",
+        "cover": "https://p4.music.126.net/OjiWGpbpC80EbQgkxEayiA==/109951164152228527.jpg",
+        "duration": 162749,
+        "source": "netease",
+        "addedAt": 1778168694551
+      },
+      {
+        "id": 2070606086,
+        "name": "我将在何处游荡",
+        "artist": "AniFace",
+        "cover": "https://p3.music.126.net/7-BSzNvoEDvq3EoxSCPrnA==/109951168816130186.jpg",
+        "duration": 184000,
+        "source": "netease",
+        "addedAt": 1778168694563
+      },
+      {
+        "id": 2038191895,
+        "name": "诀别书",
+        "artist": "邓垚",
+        "cover": "https://p4.music.126.net/wztA5smxFjIfv98u7-IrQQ==/109951168933355255.jpg",
+        "duration": 246971,
+        "source": "netease",
+        "addedAt": 1778168694576
+      },
+      {
+        "id": 28411430,
+        "name": "鳥の詩～Classic～",
+        "artist": "TAMUSIC",
+        "cover": "https://p3.music.126.net/6eRuS0e-Twjlb9Ff0dW9sw==/5853799906469581.jpg",
+        "duration": 320000,
+        "source": "netease",
+        "addedAt": 1778168694589
+      },
+      {
+        "id": 436667409,
+        "name": "《从你的全世界路过》插曲扒带",
+        "artist": "ULY",
+        "cover": "https://p4.music.126.net/O89Ae7dCtDzYFChkeQedWg==/17745018161034403.jpg",
+        "duration": 157805,
+        "source": "netease",
+        "addedAt": 1778168694601
+      },
+      {
+        "id": 1890385695,
+        "name": "been loving",
+        "artist": "Mayten",
+        "cover": "https://p4.music.126.net/FY3k1hWHSg-WAlLPqcfPZQ==/109951166563093481.jpg",
+        "duration": 208283,
+        "source": "netease",
+        "addedAt": 1778168694614
+      },
+      {
+        "id": 1394601255,
+        "name": "浮光 (The History)",
+        "artist": "Jannik",
+        "cover": "https://p3.music.126.net/c55oo6_xrGMZP8vIrSGTZg==/109951164401545279.jpg",
+        "duration": 258000,
+        "source": "netease",
+        "addedAt": 1778168694627
+      },
+      {
+        "id": 1438640937,
+        "name": "你是玫瑰",
+        "artist": "Bethybai",
+        "cover": "https://p3.music.126.net/NpmChFo2xLFVRbOkLd7Qaw==/109951164881940880.jpg",
+        "duration": 161684,
+        "source": "netease",
+        "addedAt": 1778168694640
+      },
+      {
+        "id": 2013750367,
+        "name": "新生",
+        "artist": "leomantic",
+        "cover": "https://p4.music.126.net/qnco-vO6kLkl2l6yp74GFQ==/109951168212021441.jpg",
+        "duration": 257070,
+        "source": "netease",
+        "addedAt": 1778168694652
+      },
+      {
+        "id": 1994859227,
+        "name": "golden hour",
+        "artist": "Strictlyviolin荀博 / 马克",
+        "cover": "https://p4.music.126.net/-Ohm9oSZqjKQ1VgFmML7pg==/109951168024270834.jpg",
+        "duration": 134222,
+        "source": "netease",
+        "addedAt": 1778168694665
+      },
+      {
+        "id": 528423473,
+        "name": "Grace",
+        "artist": "Jannik",
+        "cover": "https://p3.music.126.net/TY3o-xrOeL5l2ZcWZ-btcQ==/109951163100529767.jpg",
+        "duration": 299942,
+        "source": "netease",
+        "addedAt": 1778168694678
+      },
+      {
+        "id": 552194857,
+        "name": "Flower Dance（钢琴版I）",
+        "artist": "PianoPanda",
+        "cover": "https://p4.music.126.net/Vws1FtOSAUqhDS0OAez1iQ==/109951164637814596.jpg",
+        "duration": 185383,
+        "source": "netease",
+        "addedAt": 1778168694692
+      },
+      {
+        "id": 1933703326,
+        "name": "揉揉酱演奏-Ayasa绚沙《我爱你》",
+        "artist": "揉揉酱小提琴",
+        "cover": "https://p4.music.126.net/_WzINWICE0IOch_6-sa3Cg==/109951168464143727.jpg",
+        "duration": 226224,
+        "source": "netease",
+        "addedAt": 1778168694705
+      },
+      {
+        "id": 440353010,
+        "name": "#Lov3 #Ngẫu Hứng",
+        "artist": "Hoaprox",
+        "cover": "https://p3.music.126.net/znZQMUXniXqwjJrXMJO_Qg==/109951163100026676.jpg",
+        "duration": 161866,
+        "source": "netease",
+        "addedAt": 1778168694718
+      },
+      {
+        "id": 1367900235,
+        "name": "“diary”（RnB type beat）",
+        "artist": "李思齐Lee47",
+        "cover": "https://p4.music.126.net/-4GiPoFPOI6dV-f9jnUScQ==/109951164102703587.jpg",
+        "duration": 182406,
+        "source": "netease",
+        "addedAt": 1778168694730
+      },
+      {
+        "id": 1954349372,
+        "name": "Are You Lost",
+        "artist": "Strictlyviolin荀博 / 马克",
+        "cover": "https://p4.music.126.net/r_nJwm7B-umRbFgLNz1ewA==/109951167526664224.jpg",
+        "duration": 132336,
+        "source": "netease",
+        "addedAt": 1778168694743
+      },
+      {
+        "id": 38018486,
+        "name": "Collapsing World",
+        "artist": "Lightscape",
+        "cover": "https://p3.music.126.net/b-zvY5gJZ2zZ-F7WcH1cbg==/109951167955465270.jpg",
+        "duration": 190249,
+        "source": "netease",
+        "addedAt": 1778168694755
+      },
+      {
+        "id": 554308724,
+        "name": "Ephemeral Memories",
+        "artist": "MoreanP",
+        "cover": "https://p3.music.126.net/1dKSOHUP0iHPQ5bCIkZOpw==/109951163256736819.jpg",
+        "duration": 235745,
+        "source": "netease",
+        "addedAt": 1778168694768
+      },
+      {
+        "id": 503426999,
+        "name": "葬花",
+        "artist": "THT",
+        "cover": "https://p3.music.126.net/htlkqWdjglVH3rcNz-zwHg==/109951163017362740.jpg",
+        "duration": 235945,
+        "source": "netease",
+        "addedAt": 1778168694781
+      },
+      {
+        "id": 1394009857,
+        "name": "别让我放下",
+        "artist": "MINGYANG",
+        "cover": "https://p4.music.126.net/hyv9Iv7dtGh45l5JEG0YYQ==/109951165129143352.jpg",
+        "duration": 270196,
+        "source": "netease",
+        "addedAt": 1778168694794
+      },
+      {
+        "id": 1487946556,
+        "name": "Merry Christmas Mr. Lawrence(钢琴+小提琴)",
+        "artist": "浅绯色的喵",
+        "cover": "https://p4.music.126.net/huGeMOgW7jHtjk4Drllojw==/109951165394157853.jpg",
+        "duration": 78419,
+        "source": "netease",
+        "addedAt": 1778168694806
+      },
+      {
+        "id": 1498723813,
+        "name": "玫瑰少年",
+        "artist": "龚明威",
+        "cover": "https://p3.music.126.net/Qx8SIwpQPVh9KVhNK1L6WA==/109951166731888934.jpg",
+        "duration": 240042,
+        "source": "netease",
+        "addedAt": 1778168694819
+      },
+      {
+        "id": 1883408617,
+        "name": "Komorebi(钢琴+小提琴版)",
+        "artist": "浅绯色的喵",
+        "cover": "https://p4.music.126.net/xpEqUFOCvTqbKOVSofF_ww==/109951166266978593.jpg",
+        "duration": 133642,
+        "source": "netease",
+        "addedAt": 1778168694831
+      },
+      {
+        "id": 34341360,
+        "name": "梦中的婚礼",
+        "artist": "Richard Clayderman",
+        "cover": "https://p3.music.126.net/dMUS79TnNOnzd4p6MV_CGw==/7993449536056577.jpg",
+        "duration": 163000,
+        "source": "netease",
+        "addedAt": 1778168694844
+      },
+      {
+        "id": 1961495328,
+        "name": "mystery of love年糕长笛演奏版",
+        "artist": "HannaYao年糕",
+        "cover": "https://p4.music.126.net/Kj5KgXxKvB0YdUWrbGDC5A==/109951167553307635.jpg",
+        "duration": 168143,
+        "source": "netease",
+        "addedAt": 1778168694857
+      }
+    ],
+    "createdAt": 1778168694321,
+    "updatedAt": 1778168694857
+  },
+  {
+    "id": "movnqaomnmfm",
+    "name": "Random Things",
+    "description": "",
+    "neteaseId": "2779051597",
+    "songs": [
+      {
+        "id": 3347295437,
+        "name": "失眠了",
+        "artist": "吴琳珂Moske",
+        "cover": "https://p3.music.126.net/RX7XkgADsQ6kXqcpeuEwxQ==/109951172703763721.jpg",
+        "duration": 254208,
+        "source": "netease",
+        "addedAt": 1778168695715
+      },
+      {
+        "id": 3330397652,
+        "name": "归期",
+        "artist": "钱润玉",
+        "cover": "https://p3.music.126.net/lhX7qxm0JqXdvBm2lu-uuQ==/109951172458427587.jpg",
+        "duration": 279878,
+        "source": "netease",
+        "addedAt": 1778168695727
+      },
+      {
+        "id": 288003,
+        "name": "秋天的海",
+        "artist": "苏慧伦",
+        "cover": "https://p4.music.126.net/ZuE7AjN3QorK32i1ygKNPg==/109951171989762038.jpg",
+        "duration": 250560,
+        "source": "netease",
+        "addedAt": 1778168695740
+      },
+      {
+        "id": 287043,
+        "name": "同类",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/UQo40hhzMpnP3bFvqIu16w==/109951166191908812.jpg",
+        "duration": 212707,
+        "source": "netease",
+        "addedAt": 1778168695753
+      },
+      {
+        "id": 548885986,
+        "name": "落空",
+        "artist": "印子月",
+        "cover": "https://p3.music.126.net/k0DBVCvajyEDY9cDAn0C-g==/109951167898411727.jpg",
+        "duration": 233322,
+        "source": "netease",
+        "addedAt": 1778168695766
+      },
+      {
+        "id": 167679,
+        "name": "全球变冷",
+        "artist": "许嵩",
+        "cover": "https://p4.music.126.net/7X3irAHmXIkyZKu1OzDZdQ==/109951172321460834.jpg",
+        "duration": 252290,
+        "source": "netease",
+        "addedAt": 1778168695779
+      },
+      {
+        "id": 28188434,
+        "name": "锦鲤抄",
+        "artist": "银临 / 云之泣",
+        "cover": "https://p3.music.126.net/LBnYDAUED2mD1veBvBnC8g==/5859297464524710.jpg",
+        "duration": 245120,
+        "source": "netease",
+        "addedAt": 1778168695791
+      },
+      {
+        "id": 1923210613,
+        "name": "滥俗的歌",
+        "artist": "汉堡黄",
+        "cover": "https://p3.music.126.net/uOvEut2NG6enWVM1s_lJZQ==/109951167656922852.jpg",
+        "duration": 275876,
+        "source": "netease",
+        "addedAt": 1778168695803
+      },
+      {
+        "id": 25643258,
+        "name": "心跳",
+        "artist": "王力宏",
+        "cover": "https://p4.music.126.net/hC-YGyr2cC0E_K_4Vfkztg==/109951163095172063.jpg",
+        "duration": 263400,
+        "source": "netease",
+        "addedAt": 1778168695815
+      },
+      {
+        "id": 1420706073,
+        "name": "离开我的依赖",
+        "artist": "王艳薇",
+        "cover": "https://p3.music.126.net/btYBbFLd5mf9w0lDpfNs6w==/109951171506809884.jpg",
+        "duration": 233882,
+        "source": "netease",
+        "addedAt": 1778168695828
+      },
+      {
+        "id": 38679524,
+        "name": "蠢货",
+        "artist": "喻言",
+        "cover": "https://p4.music.126.net/9RzbEHekBV2WbWzP_A8Iow==/1365593460946552.jpg",
+        "duration": 210154,
+        "source": "netease",
+        "addedAt": 1778168695841
+      },
+      {
+        "id": 1997435585,
+        "name": "小雨",
+        "artist": "黄龄",
+        "cover": "https://p3.music.126.net/qVYhqMwoDUmQBVhfMusuqg==/109951169349141688.jpg",
+        "duration": 165581,
+        "source": "netease",
+        "addedAt": 1778168695853
+      },
+      {
+        "id": 2034187125,
+        "name": "沉溺 (你让我的心不再结冰）",
+        "artist": "邹沛沛 / Pank",
+        "cover": "https://p3.music.126.net/WhsaW6an5oI4XZN0KhQ5fA==/109951168502947956.jpg",
+        "duration": 193773,
+        "source": "netease",
+        "addedAt": 1778168695866
+      },
+      {
+        "id": 1848351661,
+        "name": "Treasure(我会珍惜你)",
+        "artist": "陈忻玥",
+        "cover": "https://p4.music.126.net/9GbjMTnNg_LBgEJniNu9WA==/109951171915037225.jpg",
+        "duration": 213387,
+        "source": "netease",
+        "addedAt": 1778168695878
+      },
+      {
+        "id": 22790789,
+        "name": "Tonight, I feel close to you",
+        "artist": "倉木麻衣 / 孙燕姿",
+        "cover": "https://p4.music.126.net/0ufI7xr8E10PKokFf4m9ZA==/109951169490437243.jpg",
+        "duration": 245800,
+        "source": "netease",
+        "addedAt": 1778168695890
+      },
+      {
+        "id": 857983,
+        "name": "Unchanged Mind",
+        "artist": "Valentin",
+        "cover": "https://p3.music.126.net/d53Toq30QswqMhYiWsJtHg==/109951170165182414.jpg",
+        "duration": 307186,
+        "source": "netease",
+        "addedAt": 1778168695903
+      },
+      {
+        "id": 187315,
+        "name": "单身旅记",
+        "artist": "陶晶莹",
+        "cover": "https://p4.music.126.net/8C8U35nHgWM7aV_4GQYung==/109951167694120453.jpg",
+        "duration": 257760,
+        "source": "netease",
+        "addedAt": 1778168695917
+      },
+      {
+        "id": 156820,
+        "name": "我是真的爱上你",
+        "artist": "王杰",
+        "cover": "https://p3.music.126.net/Nh67KxSWrC0pDevxuPjz_g==/109951165914315906.jpg",
+        "duration": 302619,
+        "source": "netease",
+        "addedAt": 1778168695929
+      },
+      {
+        "id": 2643514137,
+        "name": "What Does It Mean to You",
+        "artist": "Carpetman",
+        "cover": "https://p4.music.126.net/IzACfhjYrFJC3IRz-7Cf0A==/109951170121359445.jpg",
+        "duration": 240014,
+        "source": "netease",
+        "addedAt": 1778168695941
+      },
+      {
+        "id": 287744,
+        "name": "烟霞",
+        "artist": "容祖儿",
+        "cover": "https://p4.music.126.net/rOjhlR_hgDrgfOSEj-217Q==/109951166656471618.jpg",
+        "duration": 238026,
+        "source": "netease",
+        "addedAt": 1778168695954
+      },
+      {
+        "id": 27158959,
+        "name": "Come Back To Me",
+        "artist": "宇多田ヒカル",
+        "cover": "https://p4.music.126.net/gZdwUZdIF_jF_DHQ1HjVXQ==/2135251581170994.jpg",
+        "duration": 238004,
+        "source": "netease",
+        "addedAt": 1778168695966
+      },
+      {
+        "id": 156720,
+        "name": "枫叶",
+        "artist": "伍佰 & China Blue",
+        "cover": "https://p3.music.126.net/73unPZqDDUGsUwudRBiHFw==/109951172477524514.jpg",
+        "duration": 371600,
+        "source": "netease",
+        "addedAt": 1778168695979
+      },
+      {
+        "id": 316157,
+        "name": "茶汤",
+        "artist": "郁可唯",
+        "cover": "https://p3.music.126.net/ugJH-gpHKX6y6p-6MkIIsQ==/109951163187409545.jpg",
+        "duration": 308773,
+        "source": "netease",
+        "addedAt": 1778168695992
+      },
+      {
+        "id": 523041190,
+        "name": "装醉",
+        "artist": "张惠妹",
+        "cover": "https://p3.music.126.net/SbJdGLDz9V1_sLffpjMU8g==/109951163079119875.jpg",
+        "duration": 325456,
+        "source": "netease",
+        "addedAt": 1778168696005
+      },
+      {
+        "id": 420401511,
+        "name": "和你",
+        "artist": "余佳运",
+        "cover": "https://p4.music.126.net/O6d7GYY3gp2uy8zehvcOjQ==/17699938184267410.jpg",
+        "duration": 200708,
+        "source": "netease",
+        "addedAt": 1778168696017
+      },
+      {
+        "id": 306855,
+        "name": "蘇州河 (慕容雪 - Mandarin Version)",
+        "artist": "薛凯琪",
+        "cover": "https://p3.music.126.net/Bz8Oa6pWnH_cLUsZ2cTMZw==/109951172271408112.jpg",
+        "duration": 240520,
+        "source": "netease",
+        "addedAt": 1778168696030
+      },
+      {
+        "id": 25648006,
+        "name": "麦恩莉",
+        "artist": "方大同",
+        "cover": "https://p3.music.126.net/8I4zvpNSsj--wGNg-mE2kw==/109951168870428045.jpg",
+        "duration": 288360,
+        "source": "netease",
+        "addedAt": 1778168696042
+      },
+      {
+        "id": 150633,
+        "name": "天天",
+        "artist": "陶喆",
+        "cover": "https://p3.music.126.net/tMQXBMTy8pGjGggX1j0YNQ==/109951169389595068.jpg",
+        "duration": 255200,
+        "source": "netease",
+        "addedAt": 1778168696055
+      },
+      {
+        "id": 150667,
+        "name": "流沙",
+        "artist": "陶喆",
+        "cover": "https://p3.music.126.net/vcyUJw7mfEzzMCgbJry31w==/109951169507121139.jpg",
+        "duration": 242625,
+        "source": "netease",
+        "addedAt": 1778168696069
+      },
+      {
+        "id": 399341494,
+        "name": "爱人呢",
+        "artist": "郭采洁",
+        "cover": "https://p4.music.126.net/x0tjJIZ_gKSfqKuDQyMILA==/109951168317242234.jpg",
+        "duration": 228760,
+        "source": "netease",
+        "addedAt": 1778168696083
+      },
+      {
+        "id": 254324,
+        "name": "分开旅行",
+        "artist": "刘若英 / 黄立行",
+        "cover": "https://p4.music.126.net/sfKGmL7CfFVIExuzeRga7Q==/109951165895407475.jpg",
+        "duration": 247431,
+        "source": "netease",
+        "addedAt": 1778168696098
+      },
+      {
+        "id": 1482494784,
+        "name": "骆驼",
+        "artist": "LKF34",
+        "cover": "https://p4.music.126.net/vl3gspeKp9g5wT9Wf2TFxQ==/109951165346129604.jpg",
+        "duration": 190093,
+        "source": "netease",
+        "addedAt": 1778168696113
+      },
+      {
+        "id": 158655,
+        "name": "谁明浪子心",
+        "artist": "王杰",
+        "cover": "https://p3.music.126.net/3Uv-httwuCF2nxdW5jz7Zg==/109951168956482696.jpg",
+        "duration": 301960,
+        "source": "netease",
+        "addedAt": 1778168696126
+      },
+      {
+        "id": 2128130835,
+        "name": "过站",
+        "artist": "DBAA",
+        "cover": "https://p4.music.126.net/ZnUB91M_oSWmMcEzqNt2EQ==/109951169351822550.jpg",
+        "duration": 198400,
+        "source": "netease",
+        "addedAt": 1778168696140
+      },
+      {
+        "id": 5311161,
+        "name": "죽도록 사랑해 (Feat. Soul Dive)",
+        "artist": "KCM",
+        "cover": "https://p3.music.126.net/fFMEmwweddglDn96C9oxPA==/109951170187951137.jpg",
+        "duration": 206013,
+        "source": "netease",
+        "addedAt": 1778168696153
+      },
+      {
+        "id": 28613731,
+        "name": "好きだよ。~100回の後悔~ (English Ver.)",
+        "artist": "Che'Nelle",
+        "cover": "https://p3.music.126.net/u7S3pgVUGmjkGlQsUg0E-Q==/109951169237167354.jpg",
+        "duration": 306466,
+        "source": "netease",
+        "addedAt": 1778168696165
+      },
+      {
+        "id": 28798772,
+        "name": "1987我不知会遇见你",
+        "artist": "李宇春",
+        "cover": "https://p4.music.126.net/BgSP15hRRgAjCqjjHwp1OQ==/109951163077595152.jpg",
+        "duration": 317949,
+        "source": "netease",
+        "addedAt": 1778168696179
+      },
+      {
+        "id": 366137,
+        "name": "独立",
+        "artist": "蜜雪薇琪",
+        "cover": "https://p4.music.126.net/X8wrEM495Eyn4EQnsWX5Zw==/109951167064378263.jpg",
+        "duration": 198613,
+        "source": "netease",
+        "addedAt": 1778168696192
+      },
+      {
+        "id": 1415642779,
+        "name": "温柔 #MaydayBlue20th",
+        "artist": "五月天 / 孙燕姿",
+        "cover": "https://p3.music.126.net/Zydi4cMFExGjgtY1CT9jhg==/109951168165043075.jpg",
+        "duration": 271018,
+        "source": "netease",
+        "addedAt": 1778168696205
+      },
+      {
+        "id": 2093250080,
+        "name": "每当我",
+        "artist": "Dave",
+        "cover": "https://p3.music.126.net/adptRxg6_JIO_bV5B6jNqw==/109951169004141261.jpg",
+        "duration": 154375,
+        "source": "netease",
+        "addedAt": 1778168696218
+      },
+      {
+        "id": 2113809952,
+        "name": "孤独材料",
+        "artist": "白浩贤BlueC / 诺米么Lodmemo",
+        "cover": "https://p4.music.126.net/JGVgE-KfjBfJItE0GJBtpQ==/109951169230926628.jpg",
+        "duration": 165555,
+        "source": "netease",
+        "addedAt": 1778168696231
+      },
+      {
+        "id": 2115066180,
+        "name": "采茶纪",
+        "artist": "双笙（陈元汐）",
+        "cover": "https://p4.music.126.net/ikmAGVJmPxd8cE89LdxFig==/109951169240593440.jpg",
+        "duration": 207005,
+        "source": "netease",
+        "addedAt": 1778168696244
+      },
+      {
+        "id": 1466878234,
+        "name": "Waiting For Love (Phong Max Remix)",
+        "artist": "Phong Max / Romy Wave",
+        "cover": "https://p4.music.126.net/_2p59gV8zBNL1s-nYDVgpQ==/109951165184578661.jpg",
+        "duration": 241397,
+        "source": "netease",
+        "addedAt": 1778168696256
+      },
+      {
+        "id": 28283344,
+        "name": "渴",
+        "artist": "孙燕姿",
+        "cover": "https://p3.music.126.net/IpXZzvX4xgseWGfZhXHCyQ==/109951163115291601.jpg",
+        "duration": 282506,
+        "source": "netease",
+        "addedAt": 1778168696269
+      },
+      {
+        "id": 1829058962,
+        "name": "故事开头总是极致温柔",
+        "artist": "姜辰辰",
+        "cover": "https://p4.music.126.net/13A_srcMeGY7GhtHqYsczQ==/109951169510333494.jpg",
+        "duration": 262636,
+        "source": "netease",
+        "addedAt": 1778168696282
+      },
+      {
+        "id": 2014227030,
+        "name": "LEFT RIGHT",
+        "artist": "XG",
+        "cover": "https://p4.music.126.net/9n-p5COnBifNJOiM_Ab5QA==/109951168231677318.jpg",
+        "duration": 208065,
+        "source": "netease",
+        "addedAt": 1778168696294
+      },
+      {
+        "id": 487594483,
+        "name": "3AM",
+        "artist": "AGA",
+        "cover": "https://p3.music.126.net/nsje29lUn9guIxxIjdoMpg==/109951169358357924.jpg",
+        "duration": 266289,
+        "source": "netease",
+        "addedAt": 1778168696306
+      },
+      {
+        "id": 287719,
+        "name": "开始懂了",
+        "artist": "孙燕姿",
+        "cover": "https://p4.music.126.net/1HJILQwc62AfvcXkGgVJHQ==/109951165549820772.jpg",
+        "duration": 271493,
+        "source": "netease",
+        "addedAt": 1778168696319
+      },
+      {
+        "id": 572874064,
+        "name": "小问题",
+        "artist": "AGA",
+        "cover": "https://p3.music.126.net/mupwctqxt9tqkWfzI_S7cQ==/109951172903955921.jpg",
+        "duration": 205895,
+        "source": "netease",
+        "addedAt": 1778168696331
+      },
+      {
+        "id": 420513158,
+        "name": "红蔷薇白玫瑰",
+        "artist": "G.E.M.邓紫棋",
+        "cover": "https://p3.music.126.net/ExDuzcVK5vkMNpPpzmFX6Q==/3446968958754370.jpg",
+        "duration": 282924,
+        "source": "netease",
+        "addedAt": 1778168696345
+      },
+      {
+        "id": 29709795,
+        "name": "虹之间",
+        "artist": "金贵晟",
+        "cover": "https://p3.music.126.net/c-NLC8AlFVPybcQnWC0lLw==/109951165958997194.jpg",
+        "duration": 246545,
+        "source": "netease",
+        "addedAt": 1778168696358
+      },
+      {
+        "id": 1969320038,
+        "name": "三拜红尘凉",
+        "artist": "尹昔眠",
+        "cover": "https://p4.music.126.net/uuGMRSMzaULlWyGbG-99MQ==/109951167743445530.jpg",
+        "duration": 176956,
+        "source": "netease",
+        "addedAt": 1778168696371
+      },
+      {
+        "id": 29774171,
+        "name": "新地球",
+        "artist": "林俊杰",
+        "cover": "https://p3.music.126.net/2e__sKuIQsTSVVGr5Hk1FA==/109951170313536564.jpg",
+        "duration": 277413,
+        "source": "netease",
+        "addedAt": 1778168696385
+      },
+      {
+        "id": 288075,
+        "name": "习惯失恋",
+        "artist": "容祖儿",
+        "cover": "https://p4.music.126.net/Mpy1m_7kwIsWmz3362G73g==/109951170708296615.jpg",
+        "duration": 236653,
+        "source": "netease",
+        "addedAt": 1778168696398
+      },
+      {
+        "id": 343054,
+        "name": "天涯",
+        "artist": "爱乐团",
+        "cover": "https://p3.music.126.net/8Y1Tq2LpNufnbG6MJeWHww==/109951168750455280.jpg",
+        "duration": 257522,
+        "source": "netease",
+        "addedAt": 1778168696411
+      },
+      {
+        "id": 300058,
+        "name": "闷",
+        "artist": "王菲",
+        "cover": "https://p3.music.126.net/mAqSihl3TPc70vaaEtJMdw==/109951172128566941.jpg",
+        "duration": 251506,
+        "source": "netease",
+        "addedAt": 1778168696424
+      },
+      {
+        "id": 1817661979,
+        "name": "入画江南",
+        "artist": "黄龄",
+        "cover": "https://p4.music.126.net/IW8GX4r2V_yNWoVbcNbsZQ==/109951166799421086.jpg",
+        "duration": 249000,
+        "source": "netease",
+        "addedAt": 1778168696436
+      },
+      {
+        "id": 3956911,
+        "name": "Duvet",
+        "artist": "Bôa",
+        "cover": "https://p3.music.126.net/DVlINCT0lp5I_da7oKaUVg==/109951170485945191.jpg",
+        "duration": 203600,
+        "source": "netease",
+        "addedAt": 1778168696449
+      },
+      {
+        "id": 1868943615,
+        "name": "时光洪流",
+        "artist": "程响",
+        "cover": "https://p4.music.126.net/Wpb7qVD0oQa1tG9EDsJeyQ==/109951166276246047.jpg",
+        "duration": 251199,
+        "source": "netease",
+        "addedAt": 1778168696462
+      },
+      {
+        "id": 299449,
+        "name": "爸爸妈妈",
+        "artist": "王蓉",
+        "cover": "https://p4.music.126.net/yIS7IanXjsV4MGjysH4cZg==/109951169614596302.jpg",
+        "duration": 265640,
+        "source": "netease",
+        "addedAt": 1778168696475
+      },
+      {
+        "id": 1975753397,
+        "name": "最好的我",
+        "artist": "刘大拿 / 刘思达",
+        "cover": "https://p4.music.126.net/C-g1ts0ttaPB6iVhx7vQkA==/109951167823958296.jpg",
+        "duration": 238159,
+        "source": "netease",
+        "addedAt": 1778168696488
+      },
+      {
+        "id": 509115925,
+        "name": "I Really Like You",
+        "artist": "Carly Rae Jepsen",
+        "cover": "https://p3.music.126.net/-annzhpyRsHouHthFa73FQ==/18207912556539265.jpg",
+        "duration": 204056,
+        "source": "netease",
+        "addedAt": 1778168696500
+      },
+      {
+        "id": 277446,
+        "name": "水色",
+        "artist": "莫文蔚",
+        "cover": "https://p3.music.126.net/aVO2zadJnU_tIsQDKCjp-g==/109951163071278634.jpg",
+        "duration": 174533,
+        "source": "netease",
+        "addedAt": 1778168696513
+      },
+      {
+        "id": 2049512697,
+        "name": "向云端",
+        "artist": "小霞 / 海洋Bo",
+        "cover": "https://p3.music.126.net/TmOHxaGnFNlwNX8aPz66oA==/109951168638913915.jpg",
+        "duration": 251613,
+        "source": "netease",
+        "addedAt": 1778168696526
+      },
+      {
+        "id": 1942734484,
+        "name": "想自由",
+        "artist": "徐秉龙",
+        "cover": "https://p3.music.126.net/HSpVjCZESgZ2OyREz8sbYg==/109951167355144037.jpg",
+        "duration": 195882,
+        "source": "netease",
+        "addedAt": 1778168696539
+      },
+      {
+        "id": 1951069525,
+        "name": "精卫",
+        "artist": "30年前，50年后",
+        "cover": "https://p3.music.126.net/jSH_ikeooxveWl0BTc3Xkg==/109951166786983190.jpg",
+        "duration": 176181,
+        "source": "netease",
+        "addedAt": 1778168696552
+      },
+      {
+        "id": 419375250,
+        "name": "月亮之矢",
+        "artist": "孤矢 / 虞娱",
+        "cover": "https://p4.music.126.net/i7gE7HVrqcAO_0Y--Znc6Q==/17812088370080434.jpg",
+        "duration": 234345,
+        "source": "netease",
+        "addedAt": 1778168696564
+      },
+      {
+        "id": 5242750,
+        "name": "大海",
+        "artist": "张雨生",
+        "cover": "https://p4.music.126.net/iOMq19HAq67_4IgKOsOtpg==/109951163066623247.jpg",
+        "duration": 278000,
+        "source": "netease",
+        "addedAt": 1778168696578
+      },
+      {
+        "id": 28854182,
+        "name": "惊鸿一面",
+        "artist": "许嵩 / 黄龄",
+        "cover": "https://p3.music.126.net/NBjIuSJ7LRugXdATt3j8AA==/109951172321467418.jpg",
+        "duration": 256418,
+        "source": "netease",
+        "addedAt": 1778168696590
+      },
+      {
+        "id": 316486,
+        "name": "野孩子",
+        "artist": "杨千嬅",
+        "cover": "https://p4.music.126.net/rfiJDjEnYuZmDuAxIniQPA==/109951170379800610.jpg",
+        "duration": 220666,
+        "source": "netease",
+        "addedAt": 1778168696603
+      }
+    ],
+    "createdAt": 1778168695702,
+    "updatedAt": 1778168696603
+  },
+  {
+    "id": "movnqbw28b1u",
+    "name": "今天从《风衣》听起|私人雷达",
+    "description": "",
+    "neteaseId": "3136952023",
+    "songs": [
+      {
+        "id": 1919737699,
+        "name": "Before U",
+        "artist": "Marshmello",
+        "cover": "https://p3.music.126.net/-OSyiGoetISKHMTdMQrYsQ==/109951167042181717.jpg",
+        "duration": 154285,
+        "source": "netease",
+        "addedAt": 1778168697280
+      },
+      {
+        "id": 1887216745,
+        "name": "The Kids Are All Dying",
+        "artist": "FINNEAS",
+        "cover": "https://p3.music.126.net/RFxgjunlII7caFc5XFCetQ==/109951167923009398.jpg",
+        "duration": 167551,
+        "source": "netease",
+        "addedAt": 1778168697293
+      },
+      {
+        "id": 3370067531,
+        "name": "美力场",
+        "artist": "陈婧霏",
+        "cover": "https://p4.music.126.net/iyXOZYY9c6Uh38b4ntgZrA==/109951173047644649.jpg",
+        "duration": 187958,
+        "source": "netease",
+        "addedAt": 1778168697307
+      },
+      {
+        "id": 3366224911,
+        "name": "Madwoman",
+        "artist": "Laufey",
+        "cover": "https://p3.music.126.net/OO5nGZhHuzx8VHYCqTuCow==/109951172987740160.jpg",
+        "duration": 239333,
+        "source": "netease",
+        "addedAt": 1778168697320
+      },
+      {
+        "id": 3363281756,
+        "name": "Goodbye Henry. (feat. Al Green)",
+        "artist": "RAYE / Al Green",
+        "cover": "https://p3.music.126.net/O4c1u1HhhsHiS42b4maw0w==/109951172943499828.jpg",
+        "duration": 320434,
+        "source": "netease",
+        "addedAt": 1778168697332
+      },
+      {
+        "id": 3373877744,
+        "name": "手机少女",
+        "artist": "许杨玉琢",
+        "cover": "https://p4.music.126.net/pM4Txsiu-GWEKOqPled4Pg==/109951173108522576.jpg",
+        "duration": 173656,
+        "source": "netease",
+        "addedAt": 1778168697345
+      },
+      {
+        "id": 2034372291,
+        "name": "Dive",
+        "artist": "Olivia Dean",
+        "cover": "https://p3.music.126.net/Q6zMMVDnXmblRlLK6ST6MQ==/109951168504219330.jpg",
+        "duration": 200759,
+        "source": "netease",
+        "addedAt": 1778168697358
+      },
+      {
+        "id": 1451333309,
+        "name": "Guestbook",
+        "artist": "Novo Amor",
+        "cover": "https://p3.music.126.net/JCJRrGH_KjO2p43eK-tREg==/109951165092772805.jpg",
+        "duration": 195533,
+        "source": "netease",
+        "addedAt": 1778168697372
+      },
+      {
+        "id": 1832217238,
+        "name": "Ladyfingers",
+        "artist": "Ryan Gebhardt",
+        "cover": "https://p3.music.126.net/N9pRVCsMinaeEIbfLInoXA==/109951165830937816.jpg",
+        "duration": 164000,
+        "source": "netease",
+        "addedAt": 1778168697385
+      },
+      {
+        "id": 3378507462,
+        "name": "4Uuuu",
+        "artist": "Crazy Boy / Ruaen66",
+        "cover": "https://p3.music.126.net/FYqLHCpvVqplmkk5dxFCLw==/109951173176336165.jpg",
+        "duration": 170031,
+        "source": "netease",
+        "addedAt": 1778168697397
+      },
+      {
+        "id": 2147794973,
+        "name": "Dreamer",
+        "artist": "Laufey",
+        "cover": "https://p4.music.126.net/oDvzwoTdPnN2SntGd54UZg==/109951169514379180.jpg",
+        "duration": 210826,
+        "source": "netease",
+        "addedAt": 1778168697410
+      },
+      {
+        "id": 1976353289,
+        "name": "Limbo",
+        "artist": "春野",
+        "cover": "https://p3.music.126.net/qi4HZx8ipwNVbGXdXU6RDw==/109951167826075882.jpg",
+        "duration": 196487,
+        "source": "netease",
+        "addedAt": 1778168697423
+      },
+      {
+        "id": 2719797236,
+        "name": "Flower Moon",
+        "artist": "Durand Jones & The Indications / Aaron Frazer",
+        "cover": "https://p4.music.126.net/BUVRDQcXJVbuTRrVMXsqvw==/109951171363277054.jpg",
+        "duration": 296080,
+        "source": "netease",
+        "addedAt": 1778168697436
+      },
+      {
+        "id": 1797340,
+        "name": "Troubles of the Past",
+        "artist": "Nieve",
+        "cover": "https://p4.music.126.net/uzwEYRRrgs_Uuc4gYYC6VQ==/109951168991586332.jpg",
+        "duration": 202666,
+        "source": "netease",
+        "addedAt": 1778168697451
+      },
+      {
+        "id": 2672503107,
+        "name": "Keep Me Warm",
+        "artist": "Chace",
+        "cover": "https://p3.music.126.net/1WSPoHEcTJ7Yb3G7lQJhwQ==/109951170461014372.jpg",
+        "duration": 218103,
+        "source": "netease",
+        "addedAt": 1778168697464
+      },
+      {
+        "id": 2143246664,
+        "name": "You&Me",
+        "artist": "艾福杰尼",
+        "cover": "https://p3.music.126.net/4f_GV91IZ9d0IMR-7s1KQQ==/109951169475880198.jpg",
+        "duration": 173571,
+        "source": "netease",
+        "addedAt": 1778168697477
+      },
+      {
+        "id": 1422215749,
+        "name": "Never Gonna Stop",
+        "artist": "The Regime",
+        "cover": "https://p4.music.126.net/E8oS587MtL0P6sB5-Fp2GQ==/109951168555448234.jpg",
+        "duration": 332683,
+        "source": "netease",
+        "addedAt": 1778168697490
+      },
+      {
+        "id": 2611181089,
+        "name": "blue",
+        "artist": "yung kai",
+        "cover": "https://p4.music.126.net/RO3kwpU8LJVnfRDzW5-00w==/109951170123345436.jpg",
+        "duration": 214357,
+        "source": "netease",
+        "addedAt": 1778168697503
+      },
+      {
+        "id": 3363280726,
+        "name": "Happier Times Ahead.",
+        "artist": "RAYE",
+        "cover": "https://p4.music.126.net/O4c1u1HhhsHiS42b4maw0w==/109951172943499828.jpg",
+        "duration": 270152,
+        "source": "netease",
+        "addedAt": 1778168697517
+      },
+      {
+        "id": 1451335146,
+        "name": "I Feel Better",
+        "artist": "Novo Amor",
+        "cover": "https://p4.music.126.net/JCJRrGH_KjO2p43eK-tREg==/109951165092772805.jpg",
+        "duration": 168786,
+        "source": "netease",
+        "addedAt": 1778168697530
+      },
+      {
+        "id": 3361885150,
+        "name": "Dizzy Tizzy",
+        "artist": "Fiona Huang",
+        "cover": "https://p3.music.126.net/062iU0a2Yn-qxMFE55EkzQ==/109951172921775745.jpg",
+        "duration": 223400,
+        "source": "netease",
+        "addedAt": 1778168697544
+      },
+      {
+        "id": 2749051705,
+        "name": "Sugar Love",
+        "artist": "DEN",
+        "cover": "https://p3.music.126.net/nzOyfqcQEJCMeAM_A1z0ug==/109951172214316018.jpg",
+        "duration": 216774,
+        "source": "netease",
+        "addedAt": 1778168697556
+      },
+      {
+        "id": 2719878839,
+        "name": "Up in Flames",
+        "artist": "Chace",
+        "cover": "https://p4.music.126.net/YN2fSKpJg7rK_iW8Xv9wBg==/109951171365949153.jpg",
+        "duration": 222466,
+        "source": "netease",
+        "addedAt": 1778168697569
+      },
+      {
+        "id": 1479706965,
+        "name": "是你想成为的大人吗",
+        "artist": "尤长靖",
+        "cover": "https://p4.music.126.net/1XfoEJK6dQ2TEw55eXZLfA==/109951165418603915.jpg",
+        "duration": 331530,
+        "source": "netease",
+        "addedAt": 1778168697582
+      },
+      {
+        "id": 2751189877,
+        "name": "Seine’s Languid Glow（塞纳漫流）",
+        "artist": "AU5T1N",
+        "cover": "https://p3.music.126.net/yvUmOFTJZOQv2oWcaOZV7Q==/109951172084147476.jpg",
+        "duration": 285250,
+        "source": "netease",
+        "addedAt": 1778168697596
+      },
+      {
+        "id": 1375386899,
+        "name": "Pink Palms",
+        "artist": "ARAI",
+        "cover": "https://p4.music.126.net/dPgSfPtJTXHlNGOMiDGiDQ==/109951164187616292.jpg",
+        "duration": 271229,
+        "source": "netease",
+        "addedAt": 1778168697609
+      },
+      {
+        "id": 3366008027,
+        "name": "旧物（乌桕）",
+        "artist": "Tico / M3mo",
+        "cover": "https://p4.music.126.net/B1Qp9du5vuHjH-tB0xbFZA==/109951172983908722.jpg",
+        "duration": 121643,
+        "source": "netease",
+        "addedAt": 1778168697624
+      },
+      {
+        "id": 1485850351,
+        "name": "声声慢 (京韵版)",
+        "artist": "张一山 / 孙萍",
+        "cover": "https://p4.music.126.net/0X0cvRif6qa0AE-yBibf7g==/109951165379412073.jpg",
+        "duration": 265299,
+        "source": "netease",
+        "addedAt": 1778168697637
+      },
+      {
+        "id": 3375275662,
+        "name": "A Thousand Years (Cinematic Version)",
+        "artist": "John Michael Howell / JVKE / ZVC",
+        "cover": "https://p4.music.126.net/kVU_TBwWeeMae7CMd7EXhQ==/109951173132381338.jpg",
+        "duration": 164182,
+        "source": "netease",
+        "addedAt": 1778168697650
+      },
+      {
+        "id": 3355503709,
+        "name": "moonboy",
+        "artist": "JVKE / JEON SOMI",
+        "cover": "https://p4.music.126.net/Zq8j7GbMSuellRCN3NTkIg==/109951172840314330.jpg",
+        "duration": 173207,
+        "source": "netease",
+        "addedAt": 1778168697663
+      },
+      {
+        "id": 5041155,
+        "name": "L'assassymphonie",
+        "artist": "Florent Mothe",
+        "cover": "https://p3.music.126.net/gSqC7YwX97zvNWjByjG15w==/1816393209095837.jpg",
+        "duration": 230973,
+        "source": "netease",
+        "addedAt": 1778168697676
+      },
+      {
+        "id": 3355901056,
+        "name": "Carla's Song",
+        "artist": "Harry Styles",
+        "cover": "https://p3.music.126.net/q-BcTnE6lX0yVzPk-0UNHQ==/109951172840495045.jpg",
+        "duration": 253653,
+        "source": "netease",
+        "addedAt": 1778168697689
+      },
+      {
+        "id": 2013823506,
+        "name": "Riptide",
+        "artist": "Vancouver Sleep Clinic / Pop Goes Ambient / Amelia Magdalena",
+        "cover": "https://p3.music.126.net/yUN2AzA6aEKy2iEaMoIr3A==/109951168228081055.jpg",
+        "duration": 193344,
+        "source": "netease",
+        "addedAt": 1778168697702
+      },
+      {
+        "id": 1868850860,
+        "name": "全部的所有",
+        "artist": "蔡健雅",
+        "cover": "https://p3.music.126.net/Um5PpfGlfPZMJj81frDvRw==/109951166274970187.jpg",
+        "duration": 195025,
+        "source": "netease",
+        "addedAt": 1778168697715
+      },
+      {
+        "id": 2022224416,
+        "name": "Jonon Hongor",
+        "artist": "PSYKHON / Eilseg",
+        "cover": "https://p4.music.126.net/C0tUYWsW5omvtbvk9fYpQw==/109951168307773118.jpg",
+        "duration": 240000,
+        "source": "netease",
+        "addedAt": 1778168697728
+      }
+    ],
+    "createdAt": 1778168697266,
+    "updatedAt": 1778168697728
   }
 ]
