@@ -24,7 +24,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from public directory (frontend files)
-app.use(express.static(path.join(__dirname, 'public')));
+// Try multiple possible locations for Railway compatibility
+const publicDir = path.join(__dirname, 'public');
+if (!fs.existsSync(publicDir)) {
+  // Fallback: try from process.cwd() (Railway with Root Directory)
+  const altDir = path.join(process.cwd(), 'public');
+  if (fs.existsSync(altDir)) {
+    app.use(express.static(altDir));
+    console.log('📂 Serving static from:', altDir);
+  } else {
+    console.log('⚠️ Could not find public directory');
+  }
+} else {
+  app.use(express.static(publicDir));
+}
 
 // Cookie storage for session (in-memory) — load from file on startup
 let cookieStore = '';
