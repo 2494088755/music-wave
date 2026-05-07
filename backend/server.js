@@ -26,17 +26,30 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from public directory (frontend files)
 // Try multiple possible locations for Railway compatibility
 const publicDir = path.join(__dirname, 'public');
-if (!fs.existsSync(publicDir)) {
-  // Fallback: try from process.cwd() (Railway with Root Directory)
-  const altDir = path.join(process.cwd(), 'public');
-  if (fs.existsSync(altDir)) {
-    app.use(express.static(altDir));
-    console.log('📂 Serving static from:', altDir);
-  } else {
-    console.log('⚠️ Could not find public directory');
-  }
+const altDir = path.join(process.cwd(), 'public');
+let staticDir = null;
+
+if (fs.existsSync(publicDir)) {
+  staticDir = publicDir;
+} else if (fs.existsSync(altDir)) {
+  staticDir = altDir;
 } else {
-  app.use(express.static(publicDir));
+  // Try parent of cwd (Railway deploys entire repo, cwd = backend/)
+  const parentDir = path.join(process.cwd(), '..', 'public');
+  if (fs.existsSync(parentDir)) {
+    staticDir = parentDir;
+  }
+}
+
+if (staticDir) {
+  app.use(express.static(staticDir));
+  console.log('📂 Serving static from:', staticDir);
+  console.log('📄 index.html exists:', fs.existsSync(path.join(staticDir, 'index.html')));
+} else {
+  console.log('⚠️ Could not find public directory');
+  console.log('  Tried:', publicDir);
+  console.log('  Tried:', altDir);
+  console.log('  Tried:', path.join(process.cwd(), '..', 'public'));
 }
 
 // Cookie storage for session (in-memory) — load from file on startup
@@ -577,6 +590,17 @@ function mergeCookies(cookies) {
     }
   }
 }
+
+// Fallback: serve index.html for unmatched routes (SPA support / Railway fallback)
+app.get('*', (req, res) => {
+  if (staticDir) {
+    const indexPath = path.join(staticDir, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      return res.sendFile(indexPath);
+    }
+  }
+  res.status(404).send('Static files not found. Server is running but frontend directory is missing.');
+});
 
 // ============ Start Server ============
 app.listen(PORT, '0.0.0.0', () => {
