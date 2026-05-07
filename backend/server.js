@@ -23,14 +23,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from frontend directory
-// Support both local dev and Railway deployment (Root Directory = backend)
-let frontendPath = path.join(__dirname, '..', 'frontend');
-if (!fs.existsSync(frontendPath)) {
-  frontendPath = path.join(process.cwd(), 'frontend');
-}
-app.use(express.static(frontendPath));
-console.log('📂 Frontend path:', frontendPath);
+// Serve static files from public directory (frontend files)
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Cookie storage for session (in-memory) — load from file on startup
 let cookieStore = '';
