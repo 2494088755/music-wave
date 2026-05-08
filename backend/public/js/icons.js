@@ -39,6 +39,7 @@ var ICONS = {
   download: "<path d=\"M12 15V3\" />\n  <path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\" />\n  <path d=\"m7 10 5 5 5-5\" />",
   chevronDown: "<path d=\"m6 9 6 6 6-6\" />",
   arrowLeft: "<path d=\"m12 19-7-7 7-7\" />\n  <path d=\"M19 12H5\" />",
+  key: "<circle cx=\"15.5\" cy=\"12.5\" r=\"4.5\" />\n  <path d=\"M12.5 9.5 2 20v3h3l2.5-2.5 2 2 2-2 2-2\" />",
 };
 
 function icon(name, size, className) {
