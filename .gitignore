@@ -3,3 +3,4 @@ node_modules/
 .netease_cookie
 server.log
 .special-cache/
+.guest_cookie
