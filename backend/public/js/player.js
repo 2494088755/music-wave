@@ -16,6 +16,7 @@ const Player = {
   heartMode: false,
   specialMode: false,
   fmMode: false,
+  _fmFetching: false,
   likedSongs: [],
   recentSongs: [],
   _originalQueue: [],
@@ -382,18 +383,28 @@ const Player = {
    * Play next song with crossfade
    */
   async next() {
-    // FM mode: fetch fresh recommendations instead of cycling queue
-    if (this.fmMode) {
+    // FM mode: fetch fresh recommendation
+    if (this.fmMode && !this._fmFetching) {
+      this._fmFetching = true;
       this.showToast('📻 加载FM推荐...');
       try {
         const songs = await NeteaseAPI.getFmSongs();
         if (songs && songs.length > 0) {
+          // Stop current playback before switching
+          this.audio.pause();
+          this.audio.src = '';
           this.queue = songs;
           this.currentIndex = 0;
           this.playById(songs[0].id, this.queue);
+          this._fmFetching = false;
           return;
         }
       } catch (e) {}
+      // If fetch fails or empty, stop FM mode
+      this._fmFetching = false;
+      this.fmMode = false;
+      this.updateFmUI();
+      return;
     }
     
     if (this.queue.length === 0) return;
@@ -987,38 +998,28 @@ const Player = {
   },
 
   async onEnded() {
-    // FM mode: fetch fresh recommendations, replace queue
-    if (this.fmMode) {
+    // FM mode: fetch fresh recommendation (guard against concurrent fetches)
+    if (this.fmMode && !this._fmFetching) {
+      this._fmFetching = true;
       try {
         const songs = await NeteaseAPI.getFmSongs();
         if (songs && songs.length > 0) {
           this.queue = songs;
           this.currentIndex = 0;
           this.playById(songs[0].id, this.queue);
+          this._fmFetching = false;
           return;
         }
       } catch (e) {}
-      this.next();
-      return;
+      // If fetch fails, exit FM mode gracefully
+      this._fmFetching = false;
+      this.fmMode = false;
+      this.updateFmUI();
     }
 
     if (this.repeat === 'one') {
       this.audio.currentTime = 0;
       this.audio.play();
-    } else if (this.fmMode && this.currentIndex >= this.queue.length - 1) {
-      // FM mode: fetch more songs when reaching the end
-      this.showToast('📻 加载更多FM推荐...');
-      try {
-        const songs = await NeteaseAPI.getFmSongs();
-        if (songs && songs.length > 0) {
-          this.queue = this.queue.concat(songs);
-          this.next();
-          return;
-        }
-      } catch (e) {
-        // Fall through to normal behavior
-      }
-      this.next();
     } else if (this.repeat === 'all' || this.currentIndex < this.queue.length - 1) {
       this.next();
     } else {
