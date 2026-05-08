@@ -382,6 +382,20 @@ const Player = {
    * Play next song with crossfade
    */
   async next() {
+    // FM mode: fetch fresh recommendations instead of cycling queue
+    if (this.fmMode) {
+      this.showToast('📻 加载FM推荐...');
+      try {
+        const songs = await NeteaseAPI.getFmSongs();
+        if (songs && songs.length > 0) {
+          this.queue = songs;
+          this.currentIndex = 0;
+          this.playById(songs[0].id, this.queue);
+          return;
+        }
+      } catch (e) {}
+    }
+    
     if (this.queue.length === 0) return;
     
     // In heart mode, queue next batch of similar songs before transitioning
@@ -973,20 +987,17 @@ const Player = {
   },
 
   async onEnded() {
-    // FM mode: always try to load next song or fetch more
+    // FM mode: fetch fresh recommendations, replace queue
     if (this.fmMode) {
-      if (this.currentIndex >= this.queue.length - 1) {
-        this.showToast('📻 加载更多FM推荐...');
-        try {
-          const songs = await NeteaseAPI.getFmSongs();
-          if (songs && songs.length > 0) {
-            this.queue = this.queue.concat(songs);
-            this.currentIndex++;
-            this.playById(this.queue[this.currentIndex].id, this.queue);
-            return;
-          }
-        } catch (e) {}
-      }
+      try {
+        const songs = await NeteaseAPI.getFmSongs();
+        if (songs && songs.length > 0) {
+          this.queue = songs;
+          this.currentIndex = 0;
+          this.playById(songs[0].id, this.queue);
+          return;
+        }
+      } catch (e) {}
       this.next();
       return;
     }
