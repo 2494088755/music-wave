@@ -759,11 +759,11 @@ app.get('/api/fm/songs', async (req, res) => {
     const cookie = guestCookieStore || cookieStore;
     if (!cookie) return res.json({ code: 400, msg: '需要登录或设置游客Cookie' });
 
-    // Fetch one FM song (the API returns 3, take only the first)
+    // Fetch FM songs (API returns ~3 songs)
     const result = await ncmApi.personal_fm({ cookie });
     if (result.cookie) mergeCookies(result.cookie);
     const batch = result.body?.data || [];
-    const songs = batch.slice(0, 1);
+    const songs = batch;
     // Format songs the same way as other endpoints
     const formatted = songs.map(s => ({
       id: s.id,
