@@ -759,27 +759,11 @@ app.get('/api/fm/songs', async (req, res) => {
     const cookie = guestCookieStore || cookieStore;
     if (!cookie) return res.json({ code: 400, msg: '需要登录或设置游客Cookie' });
 
-    // Fetch FM songs multiple times and combine for more variety
-    const allSongs = [];
-    const fetchCount = 3;
-    for (let i = 0; i < fetchCount; i++) {
-      try {
-        const result = await ncmApi.personal_fm({ cookie });
-        if (result.cookie) mergeCookies(result.cookie);
-        const batch = result.body?.data || [];
-        allSongs.push(...batch);
-      } catch (e) {
-        // Ignore individual fetch errors
-      }
-    }
-
-    // Deduplicate by id and limit to reasonable count
-    const seen = new Set();
-    const songs = allSongs.filter(s => {
-      if (seen.has(s.id)) return false;
-      seen.add(s.id);
-      return true;
-    }).slice(0, 15);
+    // Fetch one FM song (the API returns 3, take only the first)
+    const result = await ncmApi.personal_fm({ cookie });
+    if (result.cookie) mergeCookies(result.cookie);
+    const batch = result.body?.data || [];
+    const songs = batch.slice(0, 1);
     // Format songs the same way as other endpoints
     const formatted = songs.map(s => ({
       id: s.id,
