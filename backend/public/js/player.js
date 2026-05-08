@@ -847,9 +847,6 @@ const Player = {
     const fmControls = document.getElementById('fmControls');
     if (btn) btn.style.color = this.fmMode ? '#1db954' : 'var(--text-tertiary)';
     if (fmControls) fmControls.style.display = this.fmMode ? 'inline-flex' : 'none';
-    
-    // Override repeat mode to 'all' when in FM mode
-    if (this.fmMode) this.repeat = 'all';
   },
 
   /**
@@ -976,6 +973,24 @@ const Player = {
   },
 
   async onEnded() {
+    // FM mode: always try to load next song or fetch more
+    if (this.fmMode) {
+      if (this.currentIndex >= this.queue.length - 1) {
+        this.showToast('📻 加载更多FM推荐...');
+        try {
+          const songs = await NeteaseAPI.getFmSongs();
+          if (songs && songs.length > 0) {
+            this.queue = this.queue.concat(songs);
+            this.currentIndex++;
+            this.playById(this.queue[this.currentIndex].id, this.queue);
+            return;
+          }
+        } catch (e) {}
+      }
+      this.next();
+      return;
+    }
+
     if (this.repeat === 'one') {
       this.audio.currentTime = 0;
       this.audio.play();
