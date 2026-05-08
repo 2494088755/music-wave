@@ -32,34 +32,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from public directory (frontend files)
-// Try multiple possible locations for Railway compatibility
-const publicDir = path.join(__dirname, 'public');
-const altDir = path.join(process.cwd(), 'public');
-let staticDir = null;
-
-if (fs.existsSync(publicDir)) {
-  staticDir = publicDir;
-} else if (fs.existsSync(altDir)) {
-  staticDir = altDir;
-} else {
-  // Try parent of cwd (Railway deploys entire repo, cwd = backend/)
-  const parentDir = path.join(process.cwd(), '..', 'public');
-  if (fs.existsSync(parentDir)) {
-    staticDir = parentDir;
-  }
-}
-
-if (staticDir) {
-  app.use(express.static(staticDir));
-  console.log('📂 Serving static from:', staticDir);
-  console.log('📄 index.html exists:', fs.existsSync(path.join(staticDir, 'index.html')));
-} else {
-  console.log('⚠️ Could not find public directory');
-  console.log('  Tried:', publicDir);
-  console.log('  Tried:', altDir);
-  console.log('  Tried:', path.join(process.cwd(), '..', 'public'));
-}
+// Serve static files from public directory
+const staticDir = path.join(__dirname, 'public');
+app.use(express.static(staticDir));
+console.log('📂 Serving static from:', staticDir);
+console.log('📄 index.html exists:', fs.existsSync(path.join(staticDir, 'index.html')));
 
 // Cookie storage for session (in-memory) — load from file on startup
 let cookieStore = '';
