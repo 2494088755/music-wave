@@ -2,7 +2,7 @@
  * MusicWave Service Worker
  * Caches static assets for offline support and faster loading
  */
-const CACHE_NAME = 'musicwave-v1';
+const CACHE_NAME = 'musicwave-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
