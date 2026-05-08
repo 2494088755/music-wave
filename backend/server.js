@@ -87,6 +87,10 @@ try {
 
 // ============ API Routes ============
 
+// Health check for Railway
+app.get('/health', (req, res) => res.send('OK'));
+app.head('/health', (req, res) => res.status(200).end());
+
 /**
  * GET /api/search?keywords=xxx&limit=20&offset=0
  * Search for songs
