@@ -17,6 +17,7 @@ const Player = {
   specialMode: false,
   fmMode: false,
   _fmLoading: false,
+  _suppressError: false,
   likedSongs: [],
   recentSongs: [],
   _originalQueue: [],
@@ -387,19 +388,21 @@ const Player = {
     if (this.fmMode && this.currentIndex >= this.queue.length - 1) {
       if (this._fmLoading) return;
       this._fmLoading = true;
+      this._suppressError = true;
       this.showToast('📻 加载FM推荐...');
       try {
         const songs = await NeteaseAPI.getFmSongs();
         if (songs && songs.length > 0) {
           this.audio.pause();
-          this.audio.src = '';
           this.queue = songs;
           this.currentIndex = 0;
           await this.playById(songs[0].id, this.queue);
+          this._suppressError = false;
           this._fmLoading = false;
           return;
         }
       } catch (e) {}
+      this._suppressError = false;
       this._fmLoading = false;
       this.fmMode = false;
       this.updateFmUI();
@@ -1029,6 +1032,8 @@ const Player = {
   },
 
   onError() {
+    // Suppress false errors during FM batch transition
+    if (this._suppressError || this._fmLoading) return;
     console.error('Audio playback error');
     this.showToast('⚠️ 播放出错，尝试下一首');
     this.isPlaying = false;
