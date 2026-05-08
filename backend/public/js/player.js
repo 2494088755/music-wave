@@ -16,7 +16,7 @@ const Player = {
   heartMode: false,
   specialMode: false,
   fmMode: false,
-  _fmFetching: false,
+  _fmLoading: false,
   likedSongs: [],
   recentSongs: [],
   _originalQueue: [],
@@ -383,42 +383,24 @@ const Player = {
    * Play next song with crossfade
    */
   async next() {
-    // FM mode: if already fetching, just skip to next in current queue
-    if (this.fmMode) {
-      if (this._fmFetching) {
-        // Navigate within the current queue if possible
-        if (this.currentIndex < this.queue.length - 1) {
-          this.currentIndex++;
-          this.playById(this.queue[this.currentIndex].id, this.queue);
-        }
-        // If at the end, the ongoing fetch will handle the next song
-        return;
-      }
-      // Fetch fresh recommendation
-      this._fmFetching = true;
+    // FM mode: at the end of the queue → fetch new batch
+    if (this.fmMode && this.currentIndex >= this.queue.length - 1) {
+      if (this._fmLoading) return;
+      this._fmLoading = true;
       this.showToast('📻 加载FM推荐...');
       try {
-        let songs;
-        let attempts = 0;
-        // Fetch until we get a different song (avoid same-song repeat)
-        do {
-          songs = await NeteaseAPI.getFmSongs();
-          attempts++;
-        } while (songs && songs.length > 0 && songs[0].id == this.currentSong?.id && attempts < 3);
-        
+        const songs = await NeteaseAPI.getFmSongs();
         if (songs && songs.length > 0) {
-          // Stop current playback before switching
           this.audio.pause();
           this.audio.src = '';
           this.queue = songs;
           this.currentIndex = 0;
           await this.playById(songs[0].id, this.queue);
-          this._fmFetching = false;
+          this._fmLoading = false;
           return;
         }
       } catch (e) {}
-      // If fetch fails or empty, stop FM mode
-      this._fmFetching = false;
+      this._fmLoading = false;
       this.fmMode = false;
       this.updateFmUI();
       return;
@@ -1015,9 +997,10 @@ const Player = {
   },
 
   async onEnded() {
-    // FM mode: always delegate to next() which handles fetching with guard
+    // FM mode: delegate to next() which handles fetch-at-end logic
     if (this.fmMode) {
-      this.next();
+      // If already loading, the fetch will handle it; otherwise call next()
+      if (!this._fmLoading) this.next();
       return;
     }
 
