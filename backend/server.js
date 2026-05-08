@@ -891,6 +891,13 @@ app.get('*', (req, res) => {
 });
 
 // ============ Start Server ============
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err);
+});
+process.on('unhandledRejection', (err) => {
+  console.error('UNHANDLED REJECTION:', err);
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🎵 Music Player Server is running!`);
   console.log(`📍 Local:   http://localhost:${PORT}`);
