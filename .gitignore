@@ -2,3 +2,4 @@ node_modules/
 .env
 .netease_cookie
 server.log
+.special-cache/

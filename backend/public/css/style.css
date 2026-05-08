@@ -2066,3 +2066,51 @@ input {
 }
 
 .shortcuts-grid span { font-size: 13px; color: var(--text-secondary); }
+
+/* ============ Special Mode Toggle ============ */
+.special-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.special-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--text-tertiary);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  opacity: 0.4;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.special-toggle input:checked + .toggle-slider {
+  background: #f59e0b;
+  opacity: 1;
+}
+
+.special-toggle input:checked + .toggle-slider::before {
+  transform: translateX(16px);
+}

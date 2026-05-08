@@ -206,7 +206,10 @@
           <button class="lyrics-toggle-btn" id="heartModeBtn" onclick="Player.toggleHeartMode()" title="心动模式" style="color:var(--text-tertiary);">
             <script>document.write(icon('heart',18))</script>
           </button>
-          
+          <label class="special-toggle" id="specialModeToggle" title="特殊环境模式 - 歌曲缓存到服务器播放">
+            <input type="checkbox" onchange="Player.toggleSpecialMode()">
+            <span class="toggle-slider"></span>
+          </label>
           <button class="lyrics-toggle-btn" id="pwaInstallBtn" onclick="installPWA()" title="安装应用" style="display:none;">
             <script>document.write(icon('download',18))</script>
           </button>

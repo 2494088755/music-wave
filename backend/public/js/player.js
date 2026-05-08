@@ -14,6 +14,7 @@ const Player = {
   repeat: 'all', // 'all', 'one', 'none'
   currentSong: null,
   heartMode: false,
+  specialMode: false,
   likedSongs: [],
   recentSongs: [],
   _originalQueue: [],
@@ -91,22 +92,36 @@ const Player = {
       this.setupQueue(songId, songsList);
       if (!this.queue[this.currentIndex]) return;
 
+      // Special mode: clear old server cache before playing new song
+      if (this.specialMode) {
+        try { await fetch('/api/special/clear', { method: 'POST' }); } catch (e) {}
+      }
+
       // 1. Show immediate UI with available info
       this.showSongPlaceholder(songId);
 
       // 2. Get playable URL (with fallback chain)
-      const result = await this.resolveAudioUrl(songId);
-      if (!result || !result.audioUrl) {
+      let audioUrl;
+      if (this.specialMode) {
+        // Special mode: download to server first, then play from local
+        audioUrl = await this.specialSaveAndGetUrl(songId);
+      } else {
+        const result = await this.resolveAudioUrl(songId);
+        audioUrl = result ? result.audioUrl : null;
+      }
+
+      if (!audioUrl) {
         this.showToast('⚠️ 该歌曲暂无播放源');
         return;
       }
 
       // 3. Start playback
-      this.audio.src = result.audioUrl;
+      this.audio.src = audioUrl;
       this.audio.load();
 
       // 4. Fetch metadata + lyrics (non-blocking)
-      if (result.source === 'netease') {
+      const queueSong = this.queue[this.currentIndex] || {};
+      if (queueSong.source === 'netease' || !queueSong.source) {
         this.fetchSongMetadata(songId).catch(() => {});
         this.fetchSimilarSongs(songId);
       }
@@ -170,6 +185,33 @@ const Player = {
     }
 
     return { source, audioUrl };
+  },
+
+  /**
+   * Special environment mode: save song to server then get local URL
+   */
+  async specialSaveAndGetUrl(songId) {
+    try {
+      const queueSong = this.queue[this.currentIndex] || {};
+      const source = queueSong.source || 'netease';
+      
+      const res = await fetch('/api/special/save-song', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: songId, source }),
+      });
+      const data = await res.json();
+      
+      if (data.code !== 200 || !data.data || !data.data.localUrl) {
+        console.error('Special save failed:', data);
+        return null;
+      }
+      
+      return data.data.localUrl;
+    } catch (error) {
+      console.error('Special save error:', error);
+      return null;
+    }
   },
 
   /**
@@ -338,8 +380,9 @@ const Player = {
   /**
    * Play next song with crossfade
    */
-  next() {
+  async next() {
     if (this.queue.length === 0) return;
+    
     // In heart mode, queue next batch of similar songs before transitioning
     const currentId = this.currentSong?.id;
     if (this.heartMode && currentId) {
@@ -400,7 +443,7 @@ const Player = {
   /**
    * Play previous song
    */
-  prev() {
+  async prev() {
     if (this.queue.length === 0) return;
     
     // If more than 3 seconds into the song, restart
@@ -717,6 +760,13 @@ const Player = {
       }
       this.showToast('💓 心动模式已关闭，已恢复原列表');
     }
+  },
+
+  toggleSpecialMode() {
+    this.specialMode = !this.specialMode;
+    const toggle = document.getElementById('specialModeToggle');
+    if (toggle) toggle.checked = this.specialMode;
+    this.showToast(this.specialMode ? '📦 特殊环境模式已开启 - 歌曲将缓存到服务器播放' : '📦 特殊环境模式已关闭');
   },
 
   /**

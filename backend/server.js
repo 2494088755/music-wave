@@ -13,7 +13,15 @@ const multiSource = require('./multi-source');
 const playlistStore = require('./playlist-store');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const axios = require('axios');
+
+// Special mode cache directory
+const SPECIAL_CACHE_DIR = path.join(__dirname, '.special-cache');
+if (!fs.existsSync(SPECIAL_CACHE_DIR)) {
+  fs.mkdirSync(SPECIAL_CACHE_DIR, { recursive: true });
+  console.log('📁 Created special cache directory');
+}
 
 // Cookie persistence file
 const COOKIE_FILE = path.join(__dirname, '.netease_cookie');
@@ -547,6 +555,131 @@ app.post('/api/sync/netease-playlists', async (req, res) => {
   } catch (error) {
     res.json({ code: 500, msg: '同步失败', error: error.message });
   }
+});
+
+// ============ Special Mode Routes ============
+
+/**
+ * POST /api/special/save-song
+ * Download a song and save it to server cache for special environment playback
+ */
+app.post('/api/special/save-song', async (req, res) => {
+  try {
+    const { id, source } = req.body;
+    if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
+
+    // Get the audio URL using the same logic as /api/song/url
+    let audioUrl = null;
+    const songId = parseInt(id);
+    
+    try {
+      const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
+      if (result.cookie) mergeCookies(result.cookie);
+      const data = result.body?.data?.[0];
+      if (data && data.url && data.code !== -110) {
+        audioUrl = data.url;
+      }
+    } catch (e) {
+      // Ignore ncmApi errors
+    }
+
+    if (!audioUrl) {
+      try {
+        const detailRes = await netease.getSongDetail(songId);
+        const song = detailRes?.songs?.[0];
+        const songName = song ? song.name : '';
+        const artistName = song ? (song.ar || []).map(a => a.name).join(' ') : '';
+        
+        if (songName) {
+          const fallback = await findSongUrl(`${songName} ${artistName}`);
+          if (typeof fallback === 'string') {
+            audioUrl = fallback;
+          } else if (fallback && fallback.url) {
+            audioUrl = fallback.url;
+          }
+        }
+      } catch (e) {
+        // Ignore crawler errors
+      }
+    }
+
+    if (!audioUrl) {
+      return res.json({ code: 500, msg: '无法获取歌曲下载地址' });
+    }
+
+    // Download the audio file
+    const ext = path.extname(new URL(audioUrl).pathname) || '.mp3';
+    const fileName = `${songId}${ext}`;
+    const filePath = path.join(SPECIAL_CACHE_DIR, fileName);
+    
+    const response = await axios({
+      method: 'GET',
+      url: audioUrl,
+      responseType: 'stream',
+      timeout: 30000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Referer': 'https://music.163.com/',
+      },
+    });
+
+    const writer = fs.createWriteStream(filePath);
+    response.data.pipe(writer);
+
+    await new Promise((resolve, reject) => {
+      writer.on('finish', resolve);
+      writer.on('error', reject);
+    });
+
+    console.log(`[Special] Saved: ${fileName}`);
+    res.json({
+      code: 200,
+      data: {
+        localUrl: `/api/special/play/${fileName}`,
+        fileName,
+      },
+    });
+  } catch (error) {
+    res.json({ code: 500, msg: '保存歌曲失败', error: error.message });
+  }
+});
+
+/**
+ * POST /api/special/clear
+ * Clear all cached song files on the server
+ */
+app.post('/api/special/clear', (req, res) => {
+  try {
+    const files = fs.readdirSync(SPECIAL_CACHE_DIR);
+    let cleared = 0;
+    for (const file of files) {
+      const filePath = path.join(SPECIAL_CACHE_DIR, file);
+      if (fs.statSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
+        cleared++;
+      }
+    }
+    console.log(`[Special] Cleared ${cleared} cached files`);
+    res.json({ code: 200, data: { cleared } });
+  } catch (error) {
+    res.json({ code: 500, msg: '清空缓存失败', error: error.message });
+  }
+});
+
+/**
+ * GET /api/special/play/:file
+ * Serve cached audio file for playback
+ */
+app.get('/api/special/play/:file', (req, res) => {
+  const filePath = path.join(SPECIAL_CACHE_DIR, req.params.file);
+  // Prevent path traversal
+  if (!filePath.startsWith(SPECIAL_CACHE_DIR)) {
+    return res.status(403).send('Forbidden');
+  }
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send('File not found');
+  }
+  res.sendFile(filePath);
 });
 
 // ============ Playlist Routes (local) ============
