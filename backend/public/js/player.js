@@ -388,14 +388,21 @@ const Player = {
       this._fmFetching = true;
       this.showToast('📻 加载FM推荐...');
       try {
-        const songs = await NeteaseAPI.getFmSongs();
+        let songs;
+        let attempts = 0;
+        // Fetch until we get a different song (avoid same-song repeat)
+        do {
+          songs = await NeteaseAPI.getFmSongs();
+          attempts++;
+        } while (songs && songs.length > 0 && songs[0].id == this.currentSong?.id && attempts < 3);
+        
         if (songs && songs.length > 0) {
           // Stop current playback before switching
           this.audio.pause();
           this.audio.src = '';
           this.queue = songs;
           this.currentIndex = 0;
-          this.playById(songs[0].id, this.queue);
+          await this.playById(songs[0].id, this.queue);
           this._fmFetching = false;
           return;
         }
@@ -1002,11 +1009,17 @@ const Player = {
     if (this.fmMode && !this._fmFetching) {
       this._fmFetching = true;
       try {
-        const songs = await NeteaseAPI.getFmSongs();
+        let songs;
+        let attempts = 0;
+        do {
+          songs = await NeteaseAPI.getFmSongs();
+          attempts++;
+        } while (songs && songs.length > 0 && songs[0].id == this.currentSong?.id && attempts < 3);
+        
         if (songs && songs.length > 0) {
           this.queue = songs;
           this.currentIndex = 0;
-          this.playById(songs[0].id, this.queue);
+          await this.playById(songs[0].id, this.queue);
           this._fmFetching = false;
           return;
         }
