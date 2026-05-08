@@ -117,25 +117,12 @@ app.get('/api/song/url', async (req, res) => {
     
     const songId = parseInt(id);
     
-    // Step 1: Try NetEase API via ncmApi package (proper weapi encryption)
+    // Step 1: If guest cookie is set, try it FIRST (user-pasted cookie takes priority)
     let audioUrl = null;
     let songName = '';
     let artistName = '';
     
-    try {
-      const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
-      if (result.cookie) mergeCookies(result.cookie);
-      
-      const data = result.body?.data?.[0];
-      if (data && data.url && data.code !== -110) {
-        audioUrl = data.url;
-      }
-    } catch (e) {
-      console.log(`ncmApi URL failed for ${songId}: ${e.message}`);
-    }
-    
-    // Step 1.5: If no URL and guest cookie exists, try with guest cookie
-    if (!audioUrl && guestCookieStore) {
+    if (guestCookieStore) {
       try {
         const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
         const data = result.body?.data?.[0];
@@ -143,11 +130,25 @@ app.get('/api/song/url', async (req, res) => {
           audioUrl = data.url;
         }
       } catch (e) {
-        console.log(`Guest cookie URL failed for ${songId}: ${e.message}`);
+        console.log(`Guest cookie URL failed: ${e.message}`);
       }
     }
     
-    // Step 2: If no URL, try to get song name/artist and search fallback sources
+    // Step 2: If no URL, try with login cookie
+    if (!audioUrl) {
+      try {
+        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
+        if (result.cookie) mergeCookies(result.cookie);
+        const data = result.body?.data?.[0];
+        if (data && data.url && data.code !== -110) {
+          audioUrl = data.url;
+        }
+      } catch (e) {
+        console.log(`ncmApi URL failed: ${e.message}`);
+      }
+    }
+    
+    // Step 3: If no URL, try fallback crawler
     if (!audioUrl) {
       try {
         const detailRes = await netease.getSongDetail(songId);
@@ -596,16 +597,28 @@ app.post('/api/special/save-song', async (req, res) => {
     // Get the audio URL using the same logic as /api/song/url
     let audioUrl = null;
     const songId = parseInt(id);
-    
-    try {
-      const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
-      if (result.cookie) mergeCookies(result.cookie);
-      const data = result.body?.data?.[0];
-      if (data && data.url && data.code !== -110) {
-        audioUrl = data.url;
+
+    // Try guest cookie first if available
+    if (guestCookieStore) {
+      try {
+        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
+        const data = result.body?.data?.[0];
+        if (data && data.url && data.code !== -110) audioUrl = data.url;
+      } catch (e) { /* ignore */ }
+    }
+
+    // Then try login cookie
+    if (!audioUrl) {
+      try {
+        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
+        if (result.cookie) mergeCookies(result.cookie);
+        const data = result.body?.data?.[0];
+        if (data && data.url && data.code !== -110) {
+          audioUrl = data.url;
+        }
+      } catch (e) {
+        // Ignore ncmApi errors
       }
-    } catch (e) {
-      // Ignore ncmApi errors
     }
 
     if (!audioUrl) {
