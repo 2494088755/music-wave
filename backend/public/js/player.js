@@ -383,8 +383,18 @@ const Player = {
    * Play next song with crossfade
    */
   async next() {
-    // FM mode: fetch fresh recommendation
-    if (this.fmMode && !this._fmFetching) {
+    // FM mode: if already fetching, just skip to next in current queue
+    if (this.fmMode) {
+      if (this._fmFetching) {
+        // Navigate within the current queue if possible
+        if (this.currentIndex < this.queue.length - 1) {
+          this.currentIndex++;
+          this.playById(this.queue[this.currentIndex].id, this.queue);
+        }
+        // If at the end, the ongoing fetch will handle the next song
+        return;
+      }
+      // Fetch fresh recommendation
       this._fmFetching = true;
       this.showToast('📻 加载FM推荐...');
       try {
@@ -1005,29 +1015,10 @@ const Player = {
   },
 
   async onEnded() {
-    // FM mode: fetch fresh recommendation (guard against concurrent fetches)
-    if (this.fmMode && !this._fmFetching) {
-      this._fmFetching = true;
-      try {
-        let songs;
-        let attempts = 0;
-        do {
-          songs = await NeteaseAPI.getFmSongs();
-          attempts++;
-        } while (songs && songs.length > 0 && songs[0].id == this.currentSong?.id && attempts < 3);
-        
-        if (songs && songs.length > 0) {
-          this.queue = songs;
-          this.currentIndex = 0;
-          await this.playById(songs[0].id, this.queue);
-          this._fmFetching = false;
-          return;
-        }
-      } catch (e) {}
-      // If fetch fails, exit FM mode gracefully
-      this._fmFetching = false;
-      this.fmMode = false;
-      this.updateFmUI();
+    // FM mode: always delegate to next() which handles fetching with guard
+    if (this.fmMode) {
+      this.next();
+      return;
     }
 
     if (this.repeat === 'one') {
