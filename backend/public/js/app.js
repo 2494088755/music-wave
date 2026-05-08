@@ -799,11 +799,16 @@ function closeGuestCookieModal() {
 
 async function confirmGuestCookie() {
   const input = document.getElementById('guestCookieInput');
-  const cookie = input.value.trim();
+  let cookie = input.value.trim();
   
   if (!cookie || cookie === '我已经设置过 Cookie，点击「清除」可重新设置') {
     Player.showToast('⚠️ 请粘贴你的 MUSIC_U cookie');
     return;
+  }
+  
+  // Auto-prepend MUSIC_U= if user only pasted the raw value
+  if (!cookie.startsWith('MUSIC_U=')) {
+    cookie = 'MUSIC_U=' + cookie;
   }
   
   try {
