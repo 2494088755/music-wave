@@ -89,6 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Check login status
   checkLoginStatus();
+  
+  // Check guest cookie status
+  checkGuestCookieStatus();
 });
 
 // ======== Navigation ========
@@ -763,6 +766,67 @@ function updateUserButton() {
   };
   
   userArea.appendChild(btn);
+}
+
+// ======== Guest Cookie ========
+async function checkGuestCookieStatus() {
+  try {
+    const status = await NeteaseAPI.getGuestCookieStatus();
+    const btn = document.getElementById('guestCookieBtn');
+    if (btn) {
+      btn.style.color = status.hasCookie ? '#f59e0b' : 'var(--text-tertiary)';
+    }
+  } catch (e) {
+    // Ignore
+  }
+}
+
+function showGuestCookieModal() {
+  const modal = document.getElementById('guestCookieModal');
+  modal.classList.add('open');
+  
+  // Pre-fill existing cookie
+  NeteaseAPI.getGuestCookieStatus().then(status => {
+    if (status.hasCookie) {
+      document.getElementById('guestCookieInput').value = '我已经设置过 Cookie，点击「清除」可重新设置';
+    }
+  });
+}
+
+function closeGuestCookieModal() {
+  document.getElementById('guestCookieModal').classList.remove('open');
+}
+
+async function confirmGuestCookie() {
+  const input = document.getElementById('guestCookieInput');
+  const cookie = input.value.trim();
+  
+  if (!cookie || cookie === '我已经设置过 Cookie，点击「清除」可重新设置') {
+    Player.showToast('⚠️ 请粘贴你的 MUSIC_U cookie');
+    return;
+  }
+  
+  try {
+    await NeteaseAPI.setGuestCookie(cookie);
+    Player.showToast('✅ 游客 Cookie 已保存');
+    checkGuestCookieStatus();
+    closeGuestCookieModal();
+    input.value = '';
+  } catch (error) {
+    Player.showToast('⚠️ Cookie 保存失败: ' + error.message);
+  }
+}
+
+async function clearGuestCookie() {
+  try {
+    await NeteaseAPI.clearGuestCookie();
+    Player.showToast('🗑️ 游客 Cookie 已清除');
+    document.getElementById('guestCookieInput').value = '';
+    checkGuestCookieStatus();
+    closeGuestCookieModal();
+  } catch (error) {
+    Player.showToast('⚠️ 清除失败: ' + error.message);
+  }
 }
 
 // ======== Global UI Functions (called from HTML) ========

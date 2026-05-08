@@ -25,6 +25,7 @@ if (!fs.existsSync(SPECIAL_CACHE_DIR)) {
 
 // Cookie persistence file
 const COOKIE_FILE = path.join(__dirname, '.netease_cookie');
+const GUEST_COOKIE_FILE = path.join(__dirname, '.guest_cookie');
 
 // Middleware
 app.use(cors());
@@ -73,6 +74,17 @@ try {
 
 let loginUserInfo = null;
 
+// Guest cookie storage (for unauthenticated users)
+let guestCookieStore = '';
+try {
+  if (fs.existsSync(GUEST_COOKIE_FILE)) {
+    guestCookieStore = fs.readFileSync(GUEST_COOKIE_FILE, 'utf8').trim();
+    if (guestCookieStore) console.log('📁 Guest cookie loaded from file');
+  }
+} catch (e) {
+  console.log('No guest cookie found');
+}
+
 // ============ API Routes ============
 
 /**
@@ -120,6 +132,19 @@ app.get('/api/song/url', async (req, res) => {
       }
     } catch (e) {
       console.log(`ncmApi URL failed for ${songId}: ${e.message}`);
+    }
+    
+    // Step 1.5: If no URL and guest cookie exists, try with guest cookie
+    if (!audioUrl && guestCookieStore) {
+      try {
+        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
+        const data = result.body?.data?.[0];
+        if (data && data.url && data.code !== -110) {
+          audioUrl = data.url;
+        }
+      } catch (e) {
+        console.log(`Guest cookie URL failed for ${songId}: ${e.message}`);
+      }
     }
     
     // Step 2: If no URL, try to get song name/artist and search fallback sources
@@ -680,6 +705,53 @@ app.get('/api/special/play/:file', (req, res) => {
     return res.status(404).send('File not found');
   }
   res.sendFile(filePath);
+});
+
+// ============ Guest Cookie Routes ============
+
+/**
+ * POST /api/guest/cookie
+ * Save a guest cookie for unauthenticated users
+ */
+app.post('/api/guest/cookie', (req, res) => {
+  try {
+    const { cookie } = req.body;
+    if (!cookie || !cookie.trim()) {
+      return res.json({ code: 400, msg: '请提供有效的 Cookie' });
+    }
+    guestCookieStore = cookie.trim();
+    fs.writeFileSync(GUEST_COOKIE_FILE, guestCookieStore, 'utf8');
+    console.log('📁 Guest cookie saved');
+    res.json({ code: 200, data: { hasCookie: true } });
+  } catch (error) {
+    res.json({ code: 500, msg: '保存失败', error: error.message });
+  }
+});
+
+/**
+ * POST /api/guest/clear
+ * Clear the guest cookie
+ */
+app.post('/api/guest/clear', (req, res) => {
+  try {
+    guestCookieStore = '';
+    if (fs.existsSync(GUEST_COOKIE_FILE)) fs.unlinkSync(GUEST_COOKIE_FILE);
+    console.log('📁 Guest cookie cleared');
+    res.json({ code: 200, data: { hasCookie: false } });
+  } catch (error) {
+    res.json({ code: 500, msg: '清除失败', error: error.message });
+  }
+});
+
+/**
+ * GET /api/guest/status
+ * Check if guest cookie is stored
+ */
+app.get('/api/guest/status', (req, res) => {
+  res.json({
+    code: 200,
+    data: { hasCookie: !!guestCookieStore },
+  });
 });
 
 // ============ Playlist Routes (local) ============

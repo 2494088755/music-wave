@@ -210,6 +210,9 @@
             <input type="checkbox" onchange="Player.toggleSpecialMode()">
             <span class="toggle-slider"></span>
           </label>
+          <button class="lyrics-toggle-btn" id="guestCookieBtn" onclick="showGuestCookieModal()" title="设置游客Cookie" style="color:var(--text-tertiary);">
+            <script>document.write(icon('key',18))</script>
+          </button>
           <button class="lyrics-toggle-btn" id="pwaInstallBtn" onclick="installPWA()" title="安装应用" style="display:none;">
             <script>document.write(icon('download',18))</script>
           </button>
@@ -318,6 +321,20 @@
           <button class="qr-refresh-btn" onclick="initQRLogin()">刷新二维码</button>
         </div>
         <button style="display:block;margin:16px auto 0;color:var(--text-tertiary);font-size:13px;" onclick="closeLoginModal()">取消</button>
+      </div>
+    </div>
+
+    <!-- Guest Cookie Modal -->
+    <div class="modal-overlay" id="guestCookieModal">
+      <div class="modal">
+        <div class="modal-title">设置网易云 Cookie</div>
+        <div class="modal-subtitle">粘贴你的 MUSIC_U cookie，用于播放会员歌曲</div>
+        <textarea class="modal-textarea" id="guestCookieInput" placeholder="MUSIC_U=xxxxxxxxxxxxx" rows="3"></textarea>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-primary" onclick="confirmGuestCookie()">确认</button>
+          <button class="modal-btn" onclick="clearGuestCookie()">清除</button>
+          <button class="modal-btn" onclick="closeGuestCookieModal()">取消</button>
+        </div>
       </div>
     </div>
 

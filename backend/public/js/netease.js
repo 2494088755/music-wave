@@ -125,6 +125,32 @@ const NeteaseAPI = {
     return data.data;
   },
 
+  // ======== Guest Cookie ========
+  async setGuestCookie(cookie) {
+    const res = await fetch(`${API_BASE}/api/guest/cookie`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cookie }),
+    });
+    const data = await res.json();
+    if (data.code !== 200) throw new Error(data.msg || '保存失败');
+    return data.data;
+  },
+
+  async clearGuestCookie() {
+    const res = await fetch(`${API_BASE}/api/guest/clear`, { method: 'POST' });
+    const data = await res.json();
+    if (data.code !== 200) throw new Error('清除失败');
+    return data.data;
+  },
+
+  async getGuestCookieStatus() {
+    const res = await fetch(`${API_BASE}/api/guest/status`);
+    const data = await res.json();
+    if (data.code !== 200) return { hasCookie: false };
+    return data.data;
+  },
+
   // ======== Multi-Source Search ========
   async multiSearch(source, keywords, limit = 20) {
     const res = await fetch(`${API_BASE}/api/multi/search?source=${source}&keywords=${encodeURIComponent(keywords)}&limit=${limit}`);
