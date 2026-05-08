@@ -748,6 +748,77 @@ app.get('/api/guest/status', (req, res) => {
   });
 });
 
+// ============ Personal FM Routes ============
+
+/**
+ * GET /api/fm/songs
+ * Get personal FM recommended songs
+ */
+app.get('/api/fm/songs', async (req, res) => {
+  try {
+    const cookie = guestCookieStore || cookieStore;
+    if (!cookie) return res.json({ code: 400, msg: '需要登录或设置游客Cookie' });
+
+    const result = await ncmApi.personal_fm({ cookie });
+    if (result.cookie) mergeCookies(result.cookie);
+
+    const songs = result.body?.data || [];
+    // Format songs the same way as other endpoints
+    const formatted = songs.map(s => ({
+      id: s.id,
+      name: s.name || '',
+      artist: (s.artists || s.ar || []).map(a => a.name).join(' / '),
+      album: (s.album || s.al || {}).name || '',
+      cover: (s.album || s.al || {}).picUrl || '',
+      duration: s.duration || s.dt || 0,
+      source: 'netease',
+      fm: true,
+    }));
+
+    res.json({ code: 200, data: formatted });
+  } catch (error) {
+    res.json({ code: 500, msg: '获取FM推荐失败', error: error.message });
+  }
+});
+
+/**
+ * POST /api/fm/like
+ * Like/unlike a song (feedback for FM)
+ */
+app.post('/api/fm/like', async (req, res) => {
+  try {
+    const { id, like } = req.body;
+    if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
+
+    const cookie = guestCookieStore || cookieStore;
+    const result = await ncmApi.like({ id: parseInt(id), like: like !== false, cookie });
+    if (result.cookie) mergeCookies(result.cookie);
+
+    res.json({ code: 200, data: { liked: like !== false } });
+  } catch (error) {
+    res.json({ code: 500, msg: '操作失败', error: error.message });
+  }
+});
+
+/**
+ * POST /api/fm/trash
+ * Trash a song (remove from FM recommendations)
+ */
+app.post('/api/fm/trash', async (req, res) => {
+  try {
+    const { id } = req.body;
+    if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
+
+    const cookie = guestCookieStore || cookieStore;
+    const result = await ncmApi.fm_trash({ id: parseInt(id), cookie });
+    if (result.cookie) mergeCookies(result.cookie);
+
+    res.json({ code: 200, data: { trashed: true } });
+  } catch (error) {
+    res.json({ code: 500, msg: '操作失败', error: error.message });
+  }
+});
+
 // ============ Playlist Routes (local) ============
 
 /**

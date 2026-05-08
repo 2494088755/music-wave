@@ -151,6 +151,36 @@ const NeteaseAPI = {
     return data.data;
   },
 
+  // ======== Personal FM ========
+  async getFmSongs() {
+    const res = await fetch(`${API_BASE}/api/fm/songs`);
+    const data = await res.json();
+    if (data.code !== 200) throw new Error(data.msg || '获取FM推荐失败');
+    return data.data;
+  },
+
+  async likeFmSong(id, like = true) {
+    const res = await fetch(`${API_BASE}/api/fm/like`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, like }),
+    });
+    const data = await res.json();
+    if (data.code !== 200) throw new Error('操作失败');
+    return data.data;
+  },
+
+  async trashFmSong(id) {
+    const res = await fetch(`${API_BASE}/api/fm/trash`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    const data = await res.json();
+    if (data.code !== 200) throw new Error('操作失败');
+    return data.data;
+  },
+
   // ======== Multi-Source Search ========
   async multiSearch(source, keywords, limit = 20) {
     const res = await fetch(`${API_BASE}/api/multi/search?source=${source}&keywords=${encodeURIComponent(keywords)}&limit=${limit}`);

@@ -2132,3 +2132,22 @@ input {
 .special-toggle input:checked + .toggle-slider::before {
   transform: translateX(16px);
 }
+
+/* ============ FM Mode ============ */
+.fm-controls {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  margin: 0 4px;
+}
+
+.fm-like-btn:hover { color: var(--accent-color) !important; }
+.fm-trash-btn:hover { color: #ef4444 !important; }
+
+.fm-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #1db954;
+  margin-left: 2px;
+}

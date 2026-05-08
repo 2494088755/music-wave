@@ -15,6 +15,7 @@ const Player = {
   currentSong: null,
   heartMode: false,
   specialMode: false,
+  fmMode: false,
   likedSongs: [],
   recentSongs: [],
   _originalQueue: [],
@@ -769,6 +770,88 @@ const Player = {
     this.showToast(this.specialMode ? '📦 特殊环境模式已开启 - 歌曲将缓存到服务器播放' : '📦 特殊环境模式已关闭');
   },
 
+  // ======== Personal FM Mode ========
+
+  async toggleFmMode() {
+    if (!this.currentSong && !this.fmMode) {
+      // Start FM mode
+      this.fmMode = true;
+      this.updateFmUI();
+      this.showToast('📻 私人FM 启动中...');
+      await this.startFmPlayback();
+    } else if (this.fmMode) {
+      // Turn off FM mode
+      this.fmMode = false;
+      this.updateFmUI();
+      this.showToast('📻 私人FM 已关闭');
+    } else {
+      // Toggle on
+      this.fmMode = true;
+      this.updateFmUI();
+      this.showToast('📻 私人FM 启动中...');
+      await this.startFmPlayback();
+    }
+  },
+
+  async startFmPlayback() {
+    try {
+      const songs = await NeteaseAPI.getFmSongs();
+      if (!songs || songs.length === 0) {
+        this.showToast('⚠️ 暂无FM推荐，请先登录或设置Cookie');
+        this.fmMode = false;
+        this.updateFmUI();
+        return;
+      }
+
+      // Set queue to FM songs and start playing
+      this.queue = songs;
+      this.currentIndex = 0;
+      this.showSongPlaceholder(songs[0].id);
+      
+      // Play with FM handling
+      await this.playById(songs[0].id, this.queue);
+      this.showToast('📻 私人FM 已开启');
+    } catch (error) {
+      this.showToast('⚠️ FM启动失败: ' + error.message);
+      this.fmMode = false;
+      this.updateFmUI();
+    }
+  },
+
+  async likeCurrentFmSong() {
+    if (!this.currentSong) return;
+    try {
+      await NeteaseAPI.likeFmSong(this.currentSong.id, true);
+      const btn = document.getElementById('fmLikeBtn');
+      if (btn) btn.style.color = 'var(--accent-color)';
+      this.showToast('❤️ 已红心');
+    } catch (error) {
+      this.showToast('⚠️ 红心失败');
+    }
+  },
+
+  async trashCurrentFmSong() {
+    if (!this.currentSong) return;
+    try {
+      await NeteaseAPI.trashFmSong(this.currentSong.id);
+      this.showToast('🗑️ 已移除，正在播放下一首');
+      // Play next FM song
+      this.next();
+    } catch (error) {
+      this.showToast('⚠️ 操作失败');
+    }
+  },
+
+  updateFmUI() {
+    const btn = document.getElementById('fmBtn');
+    const fmControls = document.getElementById('fmControls');
+    if (btn) btn.style.color = this.fmMode ? '#1db954' : 'var(--text-tertiary)';
+    if (fmControls) fmControls.style.display = this.fmMode ? 'inline-flex' : 'none';
+    
+    // Override repeat mode to 'all' when in FM mode
+    if (this.fmMode) this.repeat = 'all';
+  },
+
   /**
    * Replace queue with similar songs based on given song
    */
@@ -892,10 +975,24 @@ const Player = {
     LyricsManager.update(current);
   },
 
-  onEnded() {
+  async onEnded() {
     if (this.repeat === 'one') {
       this.audio.currentTime = 0;
       this.audio.play();
+    } else if (this.fmMode && this.currentIndex >= this.queue.length - 1) {
+      // FM mode: fetch more songs when reaching the end
+      this.showToast('📻 加载更多FM推荐...');
+      try {
+        const songs = await NeteaseAPI.getFmSongs();
+        if (songs && songs.length > 0) {
+          this.queue = this.queue.concat(songs);
+          this.next();
+          return;
+        }
+      } catch (e) {
+        // Fall through to normal behavior
+      }
+      this.next();
     } else if (this.repeat === 'all' || this.currentIndex < this.queue.length - 1) {
       this.next();
     } else {

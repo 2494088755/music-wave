@@ -197,6 +197,16 @@
           <div class="volume-fill" id="volumeFill" style="width: 70%"></div>
         </div>
         <div class="player-extra">
+          <!-- FM Mode Controls (hidden by default) -->
+          <div class="fm-controls" id="fmControls" style="display:none;">
+            <button class="lyrics-toggle-btn fm-like-btn" id="fmLikeBtn" onclick="Player.likeCurrentFmSong()" title="红心" style="color:var(--text-tertiary);">
+              <script>document.write(icon('heart',16))</script>
+            </button>
+            <button class="lyrics-toggle-btn fm-trash-btn" id="fmTrashBtn" onclick="Player.trashCurrentFmSong()" title="不喜欢" style="color:var(--text-tertiary);">
+              <script>document.write(icon('thumbsDown',16))</script>
+            </button>
+            <span class="fm-label">FM</span>
+          </div>
           <button class="player-btn" id="addToPlaylistBtn" onclick="showAddToPlaylistDialog()" title="添加到歌单"><script>document.write(icon('folderPlus',18))</script></button>
           <button class="lyrics-toggle-btn" id="lyricsToggle" onclick="toggleLyrics()" title="歌词"><script>document.write(icon('headphones',18))</script></button>
           <button class="playlist-toggle-btn" id="playlistToggle" onclick="togglePlaylistPanel()" title="播放列表">
@@ -210,6 +220,9 @@
             <input type="checkbox" onchange="Player.toggleSpecialMode()">
             <span class="toggle-slider"></span>
           </label>
+          <button class="lyrics-toggle-btn" id="fmBtn" onclick="Player.toggleFmMode()" title="私人FM" style="color:var(--text-tertiary);">
+            <script>document.write(icon('radio',18))</script>
+          </button>
           <button class="lyrics-toggle-btn" id="guestCookieBtn" onclick="showGuestCookieModal()" title="设置游客Cookie" style="color:var(--text-tertiary);">
             <script>document.write(icon('key',18))</script>
           </button>
