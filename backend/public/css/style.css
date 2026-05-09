@@ -142,6 +142,9 @@ input {
 
 .sidebar-header {
   padding: 24px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sidebar-logo {
@@ -155,6 +158,23 @@ input {
 }
 
 .sidebar-logo .logo-icon { font-size: 28px; }
+
+.sidebar-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition);
+  line-height: 1;
+}
+.sidebar-close-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
 
 .sidebar-nav {
   flex: 1;
@@ -1034,6 +1054,29 @@ input {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border-light);
   flex-shrink: 0;
+}
+
+.lyrics-panel-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lyrics-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition);
+  line-height: 1;
+}
+.lyrics-close-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
 }
 
 .lyrics-panel-title {
@@ -2051,9 +2094,51 @@ input {
   }
 }
 
-/* Responsive: Mobile */
+/* ============ Responsive: Mobile (768px) ============ */
 @media (max-width: 768px) {
-  .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+  /* Root overrides */
+  :root {
+    --player-height: 72px;
+    --lyrics-width: 100%;
+    --header-height: 50px;
+  }
+
+  /* Layout */
+  .content-scroll {
+    padding: 60px 12px 12px;
+  }
+  .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .content-title {
+    font-size: 22px;
+  }
+  .section-title {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  /* Mobile menu */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidebar-overlay {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Sidebar drawer */
   .sidebar {
     position: fixed;
     left: -280px;
@@ -2065,40 +2150,716 @@ input {
     display: flex;
     box-shadow: none;
   }
-  .sidebar.open { left: 0; box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
-  .sidebar-overlay.open { display: block; }
-  .main-content { margin-left: 0; width: 100%; }
-  .player-bar { padding: 0 12px; gap: 8px; }
-  .player-song-info { width: 120px; min-width: 80px; }
-  .player-song-text { max-width: 80px; }
-  .player-song-name { font-size: 12px; }
-  .player-song-artist { font-size: 10px; }
-  .player-cover { width: 40px; height: 40px; }
-  .player-buttons { gap: 4px; }
-  .player-btn, .lyrics-toggle-btn, .playlist-toggle-btn, .volume-btn { width: 30px; height: 30px; }
-  .player-btn-main { width: 36px; height: 36px; }
-  .player-volume-area .volume-bar { width: 50px; }
-  .player-extra { gap: 2px; }
-  .card-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-  .hero-content { padding: 40px 20px; }
-  .hero-title { font-size: 24px; }
-  .track-album { display: none; }
-  .playlist-detail-header { flex-direction: column; align-items: center; text-align: center; }
-  .playlist-detail-cover { width: 180px; height: 180px; }
-  .playlist-detail-name { font-size: 22px; }
-  .fullscreen-content { padding: 60px 20px 10px; gap: 24px; }
-  .fullscreen-cd { width: 160px; height: 160px; }
-  .fullscreen-cover { width: 110px; height: 110px; }
-  .fullscreen-lyrics { max-height: 200px; }
-  .fullscreen-lyrics .lyric-line { font-size: 14px; }
-  .fullscreen-lyrics .lyric-line.active { font-size: 17px; }
-  .fullscreen-controls { padding: 10px 20px 20px; }
-  .fullscreen-buttons { gap: 16px; }
-  .content-header { padding: 20px 16px; }
-  .pwa-banner { left: 10px; right: 10px; transform: none; bottom: 80px; }
-  .pwa-banner-content { flex-wrap: wrap; }
-  .top-bar { padding: 0 12px; }
-  .playlist-panel-overlay { width: 100%; right: 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .sidebar.open {
+    left: 0;
+    box-shadow: 4px 0 32px rgba(0,0,0,0.6);
+  }
+  .sidebar-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Top bar */
+  .top-bar {
+    padding: 0 12px;
+    height: var(--header-height);
+  }
+
+  /* Hero banner */
+  .hero-banner {
+    height: 200px;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+  .hero-content {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  .hero-title {
+    font-size: 24px;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+  }
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* Cards */
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    padding: 12px;
+  }
+  .card-play-btn {
+    right: 14px;
+    bottom: 68px;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    opacity: 1; /* Always visible on mobile */
+    transform: translateY(0);
+  }
+
+  /* Track list */
+  .track-item {
+    padding: 8px;
+    gap: 8px;
+  }
+  .track-index {
+    width: 24px;
+    font-size: 12px;
+  }
+  .track-cover {
+    width: 36px;
+    height: 36px;
+  }
+  .track-title {
+    font-size: 13px;
+  }
+  .track-artist {
+    font-size: 11px;
+  }
+  .track-album {
+    display: none;
+  }
+  .track-actions {
+    opacity: 1; /* Always visible on touch devices */
+  }
+  .track-action-btn {
+    width: 34px;  /* Min touch target */
+    height: 34px;
+  }
+  .track-duration {
+    width: 40px;
+    font-size: 11px;
+  }
+
+  /* Player bar */
+  .player-bar {
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .player-song-info {
+    width: 100px;
+    min-width: 60px;
+    gap: 8px;
+  }
+  .player-cover {
+    width: 36px;
+    height: 36px;
+    border-width: 1.5px;
+  }
+  .player-song-text {
+    max-width: 60px;
+  }
+  .player-song-name {
+    font-size: 11px;
+  }
+  .player-song-artist {
+    display: none; /* Hide on mobile to save space */
+  }
+  .player-buttons {
+    gap: 0;
+  }
+  .player-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+  .player-btn-main {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+  .player-progress {
+    gap: 4px;
+  }
+  .progress-bar {
+    height: 6px; /* Taller for touch */
+  }
+  .player-time {
+    font-size: 10px;
+    min-width: 32px;
+  }
+  .speed-select {
+    font-size: 9px;
+    padding: 2px 14px 2px 4px;
+  }
+
+  /* Volume area */
+  .player-volume-area {
+    width: auto;
+    gap: 4px;
+  }
+  .volume-bar {
+    width: 44px;
+    height: 6px;
+  }
+  .volume-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Player extra - hide less important items */
+  .player-extra {
+    gap: 0;
+  }
+  .player-extra .lyrics-toggle-btn,
+  .player-extra .playlist-toggle-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+  .special-toggle {
+    display: none !important; /* Hide on mobile */
+  }
+  #heartModeBtn {
+    display: none;
+  }
+  #guestCookieBtn {
+    display: none;
+  }
+  #pwaInstallBtn {
+    display: none !important;
+  }
+  .fm-controls {
+    gap: 0;
+  }
+  .fm-label {
+    display: none;
+  }
+
+  /* Playlist panel */
+  .playlist-panel-overlay {
+    width: 100%;
+    right: 0;
+    left: 0;
+    max-height: 50vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .playlist-panel-item {
+    padding: 6px 12px;
+  }
+  .panel-item-index {
+    width: 18px;
+    font-size: 11px;
+  }
+  .panel-item-cover {
+    width: 32px;
+    height: 32px;
+  }
+  .panel-item-title {
+    font-size: 12px;
+  }
+  .panel-item-artist {
+    font-size: 10px;
+  }
+  .panel-item-duration {
+    display: none;
+  }
+
+  /* Playlist detail */
+  .playlist-detail-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .playlist-detail-cover {
+    width: 160px;
+    height: 160px;
+  }
+  .playlist-detail-name {
+    font-size: 20px;
+  }
+  .playlist-detail-desc {
+    font-size: 12px;
+  }
+  .playlist-detail-meta {
+    font-size: 12px;
+  }
+  .playlist-detail-actions {
+    justify-content: center;
+  }
+
+  /* Search */
+  .search-row {
+    flex-direction: column;
+    gap: 8px !important;
+  }
+  .search-bar {
+    max-width: 100%;
+  }
+  .source-selector {
+    width: 100%;
+  }
+
+  /* Lyrics panel - fullscreen overlay */
+  .lyrics-panel {
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    left: auto;
+    bottom: var(--player-height);
+    z-index: 55;
+    width: 0;
+    border-radius: 0;
+  }
+  .lyrics-panel.open {
+    width: 100%;
+  }
+  .lyrics-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lyrics-content {
+    padding: 16px 16px;
+  }
+  .lyric-line {
+    font-size: 13px;
+    padding: 4px 0;
+  }
+  .lyric-line.active {
+    font-size: 16px;
+  }
+  .lyric-translation {
+    font-size: 11px;
+  }
+
+  /* Fullscreen */
+  .fullscreen-content {
+    padding: 50px 16px 10px;
+    gap: 16px;
+  }
+  .fullscreen-cd {
+    width: 140px;
+    height: 140px;
+  }
+  .fullscreen-cover {
+    width: 96px;
+    height: 96px;
+  }
+  .fullscreen-song-name {
+    font-size: 18px;
+  }
+  .fullscreen-song-artist {
+    font-size: 13px;
+  }
+  .fullscreen-lyrics-area {
+    max-height: 30vh;
+    max-width: 100%;
+  }
+  .fullscreen-lyrics {
+    max-height: 30vh;
+  }
+  .fullscreen-lyrics .lyric-line {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+  .fullscreen-lyrics .lyric-line.active {
+    font-size: 17px;
+  }
+  .fullscreen-controls {
+    padding: 10px 20px 24px;
+  }
+  .fullscreen-buttons {
+    gap: 12px;
+  }
+  .fullscreen-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .fullscreen-btn-main {
+    width: 48px;
+    height: 48px;
+  }
+  .fullscreen-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Modals */
+  .modal {
+    padding: 20px;
+    width: 92vw;
+  }
+  .modal-title {
+    font-size: 18px;
+  }
+  .modal-subtitle {
+    font-size: 13px;
+  }
+
+  /* PWA banner */
+  .pwa-banner {
+    left: 8px;
+    right: 8px;
+    bottom: 80px;
+    transform: none;
+  }
+  .pwa-banner-content {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Toast */
+  .toast {
+    bottom: 80px;
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  /* Shortcuts modal */
+  .shortcuts-modal {
+    min-width: auto;
+    max-width: 90vw;
+  }
+
+  /* Sleep timer menu */
+  .sleep-timer-menu {
+    right: 8px;
+    left: auto;
+  }
+
+  /* Fullscreen drag */
+  .fullscreen-overlay {
+    touch-action: pan-y;
+  }
+
+  /* Sidebar - show add button in nav */
+  .sidebar .nav-add-btn {
+    display: inline-flex;
+  }
+
+  /* Disable some hover effects on mobile */
+  .card:hover {
+    transform: none;
+  }
+  .card:hover .card-play-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card:active {
+    transform: scale(0.98);
+  }
+  .track-item:hover {
+    transform: none;
+    background: transparent;
+  }
+  .track-item:active {
+    background: rgba(255,255,255,0.04);
+  }
+}
+
+/* ============ Responsive: Small Phones (480px) ============ */
+@media (max-width: 480px) {
+  :root {
+    --player-height: 64px;
+  }
+
+  /* Layout */
+  .content-scroll {
+    padding: 50px 8px 8px;
+  }
+  .content-title {
+    font-size: 18px;
+  }
+
+  /* Hero */
+  .hero-banner {
+    height: 160px;
+    margin-bottom: 16px;
+  }
+  .hero-content {
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+  }
+  .hero-title {
+    font-size: 20px;
+  }
+  .hero-subtitle {
+    font-size: 12px;
+  }
+  .hero-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  /* Cards - 2 columns fixed */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .card {
+    padding: 10px;
+  }
+  .card-title {
+    font-size: 12px;
+  }
+  .card-subtitle {
+    font-size: 11px;
+  }
+  .card-play-btn {
+    right: 10px;
+    bottom: 58px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  /* Track list - ultra compact */
+  .track-item {
+    padding: 6px;
+    gap: 6px;
+  }
+  .track-index {
+    width: 20px;
+    font-size: 11px;
+  }
+  .track-cover {
+    width: 32px;
+    height: 32px;
+  }
+  .track-title {
+    font-size: 12px;
+  }
+  .track-artist {
+    font-size: 10px;
+  }
+  .track-duration {
+    width: 34px;
+    font-size: 10px;
+  }
+  .track-action-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Player bar - minimal */
+  .player-bar {
+    padding: 0 6px;
+    gap: 4px;
+  }
+  .player-song-info {
+    width: 60px;
+    min-width: 40px;
+    gap: 6px;
+  }
+  .player-cover {
+    width: 32px;
+    height: 32px;
+  }
+  .player-song-text {
+    max-width: 40px;
+  }
+  .player-song-name {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #likeBtn {
+    display: none !important;
+  }
+  .player-buttons {
+    gap: 0;
+  }
+  .player-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .player-btn-main {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+  .player-time {
+    font-size: 9px;
+    min-width: 28px;
+  }
+  .speed-select {
+    max-width: 36px;
+    font-size: 8px;
+    padding: 1px 10px 1px 3px;
+  }
+  .progress-bar {
+    height: 5px;
+  }
+
+  /* Volume */
+  .volume-bar {
+    width: 32px;
+    height: 5px;
+  }
+  .volume-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  /* Player extra - minimal icons */
+  .player-extra .lyrics-toggle-btn,
+  .player-extra .playlist-toggle-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+  #addToPlaylistBtn {
+    display: none;
+  }
+  .fm-controls .lyrics-toggle-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Modals */
+  .modal {
+    padding: 16px;
+    width: 96vw;
+  }
+  .modal-title {
+    font-size: 16px;
+  }
+  .modal-input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .modal-btn {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  /* Playlist detail */
+  .playlist-detail-cover {
+    width: 120px;
+    height: 120px;
+  }
+  .playlist-detail-name {
+    font-size: 18px;
+  }
+
+  /* Playlist panel */
+  .playlist-panel-item {
+    padding: 5px 8px;
+  }
+  .panel-item-title {
+    font-size: 11px;
+  }
+  .panel-item-artist {
+    font-size: 9px;
+  }
+
+  /* Fullscreen */
+  .fullscreen-content {
+    padding: 40px 12px 8px;
+    gap: 12px;
+  }
+  .fullscreen-cd-area {
+    gap: 12px;
+  }
+  .fullscreen-cd {
+    width: 120px;
+    height: 120px;
+  }
+  .fullscreen-cover {
+    width: 80px;
+    height: 80px;
+  }
+  .fullscreen-song-name {
+    font-size: 16px;
+  }
+  .fullscreen-song-artist {
+    font-size: 12px;
+  }
+  .fullscreen-lyrics-area {
+    max-height: 25vh;
+  }
+  .fullscreen-lyrics .lyric-line {
+    font-size: 12px;
+    padding: 4px 0;
+  }
+  .fullscreen-lyrics .lyric-line.active {
+    font-size: 15px;
+  }
+  .fullscreen-controls {
+    padding: 8px 12px 16px;
+    gap: 12px;
+  }
+  .fullscreen-buttons {
+    gap: 8px;
+  }
+  .fullscreen-btn-main {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  /* Lyrics */
+  .lyrics-panel.open {
+    width: 100%;
+  }
+  .lyric-line {
+    font-size: 12px;
+    padding: 3px 0;
+    min-height: 24px;
+  }
+  .lyric-line.active {
+    font-size: 15px;
+  }
+  .lyric-translation {
+    font-size: 10px;
+  }
+  .lyrics-content {
+    padding: 12px 12px;
+  }
+
+  /* Toast */
+  .toast {
+    font-size: 12px;
+    padding: 6px 14px;
+    bottom: 72px;
+  }
+
+  /* PWA banner */
+  .pwa-banner {
+    bottom: 72px;
+    padding: 8px 12px;
+  }
+  .pwa-banner-title {
+    font-size: 13px;
+  }
+  .pwa-banner-sub {
+    font-size: 11px;
+  }
+
+  /* Disable animations on low-end phones */
+  @media (prefers-reduced-motion: reduce) {
+    .fullscreen-cd.playing {
+      animation: none;
+    }
+    .player-cover.playing {
+      animation: none;
+    }
+  }
 }
 
 @keyframes playing {
@@ -2107,7 +2868,7 @@ input {
 }
 
 /* ============ Responsive ============ */
-@media (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .sidebar { width: 64px; }
   .sidebar .nav-item span,
   .sidebar .nav-section-title,

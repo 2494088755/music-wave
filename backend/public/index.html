@@ -25,6 +25,7 @@
             <span class="logo-icon"><script>document.write(icon('music2',26))</script></span>
             <span>MusicWave</span>
           </div>
+          <button class="sidebar-close-btn" onclick="toggleMobileSidebar()" title="关闭菜单">✕</button>
         </div>
         <nav class="sidebar-nav">
           <div class="nav-section">
@@ -161,7 +162,10 @@
         <div class="lyrics-panel" id="lyricsPanel">
           <div class="lyrics-panel-header">
             <span class="lyrics-panel-title">歌词</span>
-            <button class="trans-btn" id="transBtn" onclick="LyricsManager.toggleTranslation()" title="显示翻译">译</button>
+            <div class="lyrics-panel-header-right">
+              <button class="trans-btn" id="transBtn" onclick="LyricsManager.toggleTranslation()" title="显示翻译">译</button>
+              <button class="lyrics-close-btn" id="lyricsCloseBtn" onclick="toggleLyrics()" title="关闭">✕</button>
+            </div>
           </div>
           <div class="lyrics-content" id="lyricsContent">
             <div class="lyric-placeholder"><script>document.write(icon('music2',32))</script></div>

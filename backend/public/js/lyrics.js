@@ -83,10 +83,9 @@ const LyricsManager = {
     this.currentLineIndex = -1;
 
     if (!lyricsArray || lyricsArray.length === 0) {
-      const placeholder = '<div class="lyric-placeholder">🎵</div><div class="lyric-placeholder">暂无歌词</div>';
-      container.innerHTML = placeholder;
+      container.innerHTML = '<div class="lyric-placeholder" style="font-size:32px;"></div><div class="lyric-placeholder">暂无歌词</div>';
       if (hasFullscreen) {
-        fullContainer.innerHTML = '<div class="fullscreen-lyrics-placeholder">🎵 暂无歌词</div>';
+        fullContainer.innerHTML = '<div class="fullscreen-lyrics-placeholder">暂无歌词</div>';
       }
       return;
     }
@@ -197,7 +196,7 @@ const LyricsManager = {
     this.currentLyrics = [];
     this.currentLineIndex = -1;
     document.getElementById('lyricsContent').innerHTML = `
-      <div class="lyric-placeholder">🎵</div>
+      <div class="lyric-placeholder" style="font-size:32px;"></div>
       <div class="lyric-placeholder">选择一首歌曲开始播放</div>
     `;
   }

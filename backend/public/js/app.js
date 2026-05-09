@@ -93,6 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
  // Check guest cookie status
  checkGuestCookieStatus();
 
+ // Initialize touch drag for progress and volume bars
+ initProgressBarTouch();
+ initVolumeBarTouch();
+ initFullscreenProgressTouch();
+ initSidebarSwipe();
+
  // Keyboard shortcut: Ctrl+K / Cmd+K to focus search
  document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
@@ -115,6 +121,55 @@ function toggleMobileSidebar() {
  const isOpen = sidebar.classList.toggle('open');
  overlay.classList.toggle('open', isOpen);
  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+/** Swipe-from-edge to open, swipe to close sidebar on mobile */
+function initSidebarSwipe() {
+ // Edge swipe to open
+ let edgeStartX = 0;
+ document.addEventListener('touchstart', (e) => {
+  edgeStartX = e.touches[0].clientX;
+ }, { passive: true });
+ document.addEventListener('touchmove', (e) => {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar || sidebar.classList.contains('open')) return;
+  if (edgeStartX < 20) {
+   const dx = e.touches[0].clientX - edgeStartX;
+   if (dx > 40) {
+    toggleMobileSidebar();
+   }
+  }
+ }, { passive: true });
+ const sidebar = document.querySelector('.sidebar');
+ if (!sidebar || sidebar.dataset.swipeInit) return;
+ sidebar.dataset.swipeInit = '1';
+
+ let startX = 0, startY = 0;
+
+ sidebar.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+ }, { passive: true });
+
+ sidebar.addEventListener('touchmove', (e) => {
+  if (!sidebar.classList.contains('open')) return;
+  const dx = e.touches[0].clientX - startX;
+  const dy = e.touches[0].clientY - startY;
+  if (dx < 0 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+   sidebar.style.transform = `translateX(${Math.max(-260, dx)}px)`;
+   sidebar.style.transition = 'none';
+  }
+ }, { passive: true });
+
+ sidebar.addEventListener('touchend', () => {
+  if (!sidebar.classList.contains('open')) return;
+  const transform = sidebar.style.transform;
+  sidebar.style.transform = '';
+  sidebar.style.transition = '';
+  if (transform && parseInt(transform.replace(/[^-\d]/g, '')) < -80) {
+   toggleMobileSidebar();
+  }
+ }, { passive: true });
 }
 
 // ======== Navigation ========
@@ -398,7 +453,7 @@ function renderTrackList(songs, containerId, header, currentSource) {
  }
  
  const sourceLabel = currentSource ?
-  (currentSource === 'gequbao' ? ' 歌曲宝' : '☁️ 网易云音乐') : '';
+  (currentSource === 'gequbao' ? ' 歌曲宝' : ' 网易云音乐') : '';
  
  html += `<div class="track-list" data-tracklist="true" data-source="${currentSource || 'netease'}">`;
  
@@ -751,9 +806,9 @@ async function checkQR(key) {
    }, 1000);
    
   } else if (code === 802) {
-   qrStatus.textContent = '📱 已扫码，请在手机上确认';
+   qrStatus.textContent = ' 已扫码，请在手机上确认';
   } else if (code === 801) {
-   qrStatus.textContent = '📱 等待扫码...';
+   qrStatus.textContent = ' 等待扫码...';
   } else if (code === 800) {
    qrStatus.textContent = ' 二维码已过期，请刷新';
    if (qrCheckTimer) {
@@ -903,15 +958,51 @@ function togglePlaylistPanel() {
 function seekProgress(event) {
  const bar = document.getElementById('progressBar');
  const rect = bar.getBoundingClientRect();
- const percent = (event.clientX - rect.left) / rect.width;
+ const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+ const percent = (clientX - rect.left) / rect.width;
  Player.seekTo(Math.max(0, Math.min(1, percent)));
+}
+
+/** Touch drag support for progress bar */
+let _progressDragging = false;
+function initProgressBarTouch() {
+ const bar = document.getElementById('progressBar');
+ if (!bar || bar.dataset.touchInit) return;
+ bar.dataset.touchInit = '1';
+ bar.addEventListener('touchstart', (e) => {
+  _progressDragging = true;
+  seekProgress(e);
+ }, { passive: true });
+ bar.addEventListener('touchmove', (e) => {
+  if (_progressDragging) seekProgress(e);
+ }, { passive: true });
+ bar.addEventListener('touchend', () => { _progressDragging = false; }, { passive: true });
+ bar.addEventListener('touchcancel', () => { _progressDragging = false; }, { passive: true });
 }
 
 function setVolume(event) {
  const bar = document.getElementById('volumeBar');
  const rect = bar.getBoundingClientRect();
- const percent = (event.clientX - rect.left) / rect.width;
+ const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+ const percent = (clientX - rect.left) / rect.width;
  Player.setVolume(Math.max(0, Math.min(1, percent)));
+}
+
+/** Touch drag support for volume bar */
+let _volumeDragging = false;
+function initVolumeBarTouch() {
+ const bar = document.getElementById('volumeBar');
+ if (!bar || bar.dataset.touchInit) return;
+ bar.dataset.touchInit = '1';
+ bar.addEventListener('touchstart', (e) => {
+  _volumeDragging = true;
+  setVolume(e);
+ }, { passive: true });
+ bar.addEventListener('touchmove', (e) => {
+  if (_volumeDragging) setVolume(e);
+ }, { passive: true });
+ bar.addEventListener('touchend', () => { _volumeDragging = false; }, { passive: true });
+ bar.addEventListener('touchcancel', () => { _volumeDragging = false; }, { passive: true });
 }
 
 // ======== Local Playlist Management ========
@@ -1177,7 +1268,7 @@ function showSearchHistory() {
   <div style="padding:8px 0;font-size:13px;color:var(--text-tertiary);margin-bottom:8px;">搜索历史</div>
   ${history.map(k => `
    <div class="track-item" style="cursor:pointer;" onclick="document.getElementById('searchInput').value='${escapeAttr(k)}';searchSongs(true)">
-    <span style="font-size:14px;color:var(--text-tertiary);margin-right:8px;">⏱</span>
+    <span style="font-size:14px;color:var(--text-tertiary);margin-right:8px;">${icon('clock',14)}</span>
     <div class="track-info">
      <div class="track-title">${escapeHtml(k)}</div>
     </div>
@@ -1325,7 +1416,7 @@ Player.on('songchange', (song) => {
  }
 });
 
-// Click progress bar to seek
+// Click/touch progress bar to seek
 document.addEventListener('click', function(e) {
  if (e.target.closest('#fullscreenProgressBar')) {
   const bar = document.getElementById('fullscreenProgressBar');
@@ -1334,6 +1425,28 @@ document.addEventListener('click', function(e) {
   Player.seekTo(percent);
  }
 });
+
+/** Touch drag for fullscreen progress bar */
+let _fullscreenDragging = false;
+function initFullscreenProgressTouch() {
+ const bar = document.getElementById('fullscreenProgressBar');
+ if (!bar || bar.dataset.fsTouchInit) return;
+ bar.dataset.fsTouchInit = '1';
+ bar.addEventListener('touchstart', (e) => {
+  _fullscreenDragging = true;
+  const rect = bar.getBoundingClientRect();
+  const percent = (e.touches[0].clientX - rect.left) / rect.width;
+  Player.seekTo(percent);
+ }, { passive: true });
+ bar.addEventListener('touchmove', (e) => {
+  if (!_fullscreenDragging) return;
+  const rect = bar.getBoundingClientRect();
+  const percent = (e.touches[0].clientX - rect.left) / rect.width;
+  Player.seekTo(Math.max(0, Math.min(1, percent)));
+ }, { passive: true });
+ bar.addEventListener('touchend', () => { _fullscreenDragging = false; }, { passive: true });
+ bar.addEventListener('touchcancel', () => { _fullscreenDragging = false; }, { passive: true });
+}
 
 // Keyboard shortcut: Escape to close
 document.addEventListener('keydown', function(e) {
