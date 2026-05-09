@@ -6,6 +6,7 @@
 const LyricsManager = {
   currentLyrics: [],
   currentLineIndex: -1,
+  showTranslation: true,
 
   /**
    * Parse LRC format lyrics string into timed lines
@@ -14,7 +15,7 @@ const LyricsManager = {
    */
   parse(lrcText) {
     if (!lrcText || lrcText.trim() === '') return [];
-    
+
     const lines = lrcText.split('\n');
     const lyrics = [];
     const timeRegex = /\[(\d{2}):(\d{2})(?:\.(\d{2,3}))?\]/g;
@@ -43,6 +44,16 @@ const LyricsManager = {
   },
 
   /**
+   * Merge original lyrics with translation by matching timestamps
+   */
+  mergeWithTranslation(original, translated) {
+    return original.map(line => {
+      const match = translated.find(t => Math.abs(t.time - line.time) < 0.08);
+      return { ...line, translation: match ? match.text : '' };
+    });
+  },
+
+  /**
    * Get the current lyric line index based on audio time
    */
   getCurrentLineIndex(time) {
@@ -61,7 +72,8 @@ const LyricsManager = {
   },
 
   /**
-   * Render lyrics in the lyrics panel with click-to-seek support
+   * Render lyrics with optional translation in the lyrics panel
+   * @param {Array} lyricsArray - Array of {time, text, translation?}
    */
   render(lyricsArray) {
     const container = document.getElementById('lyricsContent');
@@ -80,14 +92,18 @@ const LyricsManager = {
     }
 
     const html = lyricsArray.map((line, i) => {
-      return `<div class="lyric-line" data-index="${i}" data-time="${line.time}">${escapeHtml(line.text)}</div>`;
+      const hasTrans = line.translation && this.showTranslation;
+      return `<div class="lyric-line" data-index="${i}" data-time="${line.time}">
+        <span class="lyric-original">${escapeHtml(line.text)}</span>
+        ${hasTrans ? `<span class="lyric-translation">${escapeHtml(line.translation)}</span>` : ''}
+      </div>`;
     }).join('');
-    
+
     container.innerHTML = html;
     if (hasFullscreen) {
       fullContainer.innerHTML = html;
     }
-    
+
     // Add click-to-seek listener to both containers
     const addClickSeek = (el) => {
       el.addEventListener('click', (e) => {
@@ -101,6 +117,29 @@ const LyricsManager = {
     };
     addClickSeek(container);
     if (hasFullscreen) addClickSeek(fullContainer);
+
+    // Toggle container class for CSS control
+    container.classList.toggle('show-translation', this.showTranslation);
+    if (hasFullscreen) {
+      fullContainer.classList.toggle('show-translation', this.showTranslation);
+    }
+    // Sync button state
+    const btn = document.getElementById('transBtn');
+    if (btn) btn.classList.toggle('active', this.showTranslation);
+  },
+
+  /**
+   * Toggle translation display and re-render with current lyrics
+   */
+  toggleTranslation() {
+    this.showTranslation = !this.showTranslation;
+    const btn = document.getElementById('transBtn');
+    if (btn) btn.classList.toggle('active', this.showTranslation);
+    this.render(this.currentLyrics);
+    // Re-sync active line
+    if (Player && Player.audio) {
+      this.update(Player.audio.currentTime);
+    }
   },
 
   /**

@@ -85,6 +85,84 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
+// ============ Shared helpers ============
+
+/** Simple LRU cache for song URLs — avoids repeated fallback chains */
+const urlCache = new Map();
+const URL_CACHE_MAX = 200;
+const URL_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
+function getCachedUrl(songId) {
+  const entry = urlCache.get(songId);
+  if (!entry) return null;
+  if (Date.now() - entry.timestamp > URL_CACHE_TTL) {
+    urlCache.delete(songId);
+    return null;
+  }
+  // Move to end (most recently used)
+  urlCache.delete(songId);
+  urlCache.set(songId, entry);
+  return entry.url;
+}
+
+function setCachedUrl(songId, url) {
+  if (urlCache.size >= URL_CACHE_MAX) {
+    const oldest = urlCache.keys().next().value;
+    if (oldest !== undefined) urlCache.delete(oldest);
+  }
+  urlCache.set(songId, { url, timestamp: Date.now() });
+}
+
+/**
+ * Resolve audio URL for a song with multi-step fallback chain
+ * 1. Guest cookie → ncmApi
+ * 2. Login cookie → ncmApi
+ * 3. Song detail → crawler fallback
+ * 4. No cookie → ncmApi
+ */
+async function resolveAudioUrl(songId) {
+  // Check cache first
+  const cached = getCachedUrl(songId);
+  if (cached) return cached;
+  // Step 1: Guest cookie first
+  if (guestCookieStore) {
+    try {
+      const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
+      const data = result.body?.data?.[0];
+      if (data && data.url && data.code !== -110) { setCachedUrl(songId, data.url); return data.url; }
+    } catch (e) { /* ignore */ }
+  }
+
+  // Step 2: Login cookie
+  try {
+    const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
+    if (result.cookie) mergeCookies(result.cookie);
+    const data = result.body?.data?.[0];
+    if (data && data.url && data.code !== -110) { setCachedUrl(songId, data.url); return data.url; }
+  } catch (e) { /* ignore */ }
+
+  // Step 3: Crawler fallback
+  try {
+    const detailRes = await netease.getSongDetail(songId);
+    const song = detailRes?.songs?.[0];
+    if (song) {
+      const songName = song.name || '';
+      const artistName = (song.ar || []).map(a => a.name).join(' ');
+      const url = await findSongUrl(songName, artistName);
+      if (url) { setCachedUrl(songId, url); return url; }
+    }
+  } catch (e) { /* ignore */ }
+
+  // Step 4: No cookie at all (non-VIP songs)
+  try {
+    const result = await ncmApi.song_url_v1({ id: songId, level: 'standard' });
+    const data = result.body?.data?.[0];
+    if (data && data.url && data.code !== -110) { setCachedUrl(songId, data.url); return data.url; }
+  } catch (e) { /* ignore */ }
+
+  return null;
+}
+
 /**
  * GET /api/song/url?id=xxx
  * Get song playback URL — uses proper weapi encryption, falls back to crawler
@@ -92,75 +170,11 @@ app.get('/api/search', async (req, res) => {
 app.get('/api/song/url', async (req, res) => {
   try {
     const { id } = req.query;
-    if (!id) {
-      return res.json({ code: 400, msg: '请提供歌曲ID' });
-    }
-    
+    if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
+
     const songId = parseInt(id);
-    
-    // Step 1: If guest cookie is set, try it FIRST (user-pasted cookie takes priority)
-    let audioUrl = null;
-    let songName = '';
-    let artistName = '';
-    
-    if (guestCookieStore) {
-      try {
-        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
-        const data = result.body?.data?.[0];
-        if (data && data.url && data.code !== -110) {
-          audioUrl = data.url;
-        }
-      } catch (e) {
-        console.log(`Guest cookie URL failed: ${e.message}`);
-      }
-    }
-    
-    // Step 2: If no URL, try with login cookie
-    if (!audioUrl) {
-      try {
-        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
-        if (result.cookie) mergeCookies(result.cookie);
-        const data = result.body?.data?.[0];
-        if (data && data.url && data.code !== -110) {
-          audioUrl = data.url;
-        }
-      } catch (e) {
-        console.log(`ncmApi URL failed: ${e.message}`);
-      }
-    }
-    
-    // Step 3: If no URL, try fallback crawler
-    if (!audioUrl) {
-      try {
-        const detailRes = await netease.getSongDetail(songId);
-        const song = detailRes?.songs?.[0];
-        if (song) {
-          songName = song.name || '';
-          artistName = (song.ar || []).map(a => a.name).join(' ');
-        }
-      } catch (e) {
-        // Ignore detail fetch errors
-      }
-      
-      // Try fallback crawler
-      if (songName) {
-        audioUrl = await findSongUrl(songName, artistName);
-      }
-    }
-    
-    // Step 3: Also try without cookie for non-VIP songs
-    if (!audioUrl) {
-      try {
-        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard' });
-        const data = result.body?.data?.[0];
-        if (data && data.url && data.code !== -110) {
-          audioUrl = data.url;
-        }
-      } catch (e) {
-        // Ignore
-      }
-    }
-    
+    const audioUrl = await resolveAudioUrl(songId);
+
     if (audioUrl) {
       res.json({ code: 200, data: [{ id: songId, url: audioUrl }] });
     } else {
@@ -572,56 +586,11 @@ app.post('/api/sync/netease-playlists', async (req, res) => {
  */
 app.post('/api/special/save-song', async (req, res) => {
   try {
-    const { id, source } = req.body;
+    const { id } = req.body;
     if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
 
-    // Get the audio URL using the same logic as /api/song/url
-    let audioUrl = null;
     const songId = parseInt(id);
-
-    // Try guest cookie first if available
-    if (guestCookieStore) {
-      try {
-        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: guestCookieStore });
-        const data = result.body?.data?.[0];
-        if (data && data.url && data.code !== -110) audioUrl = data.url;
-      } catch (e) { /* ignore */ }
-    }
-
-    // Then try login cookie
-    if (!audioUrl) {
-      try {
-        const result = await ncmApi.song_url_v1({ id: songId, level: 'standard', cookie: cookieStore });
-        if (result.cookie) mergeCookies(result.cookie);
-        const data = result.body?.data?.[0];
-        if (data && data.url && data.code !== -110) {
-          audioUrl = data.url;
-        }
-      } catch (e) {
-        // Ignore ncmApi errors
-      }
-    }
-
-    if (!audioUrl) {
-      try {
-        const detailRes = await netease.getSongDetail(songId);
-        const song = detailRes?.songs?.[0];
-        const songName = song ? song.name : '';
-        const artistName = song ? (song.ar || []).map(a => a.name).join(' ') : '';
-        
-        if (songName) {
-          const fallback = await findSongUrl(`${songName} ${artistName}`);
-          if (typeof fallback === 'string') {
-            audioUrl = fallback;
-          } else if (fallback && fallback.url) {
-            audioUrl = fallback.url;
-          }
-        }
-      } catch (e) {
-        // Ignore crawler errors
-      }
-    }
-
+    const audioUrl = await resolveAudioUrl(songId);
     if (!audioUrl) {
       return res.json({ code: 500, msg: '无法获取歌曲下载地址' });
     }
@@ -630,7 +599,7 @@ app.post('/api/special/save-song', async (req, res) => {
     const ext = path.extname(new URL(audioUrl).pathname) || '.mp3';
     const fileName = `${songId}${ext}`;
     const filePath = path.join(SPECIAL_CACHE_DIR, fileName);
-    
+
     const response = await axios({
       method: 'GET',
       url: audioUrl,

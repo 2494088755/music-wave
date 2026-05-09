@@ -63,7 +63,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow: hidden;
@@ -71,6 +71,7 @@ body {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 /* ============ Premium Scrollbar ============ */
@@ -118,7 +119,7 @@ input {
   height: var(--header-height);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 0 32px;
   z-index: 10;
   pointer-events: none;
@@ -126,6 +127,7 @@ input {
 }
 
 .top-bar > * { pointer-events: auto; }
+.top-bar-left { display: flex; align-items: center; gap: 8px; }
 .top-bar-right { display: flex; align-items: center; gap: 12px; }
 
 /* ============ Sidebar ============ */
@@ -420,15 +422,16 @@ input {
   border-radius: var(--radius-md);
   padding: 16px;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   border: 1px solid rgba(255,255,255,0.04);
 }
 
 .card:hover {
-  background: var(--bg-hover);
-  border-color: rgba(255,255,255,0.08);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--bg-hover) 0%, rgba(29,185,84,0.04) 100%);
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
 .card:hover .card-play-btn {
@@ -719,13 +722,15 @@ input {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   height: var(--player-height);
-  background: var(--player-bg);
+  background: rgba(16,16,16,0.92);
   border-top: 1px solid rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
   padding: 0 24px;
   z-index: 100;
   gap: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .player-song-info {
@@ -905,6 +910,33 @@ input {
   box-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
+/* Speed select */
+.speed-select {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 14px 1px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' fill='%23686868'%3E%3Cpath d='M4 6L1 2h6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+}
+.speed-select:hover {
+  border-color: rgba(255,255,255,0.25);
+  color: var(--text-primary);
+}
+.speed-select option {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
 .player-volume-area {
   display: flex;
   align-items: center;
@@ -989,13 +1021,30 @@ input {
   background: var(--bg-elevated);
   border-left: 1px solid var(--border-light);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .lyrics-panel.open { width: var(--lyrics-width); }
 
+.lyrics-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+.lyrics-panel-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
 .lyrics-content {
-  padding: 32px 24px;
-  height: 100%;
+  flex: 1;
+  padding: 24px 20px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -1029,6 +1078,49 @@ input {
 }
 
 .lyric-line.prev { color: var(--text-secondary); }
+
+/* Translation toggle */
+.trans-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  letter-spacing: 0.5px;
+}
+.trans-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+.trans-btn.active {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+/* Translation text in lyrics */
+.lyric-translation {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1px;
+  line-height: 1.5;
+}
+.lyric-line.active .lyric-translation {
+  color: var(--accent-color);
+  opacity: 0.8;
+}
+.lyrics-content:not(.show-translation) .lyric-translation {
+  display: none;
+}
+#fullscreenLyrics:not(.show-translation) .lyric-translation {
+  display: none;
+}
 
 .lyric-placeholder {
   color: var(--text-tertiary);
@@ -1166,9 +1258,9 @@ input {
   z-index: 200;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  animation: modalFadeIn 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: modalFadeIn 0.25s ease;
 }
 
 .modal-overlay.open,
@@ -1182,14 +1274,15 @@ input {
 }
 
 .modal {
-  background: var(--bg-elevated);
+  background: rgba(22,22,22,0.92);
   border-radius: var(--radius-xl);
   padding: 32px;
   width: 420px;
   max-width: 90vw;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
-  animation: modalSlideIn 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+  animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @keyframes modalSlideIn {
@@ -1395,7 +1488,8 @@ input {
   overflow: hidden;
   margin-bottom: 32px;
   margin-top: 4px;
-  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0a1628 100%);
+  background: linear-gradient(135deg, #0c0c18 0%, #16162e 40%, #0c1a1a 100%);
+  box-shadow: 0 0 60px rgba(29,185,84,0.08);
 }
 
 .hero-content {
@@ -1959,7 +2053,20 @@ input {
 
 /* Responsive: Mobile */
 @media (max-width: 768px) {
-  .sidebar { display: none; }
+  .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    bottom: 0;
+    z-index: 60;
+    transition: left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 260px;
+    display: flex;
+    box-shadow: none;
+  }
+  .sidebar.open { left: 0; box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
+  .sidebar-overlay.open { display: block; }
   .main-content { margin-left: 0; width: 100%; }
   .player-bar { padding: 0 12px; gap: 8px; }
   .player-song-info { width: 120px; min-width: 80px; }
@@ -1990,6 +2097,8 @@ input {
   .content-header { padding: 20px 16px; }
   .pwa-banner { left: 10px; right: 10px; transform: none; bottom: 80px; }
   .pwa-banner-content { flex-wrap: wrap; }
+  .top-bar { padding: 0 12px; }
+  .playlist-panel-overlay { width: 100%; right: 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
 }
 
 @keyframes playing {
@@ -2011,20 +2120,6 @@ input {
   .sidebar .playlist-nav-item { justify-content: center; padding: 8px; }
   .lyrics-panel.open { width: 280px; }
   .player-volume-area { width: auto; }
-}
-
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .player-song-info { width: 140px; min-width: 100px; }
-  .player-cover { width: 40px; height: 40px; }
-  .player-volume-area { display: none; }
-  .content-title { font-size: 20px; }
-  .playlist-detail-header { flex-direction: column; align-items: center; text-align: center; }
-  .playlist-detail-cover { width: 160px; height: 160px; }
-  .playlist-detail-name { font-size: 24px; }
-  .card-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-  .track-album { display: none; }
-  .playlist-panel-overlay { width: 100%; right: 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
 }
 
 /* ============ Keyboard Shortcuts ============ */
@@ -2084,6 +2179,38 @@ input {
 }
 
 .shortcuts-grid span { font-size: 13px; color: var(--text-secondary); }
+
+/* ============ Mobile Sidebar ============ */
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
 
 /* ============ Special Mode Toggle ============ */
 .special-toggle {

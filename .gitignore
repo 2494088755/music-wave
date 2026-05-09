@@ -1,6 +1,8 @@
 node_modules/
 .env
 .netease_cookie
+.guest_cookie
 server.log
 .special-cache/
-.guest_cookie
+.playlists.json
+.claude/
