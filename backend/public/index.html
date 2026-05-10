@@ -65,6 +65,10 @@
             <div id="localPlaylistsNav"></div>
           </div>
           <div class="sidebar-playlists" id="sidebarPlaylists">
+          </div>
+          <div style="padding:8px 20px;border-top:1px solid var(--border-light);">
+            <a href="/baidu.html" target="_blank" style="font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:1px;">B</a>
+          </div>
         </nav>
       </aside>
 
@@ -75,8 +79,11 @@
           <div class="top-bar-left">
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileSidebar()" title="菜单"><script>document.write(icon('menu',20))</script></button>
           </div>
-          <div class="top-bar-right" id="userArea">
-            <button class="login-btn" onclick="openLoginModal()">登录</button>
+          <div class="top-bar-right">
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="切换主题"><script>document.write(icon('moon',18))</script></button>
+            <span id="userArea">
+              <button class="login-btn" onclick="openLoginModal()">登录</button>
+            </span>
           </div>
         </div>
         <!-- Mobile sidebar overlay -->

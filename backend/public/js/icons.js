@@ -51,6 +51,8 @@ var ICONS = {
   xCircle: "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"m15 9-6 6\" />\n  <path d=\"m9 9 6 6\" />",
   frown: "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M16 16s-1.5-2-4-2-4 2-4 2\" />\n  <line x1=\"9\" x2=\"9.01\" y1=\"9\" y2=\"9\" />\n  <line x1=\"15\" x2=\"15.01\" y1=\"9\" y2=\"9\" />",
   arrowRight: "<path d=\"M5 12h14\" />\n  <path d=\"m12 5 7 7-7 7\" />",
+  sun: "<circle cx=\"12\" cy=\"12\" r=\"4\" />\n  <path d=\"M12 2v2\" />\n  <path d=\"M12 20v2\" />\n  <path d=\"m4.93 4.93 1.41 1.41\" />\n  <path d=\"m17.66 17.66 1.41 1.41\" />\n  <path d=\"M2 12h2\" />\n  <path d=\"M20 12h2\" />\n  <path d=\"m6.34 17.66-1.41 1.41\" />\n  <path d=\"m19.07 4.93-1.41 1.41\" />",
+  moon: "<path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\" />",
 };
 
 function icon(name, size, className) {

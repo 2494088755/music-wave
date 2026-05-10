@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度一下，你就知道</title>
+  <link rel="stylesheet" href="css/baidu.css">
+  <link rel="icon" href="https://www.baidu.com/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='72' rx='28' ry='22' fill='%23242ef5'/%3E%3Cellipse cx='25' cy='42' rx='12' ry='10' fill='%23242ef5'/%3E%3Cellipse cx='50' cy='32' rx='11' ry='9' fill='%23242ef5'/%3E%3Cellipse cx='75' cy='42' rx='12' ry='10' fill='%23242ef5'/%3E%3Cellipse cx='35' cy='26' rx='9' ry='7' fill='%23242ef5'/%3E%3Cellipse cx='65' cy='26' rx='9' ry='7' fill='%23242ef5'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============ Top Navigation ============ -->
+<div class="top-nav">
+  <div class="top-nav-left">
+    <a href="/baidu.html" onclick="return false;">新闻</a>
+    <a href="/baidu.html" onclick="return false;">hao123</a>
+    <a href="/baidu.html" onclick="return false;">地图</a>
+    <a href="/baidu.html" onclick="return false;">视频</a>
+    <a href="/baidu.html" onclick="return false;">贴吧</a>
+    <a href="/baidu.html" onclick="return false;">学术</a>
+  </div>
+  <div class="top-nav-right">
+    <a href="/baidu.html" onclick="return false;">设置</a>
+    <a class="nav-login" href="/baidu.html" onclick="return false;">登录</a>
+  </div>
+</div>
+
+<!-- ============ Main Content ============ -->
+<div class="main-content">
+  <div class="baidu-logo">
+    <img src="https://www.baidu.com/img/bd_logo1.png" alt="百度" style="width:270px;height:auto;max-width:90vw;" onerror="this.style.display='none';document.getElementById('fallbackLogo').style.display='flex'">
+    <div class="logo-row" id="fallbackLogo" style="display:none;">
+      <div class="logo-icon-wrap">
+        <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="72" rx="28" ry="22" fill="#242ef5"/>
+          <ellipse cx="25" cy="42" rx="12" ry="10" fill="#242ef5"/>
+          <ellipse cx="50" cy="32" rx="11" ry="9" fill="#242ef5"/>
+          <ellipse cx="75" cy="42" rx="12" ry="10" fill="#242ef5"/>
+          <ellipse cx="35" cy="26" rx="9" ry="7" fill="#242ef5"/>
+          <ellipse cx="65" cy="26" rx="9" ry="7" fill="#242ef5"/>
+        </svg>
+      </div>
+      <span class="logo-baidu">百度</span>
+    </div>
+    <div class="logo-tagline">百度一下你就知道</div>
+  </div>
+
+  <div class="search-section">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索你喜欢的音乐..." autocomplete="off">
+      <button class="search-btn" id="searchBtn">百度一下</button>
+    </div>
+    <div class="search-hint" id="searchHint">搜索音乐，点击结果即可播放</div>
+  </div>
+
+  <div class="quick-links">
+    <a onclick="showPlaylist('recommend')">热榜</a>
+    <a onclick="showPlaylist('top')">推荐</a>
+    <a onclick="showPlaylist('new')">精选</a>
+    <a onclick="showPlaylist('saved')">我的收藏</a>
+    <a onclick="startFm()">电台</a>
+    <a onclick="window.open('/','_blank')" style="color:#999;">返回主站</a>
+  </div>
+
+  <!-- Search Results -->
+  <div id="results"></div>
+</div>
+
+<!-- ============ Hidden Player Widget ============ -->
+<div class="player-widget" id="playerWidget">
+  <div class="weather-display" id="weatherDisplay">
+    <span class="weather-icon" id="weatherIcon">&#9835;</span>
+    <span class="weather-temp" id="weatherTemp">未播放</span>
+  </div>
+  <div class="mini-player" id="miniPlayer">
+    <div class="mini-empty" id="miniEmpty">点击搜索或歌单开始听歌</div>
+    <div class="mini-song-info" id="miniSongInfo" style="display:none;">
+      <img class="mini-song-cover" id="miniCover" src="" alt="">
+      <div class="mini-song-text">
+        <div class="mini-song-name" id="miniSongName"></div>
+        <div class="mini-song-artist" id="miniSongArtist"></div>
+      </div>
+    </div>
+    <div class="mini-progress" id="miniProgress" style="display:none;">
+      <span class="mini-prog-time" id="miniCurTime">0:00</span>
+      <div class="mini-prog-bar" id="miniProgBar">
+        <div class="mini-prog-fill" id="miniProgFill"></div>
+      </div>
+      <span class="mini-prog-time" id="miniTotalTime">0:00</span>
+    </div>
+    <div class="mini-controls" id="miniControls" style="display:none;">
+      <button class="mini-ctrl-btn" id="miniPrevBtn" title="上一首">&#9664;&#9664;</button>
+      <button class="mini-ctrl-btn play-btn" id="miniPlayBtn" title="播放">&#9654;</button>
+      <button class="mini-ctrl-btn" id="miniNextBtn" title="下一首">&#9654;&#9654;</button>
+    </div>
+    <div class="mini-fm" id="miniFm" style="display:none;">
+      <span class="mini-fm-label">FM</span>
+      <button class="mini-fm-btn fm-like" id="miniFmLike" title="红心">&#9825;</button>
+      <button class="mini-fm-btn fm-trash" id="miniFmTrash" title="不喜欢">&#10007;</button>
+    </div>
+    <div class="mini-volume" id="miniVolume" style="display:none;">
+      <span class="mini-vol-icon">&#128266;</span>
+      <div class="mini-vol-bar" id="miniVolBar">
+        <div class="mini-vol-fill" id="miniVolFill"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Playlist Overlay ============ -->
+<div class="playlist-overlay" id="playlistOverlay">
+  <div class="playlist-panel">
+    <div class="playlist-panel-header">
+      <span id="playlistTitle">歌单</span>
+      <button class="playlist-panel-close" onclick="closePlaylist()">&times;</button>
+    </div>
+    <div class="playlist-items" id="playlistItems">
+      <div class="mini-loading"><div class="mini-spinner"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Footer ============ -->
+<div class="footer">
+  <a href="/baidu.html" onclick="return false;">关于百度</a>
+  <a href="/baidu.html" onclick="return false;">About Baidu</a>
+  <a href="/baidu.html" onclick="return false;">百度推广</a>
+  <a href="/baidu.html" onclick="return false;">搜索风云榜</a>
+  <a href="/baidu.html" onclick="return false;">免责声明</a>
+  <a href="/baidu.html" onclick="return false;">隐私政策</a>
+  <div style="margin-top:8px;">&copy; 2026 Baidu</div>
+</div>
+
+<!-- ============ Audio Element ============ -->
+<audio id="baiduAudio"></audio>
+
+<!-- ============ Scripts ============ -->
+<script src="js/netease.js"></script>
+<script src="js/baidu.js"></script>
+</body>
+</html>

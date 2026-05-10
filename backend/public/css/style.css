@@ -54,6 +54,73 @@
   --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
   --shadow-glow: 0 0 20px var(--accent-glow);
+
+  /* Hardcoded color extraction for theming */
+  --player-bar-bg: rgba(16,16,16,0.92);
+  --modal-bg: rgba(22,22,22,0.92);
+  --fullscreen-bg: rgba(0,0,0,0.92);
+  --top-bar-start: rgba(10,10,10,0.9);
+  --content-gradient-top: #12121a;
+  --hero-gradient: linear-gradient(135deg, #0c0c18 0%, #16162e 40%, #0c1a1a 100%);
+  --hover-bg: rgba(255,255,255,0.06);
+  --hover-bg-strong: rgba(255,255,255,0.08);
+  --hover-bg-subtle: rgba(255,255,255,0.03);
+  --hover-bg-track: rgba(255,255,255,0.04);
+  --playing-bg: rgba(29,185,84,0.08);
+  --card-hover-border: rgba(255,255,255,0.1);
+  --card-play-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  --scrollbar-thumb: #333;
+  --shortcuts-overlay: rgba(0,0,0,0.6);
+}
+
+/* ============ Light Theme ============ */
+[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e8e8e8;
+  --bg-elevated: #f0f0f0;
+  --bg-card: #ffffff;
+  --bg-hover: #eaeaea;
+  --menu-bg: #ffffff;
+  --bg-overlay: rgba(0,0,0,0.2);
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --text-muted: #bbbbbb;
+
+  --accent-color: #1db954;
+  --accent-hover: #17a44a;
+  --accent-glow: rgba(29,185,84,0.15);
+  --accent-red: #e74c3c;
+  --accent-orange: #d4901a;
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+
+  --player-bg: #f0f0f0;
+
+  --border-color: #d4d4d4;
+  --border-light: rgba(0,0,0,0.06);
+
+  --player-bar-bg: rgba(240,240,240,0.95);
+  --modal-bg: rgba(255,255,255,0.95);
+  --top-bar-start: rgba(245,245,245,0.92);
+  --content-gradient-top: #e8e8f0;
+  --hero-gradient: linear-gradient(135deg, #d4e8d4 0%, #d4dce8 40%, #e0e8d4 100%);
+  --hover-bg: rgba(0,0,0,0.04);
+  --hover-bg-strong: rgba(0,0,0,0.06);
+  --hover-bg-subtle: rgba(0,0,0,0.02);
+  --hover-bg-track: rgba(0,0,0,0.03);
+  --playing-bg: rgba(29,185,84,0.08);
+  --card-hover-border: rgba(0,0,0,0.08);
+  --card-play-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  --scrollbar-thumb: #c0c0c0;
+  --shortcuts-overlay: rgba(0,0,0,0.3);
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+  --shadow-glow: 0 0 20px var(--accent-glow);
 }
 
 * {
@@ -72,13 +139,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transition: only transition on key containers. Individual elements use var() which batches repaints. */
+.app-layout, .sidebar, .content-area, .player-bar, .modal, .fullscreen-overlay {
+  transition: background-color 0.35s ease, border-color 0.25s ease;
 }
 
 /* ============ Premium Scrollbar ============ */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #555; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb); filter: brightness(0.8); }
 
 a {
   color: var(--text-primary);
@@ -123,7 +196,7 @@ input {
   padding: 0 32px;
   z-index: 10;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--top-bar-start) 0%, transparent 100%);
 }
 
 .top-bar > * { pointer-events: auto; }
@@ -173,7 +246,7 @@ input {
 }
 .sidebar-close-btn:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.06);
+  background: var(--hover-bg);
 }
 
 .sidebar-nav {
@@ -277,7 +350,7 @@ input {
 
 .local-playlist-nav-item:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.03);
+  background: var(--hover-bg-subtle);
 }
 
 /* ============ Content Area ============ */
@@ -285,7 +358,7 @@ input {
   flex: 1;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(180deg, #12121a 0%, var(--bg-primary) 25%);
+  background: linear-gradient(180deg, var(--content-gradient-top) 0%, var(--bg-primary) 25%);
   position: relative;
 }
 
@@ -409,6 +482,23 @@ input {
 .sync-btn:hover { transform: scale(1.04); filter: brightness(1.1); }
 .sync-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; filter: none; }
 
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
 .user-btn {
   display: flex;
   align-items: center;
@@ -449,7 +539,7 @@ input {
 
 .card:hover {
   background: linear-gradient(135deg, var(--bg-hover) 0%, rgba(29,185,84,0.04) 100%);
-  border-color: rgba(255,255,255,0.1);
+  border-color: var(--card-hover-border);
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
@@ -502,7 +592,7 @@ input {
   opacity: 0;
   transform: translateY(8px);
   transition: var(--transition);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: var(--card-play-shadow);
 }
 
 .card-play-btn:hover {
@@ -555,10 +645,10 @@ input {
   gap: 12px;
 }
 
-.track-item:hover { background: rgba(255,255,255,0.04); }
+.track-item:hover { background: var(--hover-bg-track); }
 
 .track-item.playing {
-  background: rgba(29,185,84,0.08);
+  background: var(--playing-bg);
 }
 
 .track-item.playing .track-title {
@@ -644,7 +734,7 @@ input {
 
 .track-action-btn:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg-strong);
 }
 
 /* ============ Playlist Detail ============ */
@@ -742,8 +832,8 @@ input {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   height: var(--player-height);
-  background: rgba(16,16,16,0.92);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--player-bar-bg);
+  border-top: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -1006,7 +1096,7 @@ input {
 
 .lyrics-toggle-btn:hover, .playlist-toggle-btn:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.06);
+  background: var(--hover-bg);
 }
 
 .lyrics-toggle-btn.active { color: var(--accent-color); }
@@ -1076,7 +1166,7 @@ input {
 }
 .lyrics-close-btn:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.06);
+  background: var(--hover-bg);
 }
 
 .lyrics-panel-title {
@@ -1111,7 +1201,7 @@ input {
 
 .lyric-line:hover {
   color: var(--text-secondary);
-  background: rgba(255,255,255,0.03);
+  background: var(--hover-bg-subtle);
 }
 
 .lyric-line.active {
@@ -1217,7 +1307,7 @@ input {
 
 .panel-close-btn:hover {
   color: var(--text-primary);
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg-strong);
 }
 
 .playlist-panel-list {
@@ -1243,8 +1333,8 @@ input {
   border-top: 2px solid var(--accent-color);
 }
 
-.playlist-panel-item:hover { background: rgba(255,255,255,0.03); }
-.playlist-panel-item.playing { background: rgba(29,185,84,0.08); }
+.playlist-panel-item:hover { background: var(--hover-bg-subtle); }
+.playlist-panel-item.playing { background: var(--playing-bg); }
 .playlist-panel-item.playing .panel-item-title { color: var(--accent-color); }
 
 .panel-item-index {
@@ -1317,7 +1407,7 @@ input {
 }
 
 .modal {
-  background: rgba(22,22,22,0.92);
+  background: var(--modal-bg);
   border-radius: var(--radius-xl);
   padding: 32px;
   width: 420px;
@@ -1432,7 +1522,7 @@ input {
 
 .nav-add-btn:hover {
   color: var(--accent-color);
-  background: rgba(255,255,255,0.06);
+  background: var(--hover-bg);
 }
 
 /* ============ QR ============ */
@@ -1531,7 +1621,7 @@ input {
   overflow: hidden;
   margin-bottom: 32px;
   margin-top: 4px;
-  background: linear-gradient(135deg, #0c0c18 0%, #16162e 40%, #0c1a1a 100%);
+  background: var(--hero-gradient);
   box-shadow: 0 0 60px rgba(29,185,84,0.08);
 }
 
@@ -1822,7 +1912,7 @@ input {
   z-index: 200;
   display: flex;
   flex-direction: column;
-  background: rgba(0,0,0,0.92);
+  background: var(--fullscreen-bg);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -2010,7 +2100,7 @@ input {
 
 .fullscreen-btn:hover {
   color: #fff;
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg-strong);
 }
 
 .fullscreen-btn.active {
@@ -2022,7 +2112,7 @@ input {
   height: 56px;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg-strong);
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -2557,7 +2647,7 @@ input {
     background: transparent;
   }
   .track-item:active {
-    background: rgba(255,255,255,0.04);
+    background: var(--hover-bg-track);
   }
 }
 
@@ -2889,7 +2979,7 @@ input {
   position: fixed;
   inset: 0;
   z-index: 300;
-  background: rgba(0,0,0,0.6);
+  background: var(--shortcuts-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2970,7 +3060,7 @@ input {
 }
 
 .mobile-menu-btn:hover {
-  background: rgba(255,255,255,0.08);
+  background: var(--hover-bg-strong);
 }
 
 /* ============ Special Mode Toggle ============ */

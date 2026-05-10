@@ -69,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
  });
  
  Player.init();
- 
+
+ // Initialize theme
+ initTheme();
+
  // Setup navigation
  setupNavigation();
  
@@ -121,6 +124,50 @@ function toggleMobileSidebar() {
  const isOpen = sidebar.classList.toggle('open');
  overlay.classList.toggle('open', isOpen);
  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+// ======== Theme Switching ========
+
+/**
+ * Get the current theme: prefer explicit saved choice, fall back to system preference
+ */
+function getPreferredTheme() {
+ const saved = localStorage.getItem('music_theme');
+ if (saved === 'light' || saved === 'dark') return saved;
+ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+ return 'dark';
+}
+
+/** Apply theme and update button icon */
+function setTheme(theme) {
+ document.documentElement.setAttribute('data-theme', theme);
+ const btn = document.getElementById('themeToggleBtn');
+ if (btn) {
+  btn.innerHTML = theme === 'light' ? icon('sun', 18) : icon('moon', 18);
+  btn.title = theme === 'light' ? '切换到深色主题' : '切换到亮色主题';
+ }
+}
+
+/** Toggle between light and dark theme */
+function toggleTheme() {
+ const current = document.documentElement.getAttribute('data-theme') || 'dark';
+ const next = current === 'light' ? 'dark' : 'light';
+ localStorage.setItem('music_theme', next);
+ setTheme(next);
+}
+
+/** Initialize theme from saved preference or system default */
+function initTheme() {
+ const theme = getPreferredTheme();
+ setTheme(theme);
+ // Listen for system theme changes
+ const mq = window.matchMedia('(prefers-color-scheme: light)');
+ mq.addEventListener('change', (e) => {
+  // Only auto-switch if user hasn't explicitly chosen
+  if (!localStorage.getItem('music_theme')) {
+   setTheme(e.matches ? 'light' : 'dark');
+  }
+ });
 }
 
 /** Swipe-from-edge to open, swipe to close sidebar on mobile */
@@ -338,19 +385,7 @@ function shuffleArray(arr) {
 
 function populateSidebarPlaylists(playlists) {
  const container = document.getElementById('sidebarPlaylists');
- if (!playlists || playlists.length === 0) return;
- 
- const listHtml = playlists.slice(0, 10).map(pl => `
-  <div class="playlist-nav-item" onclick="openPlaylistDetail(${pl.id})">
-   <span class="playlist-icon"></span>
-   <span>${escapeHtml(pl.name)}</span>
-  </div>
- `).join('');
- 
- container.innerHTML = `
-  <div class="nav-section-title" style="padding: 8px 20px 4px;">推荐歌单</div>
-  ${listHtml}
- `;
+ if (container) container.innerHTML = '';
 }
 
 function createPlaylistCard(pl) {
