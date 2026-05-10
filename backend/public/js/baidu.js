@@ -110,7 +110,7 @@ async function doSearch() {
 
   try {
     const data = await NeteaseAPI.search(q, 20);
-    const songs = data?.result?.songs || [];
+    const songs = data?.songs || [];
 
     if (songs.length === 0) {
       results.innerHTML = '<div style="text-align:center;padding:40px 0;color:#999;font-size:14px;">未找到相关结果，请尝试其他关键词</div>';
@@ -164,6 +164,8 @@ async function playCurrent() {
 
   // Get URL using server-side caching (special mode)
   try {
+    // Clear old cache, then save current song
+    await fetch('/api/special/clear', { method: 'POST' }).catch(() => {});
     const source = song.source || 'netease';
     const res = await fetch('/api/special/save-song', {
       method: 'POST',
