@@ -535,6 +535,7 @@ input {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   border: 1px solid rgba(255,255,255,0.04);
+  min-width: 0;
 }
 
 .card:hover {
@@ -836,7 +837,7 @@ input {
   border-top: 1px solid var(--border-light);
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 24px 18px;
   z-index: 100;
   gap: 16px;
   backdrop-filter: blur(16px);
@@ -901,6 +902,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   max-width: 600px;
   margin: 0 auto;
@@ -910,6 +912,7 @@ input {
   display: flex;
   align-items: center;
   gap: 20px;
+  height: 56px;
 }
 
 .player-btn {
@@ -947,10 +950,16 @@ input {
 }
 
 .player-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
+  padding: 0 24px;
+  height: 20px;
+  pointer-events: auto;
 }
 
 .player-time {
@@ -2184,6 +2193,38 @@ input {
   }
 }
 
+/* ============ Mobile Sidebar (base, must be before media queries) ============ */
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+  background: var(--hover-bg-strong);
+}
+
 /* ============ Responsive: Mobile (768px) ============ */
 @media (max-width: 768px) {
   /* Root overrides */
@@ -2332,13 +2373,13 @@ input {
 
   /* Player bar */
   .player-bar {
-    padding: 0 8px;
+    padding: 0 8px 20px;
     gap: 6px;
   }
   .player-song-info {
-    width: 100px;
-    min-width: 60px;
-    gap: 8px;
+    width: 80px;
+    min-width: 50px;
+    gap: 6px;
   }
   .player-cover {
     width: 36px;
@@ -2346,54 +2387,54 @@ input {
     border-width: 1.5px;
   }
   .player-song-text {
-    max-width: 60px;
+    max-width: 40px;
   }
   .player-song-name {
     font-size: 11px;
   }
   .player-song-artist {
-    display: none; /* Hide on mobile to save space */
+    display: none;
   }
   .player-buttons {
     gap: 0;
   }
   .player-btn {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     font-size: 15px;
   }
   .player-btn-main {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     font-size: 20px;
   }
   .player-progress {
     gap: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   .progress-bar {
-    height: 6px; /* Taller for touch */
+    height: 6px;
   }
   .player-time {
     font-size: 10px;
     min-width: 32px;
   }
   .speed-select {
-    font-size: 9px;
-    padding: 2px 14px 2px 4px;
+    display: none;
   }
 
-  /* Volume area */
+  /* Volume area - simplified */
   .player-volume-area {
     width: auto;
-    gap: 4px;
+    gap: 2px;
   }
   .volume-bar {
-    width: 44px;
-    height: 6px;
+    display: none;
   }
   .volume-btn {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
 
   /* Player extra - hide less important items */
@@ -2402,12 +2443,12 @@ input {
   }
   .player-extra .lyrics-toggle-btn,
   .player-extra .playlist-toggle-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 15px;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
   }
   .special-toggle {
-    display: none !important; /* Hide on mobile */
+    display: none !important;
   }
   #heartModeBtn {
     display: none;
@@ -2745,26 +2786,20 @@ input {
 
   /* Player bar - minimal */
   .player-bar {
-    padding: 0 6px;
-    gap: 4px;
+    padding: 0 4px 16px;
+    gap: 2px;
   }
   .player-song-info {
-    width: 60px;
-    min-width: 40px;
-    gap: 6px;
+    width: 40px;
+    min-width: 36px;
+    gap: 0;
   }
   .player-cover {
     width: 32px;
     height: 32px;
   }
   .player-song-text {
-    max-width: 40px;
-  }
-  .player-song-name {
-    font-size: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none;
   }
   #likeBtn {
     display: none !important;
@@ -2773,45 +2808,45 @@ input {
     gap: 0;
   }
   .player-btn {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     font-size: 13px;
   }
   .player-btn-main {
-    width: 34px;
-    height: 34px;
-    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
   }
   .player-time {
-    font-size: 9px;
-    min-width: 28px;
+    display: none;
   }
   .speed-select {
-    max-width: 36px;
-    font-size: 8px;
-    padding: 1px 10px 1px 3px;
+    display: none;
+  }
+  .player-progress {
+    padding-left: 4px;
+    padding-right: 4px;
   }
   .progress-bar {
-    height: 5px;
+    height: 4px;
   }
 
-  /* Volume */
+  /* Volume - mute toggle only */
   .volume-bar {
-    width: 32px;
-    height: 5px;
+    display: none;
   }
   .volume-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
   }
 
   /* Player extra - minimal icons */
   .player-extra .lyrics-toggle-btn,
   .player-extra .playlist-toggle-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 13px;
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
   }
   #addToPlaylistBtn {
     display: none;
@@ -3030,38 +3065,6 @@ input {
 }
 
 .shortcuts-grid span { font-size: 13px; color: var(--text-secondary); }
-
-/* ============ Mobile Sidebar ============ */
-
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 50;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.sidebar-overlay.open {
-  opacity: 1;
-}
-
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.mobile-menu-btn:hover {
-  background: var(--hover-bg-strong);
-}
 
 /* ============ Special Mode Toggle ============ */
 .special-toggle {

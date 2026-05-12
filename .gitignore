@@ -6,3 +6,4 @@ server.log
 .special-cache/
 .playlists.json
 .claude/
+*.png
