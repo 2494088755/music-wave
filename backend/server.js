@@ -584,16 +584,35 @@ app.post('/api/sync/netease-playlists', async (req, res) => {
  * POST /api/special/save-song
  * Download a song and save it to server cache for special environment playback
  */
+const MAX_CACHE_FILES = 100;
+
 app.post('/api/special/save-song', async (req, res) => {
   try {
     const { id } = req.body;
     if (!id) return res.json({ code: 400, msg: '请提供歌曲ID' });
 
     const songId = parseInt(id);
+
+    // Check if already cached — return existing file if present
+    const existing = findCachedFile(songId);
+    if (existing) {
+      console.log(`[Special] Cache hit: ${existing}`);
+      return res.json({
+        code: 200,
+        data: {
+          localUrl: `/api/special/play/${existing}`,
+          fileName: existing,
+        },
+      });
+    }
+
     const audioUrl = await resolveAudioUrl(songId);
     if (!audioUrl) {
       return res.json({ code: 500, msg: '无法获取歌曲下载地址' });
     }
+
+    // Enforce max cache limit — evict oldest file if at capacity
+    enforceCacheLimit();
 
     // Download the audio file
     const ext = path.extname(new URL(audioUrl).pathname) || '.mp3';
@@ -631,6 +650,36 @@ app.post('/api/special/save-song', async (req, res) => {
     res.json({ code: 500, msg: '保存歌曲失败', error: error.message });
   }
 });
+
+/** Find a cached file by song ID (any extension) */
+function findCachedFile(songId) {
+  try {
+    const files = fs.readdirSync(SPECIAL_CACHE_DIR);
+    const prefix = `${songId}.`;
+    return files.find(f => f.startsWith(prefix)) || null;
+  } catch {
+    return null;
+  }
+}
+
+/** Remove the oldest cached file if at or above MAX_CACHE_FILES */
+function enforceCacheLimit() {
+  try {
+    const files = fs.readdirSync(SPECIAL_CACHE_DIR)
+      .map(f => ({
+        name: f,
+        time: fs.statSync(path.join(SPECIAL_CACHE_DIR, f)).mtimeMs,
+      }))
+      .sort((a, b) => a.time - b.time);
+
+    while (files.length >= MAX_CACHE_FILES) {
+      const oldest = files.shift();
+      const filePath = path.join(SPECIAL_CACHE_DIR, oldest.name);
+      fs.unlinkSync(filePath);
+      console.log(`[Special] Evicted: ${oldest.name}`);
+    }
+  } catch {}
+}
 
 /**
  * POST /api/special/clear

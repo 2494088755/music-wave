@@ -191,8 +191,6 @@ async function playCurrent() {
 
   // Get URL using server-side caching (special mode)
   try {
-    // Clear old cache, then save current song
-    await fetch('/api/special/clear', { method: 'POST' }).catch(() => {});
     const source = song.source || 'netease';
     const res = await fetch('/api/special/save-song', {
       method: 'POST',
