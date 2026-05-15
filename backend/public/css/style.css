@@ -3118,8 +3118,8 @@ input {
 .fm-controls {
   display: none;
   align-items: center;
-  gap: 2px;
-  margin: 0 4px;
+  gap: 8px;
+  margin: 0 6px;
 }
 
 .fm-like-btn:hover { color: var(--accent-color) !important; }
@@ -3127,8 +3127,8 @@ input {
 
 .fm-label {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 600;
+  letter-spacing: 2px;
   color: #1db954;
-  margin-left: 2px;
+  user-select: none;
 }
