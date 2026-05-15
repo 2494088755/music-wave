@@ -14,6 +14,9 @@ const BPlayer = {
   widgetOpen: false,
   fmMode: false,
   _fmLoading: false,
+  playMode: 'list', // 'list' | 'shuffle' | 'single'
+  _shuffleOrder: [],
+  _shuffleIndex: 0,
 };
 
 // ======== DOM References ========
@@ -62,6 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
     trashFmSong();
   });
 
+  // Play mode toggle
+  $('miniModeBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    cyclePlayMode();
+  });
+  $('miniModeText').addEventListener('click', (e) => {
+    e.stopPropagation();
+    cyclePlayMode();
+  });
+
   // Volume
   $('miniVolBar').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -84,6 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Show search hint after a moment
   setTimeout(() => $('searchHint').classList.add('show'), 2000);
+
+  // Init play mode UI
+  updatePlayModeUI();
 
   // Load default playlists in background
   loadRecommendPlaylists();
@@ -127,6 +143,7 @@ async function doSearch() {
 
     // Store for playback
     BPlayer.queue = songList;
+    onQueueChanged();
 
     // Render as web search results
     results.innerHTML = '<div style="font-size:12px;color:#999;margin-bottom:8px;">百度为您找到相关结果约 ' + (songs.length * 10) + ' 个</div>' +
@@ -155,6 +172,16 @@ function playSearchResult(index) {
 async function playCurrent() {
   const song = BPlayer.queue[BPlayer.currentIndex];
   if (!song) return;
+
+  // Sync shuffle order when song is selected directly (not via next/prev)
+  if (BPlayer.playMode === 'shuffle') {
+    const idx = BPlayer._shuffleOrder.indexOf(BPlayer.currentIndex);
+    if (idx >= 0) {
+      BPlayer._shuffleIndex = idx;
+    } else {
+      generateShuffleOrder();
+    }
+  }
 
   // Update UI immediately
   BPlayer.currentSong = song;
@@ -217,7 +244,16 @@ function nextSong() {
     fmLoadMore();
     return;
   }
-  BPlayer.currentIndex = (BPlayer.currentIndex + 1) % BPlayer.queue.length;
+  if (BPlayer.playMode === 'shuffle') {
+    BPlayer._shuffleIndex++;
+    if (BPlayer._shuffleIndex >= BPlayer._shuffleOrder.length) {
+      generateShuffleOrder();
+      BPlayer._shuffleIndex = 0;
+    }
+    BPlayer.currentIndex = BPlayer._shuffleOrder[BPlayer._shuffleIndex];
+  } else {
+    BPlayer.currentIndex = (BPlayer.currentIndex + 1) % BPlayer.queue.length;
+  }
   playCurrent();
 }
 
@@ -227,7 +263,12 @@ function prevSong() {
     BPlayer.audio.currentTime = 0;
     return;
   }
-  BPlayer.currentIndex = (BPlayer.currentIndex - 1 + BPlayer.queue.length) % BPlayer.queue.length;
+  if (BPlayer.playMode === 'shuffle' && BPlayer._shuffleOrder.length > 0) {
+    BPlayer._shuffleIndex = (BPlayer._shuffleIndex - 1 + BPlayer._shuffleOrder.length) % BPlayer._shuffleOrder.length;
+    BPlayer.currentIndex = BPlayer._shuffleOrder[BPlayer._shuffleIndex];
+  } else {
+    BPlayer.currentIndex = (BPlayer.currentIndex - 1 + BPlayer.queue.length) % BPlayer.queue.length;
+  }
   playCurrent();
 }
 
@@ -243,6 +284,11 @@ function onTimeUpdate() {
 function onEnded() {
   if (BPlayer.fmMode) {
     if (!BPlayer._fmLoading) fmNext();
+    return;
+  }
+  if (BPlayer.playMode === 'single') {
+    BPlayer.audio.currentTime = 0;
+    BPlayer.audio.play().catch(() => {});
     return;
   }
   nextSong();
@@ -319,6 +365,8 @@ function showMiniPlayer() {
   $('miniControls').style.display = 'flex';
   $('miniVolume').style.display = 'flex';
   $('miniProgress').style.display = 'flex';
+  $('miniModeText').style.display = 'block';
+  updatePlayModeUI();
 
   // Auto-open widget if not open
   if (!BPlayer.widgetOpen) {
@@ -465,6 +513,7 @@ async function openSavedPlaylist(id, name) {
 
     BPlayer.queue = songs;
     BPlayer.currentIndex = -1;
+    onQueueChanged();
 
     items.innerHTML = songs.map((s, i) =>
       '<div class="playlist-item" data-index="' + i + '" onclick="playPlaylistItem(' + i + ')">' +
@@ -506,6 +555,7 @@ async function openRemotePlaylist(id, name) {
 
     BPlayer.queue = songs;
     BPlayer.currentIndex = -1;
+    onQueueChanged();
 
     items.innerHTML = songs.map((s, i) =>
       '<div class="playlist-item" data-index="' + i + '" onclick="playPlaylistItem(' + i + ')">' +
@@ -559,6 +609,7 @@ async function startFm() {
     }
     BPlayer.queue = songs;
     BPlayer.currentIndex = 0;
+    onQueueChanged();
     playCurrent();
   } catch (e) {
     BPlayer.fmMode = false;
@@ -576,6 +627,7 @@ async function fmLoadMore() {
     if (songs && songs.length > 0) {
       BPlayer.queue = songs;
       BPlayer.currentIndex = 0;
+      onQueueChanged();
       await playCurrent();
     }
   } catch (e) {
@@ -593,6 +645,7 @@ async function fmNext() {
     if (songs && songs.length > 0) {
       BPlayer.queue = songs;
       BPlayer.currentIndex = 0;
+      onQueueChanged();
       await playCurrent();
     }
   } catch (e) {
@@ -628,6 +681,78 @@ async function trashFmSong() {
 function updateFmUI() {
   const fm = $('miniFm');
   if (fm) fm.style.display = BPlayer.fmMode ? 'flex' : 'none';
+}
+
+// ======== Play Mode (List / Shuffle / Single) ========
+
+const PLAY_MODE_ICONS = {
+  list: '&#8635;',
+  shuffle: '&#8644;',
+  single: '&#8634;',
+};
+const PLAY_MODE_NAMES = {
+  list: '列表循环',
+  shuffle: '随机播放',
+  single: '单曲循环',
+};
+const PLAY_MODE_ORDER = ['list', 'shuffle', 'single'];
+
+function cyclePlayMode() {
+  const idx = PLAY_MODE_ORDER.indexOf(BPlayer.playMode);
+  BPlayer.playMode = PLAY_MODE_ORDER[(idx + 1) % PLAY_MODE_ORDER.length];
+
+  if (BPlayer.playMode === 'shuffle') {
+    generateShuffleOrder();
+  }
+
+  updatePlayModeUI();
+}
+
+function generateShuffleOrder() {
+  const len = BPlayer.queue.length;
+  if (len === 0) { BPlayer._shuffleOrder = []; BPlayer._shuffleIndex = 0; return; }
+
+  // Start with current index first, then shuffle the rest
+  const cur = BPlayer.currentIndex >= 0 ? BPlayer.currentIndex : 0;
+  const rest = [];
+  for (let i = 0; i < len; i++) {
+    if (i !== cur) rest.push(i);
+  }
+  for (let i = rest.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [rest[i], rest[j]] = [rest[j], rest[i]];
+  }
+  BPlayer._shuffleOrder = [cur, ...rest];
+  BPlayer._shuffleIndex = 0;
+}
+
+function updatePlayModeUI() {
+  const btn = $('miniModeBtn');
+  const text = $('miniModeText');
+  if (!btn) return;
+
+  const icon = PLAY_MODE_ICONS[BPlayer.playMode] || '&#8635;';
+  const name = PLAY_MODE_NAMES[BPlayer.playMode] || '列表循环';
+  btn.innerHTML = icon;
+  btn.title = name;
+  text.textContent = name;
+
+  // Highlight active mode
+  const isActive = BPlayer.playMode !== 'list';
+  btn.classList.toggle('active', isActive);
+  text.classList.toggle('active', isActive);
+
+  // Show mode text when player is visible
+  if (BPlayer.currentSong) {
+    text.style.display = 'block';
+  }
+}
+
+// Generate shuffle order when queue changes
+function onQueueChanged() {
+  if (BPlayer.playMode === 'shuffle') {
+    generateShuffleOrder();
+  }
 }
 
 // ======== Utilities ========

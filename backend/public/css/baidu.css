@@ -330,6 +330,36 @@ body {
   background: #3a5ce5;
 }
 
+/* Mode toggle button */
+.mini-ctrl-btn.mode-btn {
+  font-size: 13px;
+  color: #aaa;
+  width: 28px;
+  height: 28px;
+}
+.mini-ctrl-btn.mode-btn:hover {
+  color: #666;
+  background: #f0f0f0;
+}
+.mini-ctrl-btn.mode-btn.active {
+  color: #4e6ef2;
+}
+
+/* Mode indicator text */
+.mini-mode-text {
+  text-align: center;
+  font-size: 10px;
+  color: #aaa;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.mini-mode-text:hover { color: #666; }
+.mini-mode-text.active { color: #4e6ef2; }
+
 .mini-volume {
   display: flex;
   align-items: center;
