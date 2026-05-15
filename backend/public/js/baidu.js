@@ -657,7 +657,7 @@ async function likeFmSong() {
   if (!BPlayer.currentSong) return;
   try {
     await NeteaseAPI.likeFmSong(BPlayer.currentSong.id, true);
-    $('miniFmLike').style.color = '#1db954';
+    $('miniFmLike').style.color = '#e74c3c';
     setTimeout(() => { $('miniFmLike').style.color = ''; }, 1500);
   } catch (e) {
     console.warn('FM like error:', e);
