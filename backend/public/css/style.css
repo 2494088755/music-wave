@@ -120,6 +120,7 @@
   --hover-bg-track: rgba(0,0,0,0.02);
   --playing-bg: rgba(0,153,204,0.06);
   --card-hover-border: rgba(0,153,204,0.12);
+  --glass-border-active: rgba(0,153,204,0.12);
   --card-play-shadow: 0 4px 20px rgba(0,153,204,0.1);
   --scrollbar-thumb: rgba(0,0,0,0.1);
   --shortcuts-overlay: rgba(0,0,0,0.15);
@@ -304,6 +305,7 @@ input {
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
   transition: var(--transition);
   position: relative;
