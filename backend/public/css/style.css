@@ -1,39 +1,38 @@
 /* ============ CSS Reset & Variables ============ */
 :root {
   /* Background */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #111111;
-  --bg-tertiary: #1e1e1e;
-  --bg-elevated: #161616;
-  --bg-card: #181818;
-  --bg-hover: #242424;
-  --menu-bg: #1a1a1a;
-  --bg-overlay: rgba(0,0,0,0.55);
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #0d0d20;
+  --bg-tertiary: #12122a;
+  --bg-elevated: #0f0f24;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-hover: rgba(255,255,255,0.08);
+  --menu-bg: rgba(15,15,36,0.95);
+  --bg-overlay: rgba(0,0,0,0.6);
 
   /* Text */
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #686868;
-  --text-muted: #505050;
+  --text-primary: rgba(255,255,255,0.92);
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-tertiary: rgba(255,255,255,0.35);
+  --text-muted: rgba(255,255,255,0.2);
 
-  /* Accent */
-  --accent-color: #1db954;
-  --accent-hover: #20e05e;
-  --accent-glow: rgba(29, 185, 84, 0.25);
-  --accent-red: #e74c3c;
-  --accent-orange: #f0a030;
+  /* Accent — Nebula cyan/purple */
+  --accent-color: #00d4ff;
+  --accent-hover: #33ddff;
+  --accent-glow: rgba(0,212,255,0.25);
+  --accent-red: #ff4757;
+  --accent-orange: #ffa502;
   --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
+  --accent-purple: #a855f7;
 
   /* Player */
-  --player-bg: #101010;
+  --player-bg: rgba(10,10,26,0.95);
 
   /* Borders */
-  --border-color: #2a2a2a;
-  --border-light: rgba(255,255,255,0.06);
-  --border-radius: 8px;
+  --border-color: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.05);
 
-  /* Sizing */
+  /* Sizing (keep same) */
   --sidebar-width: 240px;
   --player-height: 90px;
   --lyrics-width: 360px;
@@ -50,27 +49,36 @@
   /* Motion */
   --transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-slow: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
-  --shadow-glow: 0 0 20px var(--accent-glow);
+  --transition-spring: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Hardcoded color extraction for theming */
-  --player-bar-bg: rgba(16,16,16,0.92);
-  --modal-bg: rgba(22,22,22,0.92);
+  /* Shadows — glow-forward */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+  --shadow-glow-strong: 0 0 40px rgba(0,212,255,0.15);
+
+  /* Glass utilities (NEW) */
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-active: rgba(0,212,255,0.15);
+  --glass-blur: 12px;
+
+  --player-bar-bg: rgba(10,10,26,0.88);
+  --modal-bg: rgba(10,10,26,0.92);
   --fullscreen-bg: rgba(0,0,0,0.92);
-  --top-bar-start: rgba(10,10,10,0.9);
-  --content-gradient-top: #12121a;
-  --hero-gradient: linear-gradient(135deg, #0c0c18 0%, #16162e 40%, #0c1a1a 100%);
-  --hover-bg: rgba(255,255,255,0.06);
+  --top-bar-start: rgba(10,10,26,0.9);
+  --content-gradient-top: transparent;
+  --hero-gradient: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 40%, rgba(13,27,42,1) 100%);
+  --hover-bg: rgba(255,255,255,0.04);
   --hover-bg-strong: rgba(255,255,255,0.08);
-  --hover-bg-subtle: rgba(255,255,255,0.03);
+  --hover-bg-subtle: rgba(255,255,255,0.02);
   --hover-bg-track: rgba(255,255,255,0.04);
-  --playing-bg: rgba(29,185,84,0.08);
-  --card-hover-border: rgba(255,255,255,0.1);
-  --card-play-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  --scrollbar-thumb: #333;
-  --shortcuts-overlay: rgba(0,0,0,0.6);
+  --playing-bg: rgba(0,212,255,0.08);
+  --card-hover-border: rgba(0,212,255,0.15);
+  --card-play-shadow: 0 0 30px rgba(0,212,255,0.1);
+  --scrollbar-thumb: rgba(255,255,255,0.1);
+  --shortcuts-overlay: rgba(0,0,0,0.4);
 }
 
 /* ============ Light Theme ============ */
