@@ -1249,8 +1249,6 @@ input {
   transition: width 0.15s ease;
 }
 
-.volume-bar:hover .volume-fill { background: var(--accent-color); }
-
 .player-extra {
   display: flex;
   align-items: center;
