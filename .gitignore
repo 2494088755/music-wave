@@ -6,4 +6,5 @@ server.log
 .special-cache/
 .playlists.json
 .claude/
+.superpowers/
 *.png
