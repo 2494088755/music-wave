@@ -83,52 +83,52 @@
 
 /* ============ Light Theme ============ */
 [data-theme="light"] {
-  --bg-primary: #f5f5f5;
+  --bg-primary: #f0f2f8;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #e8e8e8;
-  --bg-elevated: #f0f0f0;
-  --bg-card: #ffffff;
-  --bg-hover: #eaeaea;
-  --menu-bg: #ffffff;
-  --bg-overlay: rgba(0,0,0,0.2);
+  --bg-tertiary: #e4e7f0;
+  --bg-elevated: #f8f9fc;
+  --bg-card: rgba(255,255,255,0.7);
+  --bg-hover: rgba(0,0,0,0.05);
+  --menu-bg: rgba(255,255,255,0.95);
 
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  --text-muted: #bbbbbb;
+  --text-primary: #1a1a2e;
+  --text-secondary: #555577;
+  --text-tertiary: #8888aa;
+  --text-muted: #bbbbdd;
 
-  --accent-color: #1db954;
-  --accent-hover: #17a44a;
-  --accent-glow: rgba(29,185,84,0.15);
+  --accent-color: #0099cc;
+  --accent-hover: #0077aa;
+  --accent-glow: rgba(0,153,204,0.12);
   --accent-red: #e74c3c;
   --accent-orange: #d4901a;
   --accent-blue: #3b82f6;
-  --accent-purple: #8b5cf6;
+  --accent-purple: #7c3aed;
 
-  --player-bg: #f0f0f0;
+  --player-bg: rgba(240,242,248,0.95);
 
-  --border-color: #d4d4d4;
-  --border-light: rgba(0,0,0,0.06);
+  --border-color: rgba(0,0,0,0.08);
+  --border-light: rgba(0,0,0,0.04);
 
-  --player-bar-bg: rgba(240,240,240,0.95);
+  --player-bar-bg: rgba(240,242,248,0.92);
   --modal-bg: rgba(255,255,255,0.95);
-  --top-bar-start: rgba(245,245,245,0.92);
-  --content-gradient-top: #e8e8f0;
-  --hero-gradient: linear-gradient(135deg, #d4e8d4 0%, #d4dce8 40%, #e0e8d4 100%);
-  --hover-bg: rgba(0,0,0,0.04);
-  --hover-bg-strong: rgba(0,0,0,0.06);
-  --hover-bg-subtle: rgba(0,0,0,0.02);
-  --hover-bg-track: rgba(0,0,0,0.03);
-  --playing-bg: rgba(29,185,84,0.08);
-  --card-hover-border: rgba(0,0,0,0.08);
-  --card-play-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  --scrollbar-thumb: #c0c0c0;
-  --shortcuts-overlay: rgba(0,0,0,0.3);
+  --top-bar-start: rgba(240,242,248,0.92);
+  --content-gradient-top: transparent;
+  --hero-gradient: linear-gradient(135deg, rgba(0,153,204,0.04) 0%, rgba(124,58,237,0.04) 40%, #f0f2f8 100%);
+  --hover-bg: rgba(0,0,0,0.03);
+  --hover-bg-strong: rgba(0,0,0,0.05);
+  --hover-bg-subtle: rgba(0,0,0,0.01);
+  --hover-bg-track: rgba(0,0,0,0.02);
+  --playing-bg: rgba(0,153,204,0.06);
+  --card-hover-border: rgba(0,153,204,0.12);
+  --card-play-shadow: 0 4px 20px rgba(0,153,204,0.1);
+  --scrollbar-thumb: rgba(0,0,0,0.1);
+  --shortcuts-overlay: rgba(0,0,0,0.15);
 
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
   --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-glow-strong: 0 0 30px rgba(0,153,204,0.08);
 }
 
 * {
