@@ -2449,6 +2449,9 @@ input {
     display: block;
     opacity: 0;
     pointer-events: none;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: opacity 0.3s ease;
   }
   .sidebar-overlay.open {
@@ -2922,6 +2925,10 @@ input {
   }
   .card {
     padding: 10px;
+    border-radius: var(--radius-md);
+  }
+  .card:hover {
+    transform: translateY(-2px);
   }
   .card-title {
     font-size: 12px;
