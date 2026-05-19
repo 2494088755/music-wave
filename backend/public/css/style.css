@@ -123,6 +123,7 @@
   --card-play-shadow: 0 4px 20px rgba(0,153,204,0.1);
   --scrollbar-thumb: rgba(0,0,0,0.1);
   --shortcuts-overlay: rgba(0,0,0,0.15);
+  --bg-overlay: rgba(0,0,0,0.2);
 
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
