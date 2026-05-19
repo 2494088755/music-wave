@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
   background: #ffffff;
   color: #333;
   min-height: 100vh;
@@ -79,7 +79,7 @@ body {
   letter-spacing: 2px;
   line-height: 1;
   user-select: none;
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Arial, sans-serif;
+  font-family: 'Inter', 'Plus Jakarta Sans', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Arial, sans-serif;
 }
 .logo-tagline {
   font-size: 13px;
