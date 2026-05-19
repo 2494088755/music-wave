@@ -153,6 +153,11 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+[data-theme="light"] body {
+  background: linear-gradient(135deg, #e8ecf4 0%, #f0f2f8 50%, #e4e7f0 100%);
+  background-attachment: fixed;
+}
+
 /* Theme transition: only transition on key containers. Individual elements use var() which batches repaints. */
 .app-layout, .sidebar, .content-area, .player-bar, .modal, .fullscreen-overlay {
   transition: background-color 0.35s ease, border-color 0.25s ease;
