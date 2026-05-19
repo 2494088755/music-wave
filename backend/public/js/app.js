@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
    }
   }
  });
-  });
 
   // ======== Stardust Particle Background ========
   (function initStardust() {
