@@ -1818,7 +1818,7 @@ input {
   margin-bottom: 32px;
   margin-top: 4px;
   background: var(--hero-gradient);
-  box-shadow: 0 0 60px rgba(29,185,84,0.08);
+  box-shadow: 0 0 60px rgba(0,212,255,0.06);
 }
 
 .hero-content {
@@ -3348,7 +3348,7 @@ input {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #1db954;
+  color: var(--accent-color);
   user-select: none;
 }
 
