@@ -247,9 +247,6 @@ const Player = {
  },
 
  /**
-  * Get KuGou song URL with NetEase fallback
-  */
- /**
   * Get 歌曲宝 song URL with metadata update
   */
  async fetchGequbaoUrl(songId) {
