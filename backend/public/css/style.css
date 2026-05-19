@@ -999,8 +999,8 @@ input {
   padding: 0 24px 18px;
   z-index: 100;
   gap: 16px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .player-song-info {
@@ -1017,13 +1017,14 @@ input {
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-tertiary);
-  border: 2px solid rgba(255,255,255,0.1);
-  box-shadow: var(--shadow-sm);
+  border: 2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(0,212,255,0.1);
   transition: transform 0.3s ease;
 }
 
 .player-cover.playing {
   animation: coverSpin 8s linear infinite;
+  box-shadow: 0 0 30px var(--accent-glow);
 }
 
 @keyframes coverSpin {
@@ -1093,19 +1094,18 @@ input {
   font-size: 22px;
   width: 40px;
   height: 40px;
-  background: var(--text-primary);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-purple));
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 20px rgba(0,212,255,0.3);
 }
-
 .player-btn-main:hover {
   transform: scale(1.06);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 6px 28px rgba(0,212,255,0.4);
 }
 
 .player-progress {
@@ -1166,13 +1166,14 @@ input {
 
 .progress-fill {
   height: 100%;
-  background: var(--text-primary);
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-purple));
   border-radius: 2px;
   position: relative;
-  transition: background 0.2s;
+  transition: width 0.3s ease;
 }
-
-.progress-bar:hover .progress-fill { background: var(--accent-color); }
+.progress-bar:hover .progress-fill {
+  background: linear-gradient(90deg, var(--accent-hover), var(--accent-purple));
+}
 
 .progress-thumb {
   position: absolute;
@@ -1182,10 +1183,11 @@ input {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--text-primary);
+  background: #fff;
+  box-shadow: 0 0 12px var(--accent-glow);
   opacity: 0;
   transition: opacity 0.2s;
-  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  pointer-events: none;
 }
 
 /* Speed select */
@@ -1242,8 +1244,9 @@ input {
 
 .volume-fill {
   height: 100%;
-  background: var(--text-primary);
+  background: var(--accent-color);
   border-radius: 2px;
+  transition: width 0.15s ease;
 }
 
 .volume-bar:hover .volume-fill { background: var(--accent-color); }
