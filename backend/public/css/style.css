@@ -195,6 +195,8 @@ input {
   display: flex;
   height: 100vh;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .app-main {

@@ -114,6 +114,86 @@ document.addEventListener('DOMContentLoaded', () => {
    }
   }
  });
+  });
+
+  // ======== Stardust Particle Background ========
+  (function initStardust() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const canvas = document.getElementById('stardust');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouseX = 0, mouseY = 0;
+    let animId;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles(count) {
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          opacity: Math.random() * 0.5 + 0.15,
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of particles) {
+        // Mouse influence
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200) {
+          const force = (200 - dist) / 200 * 0.02;
+          p.speedX += dx * force * 0.01;
+          p.speedY += dy * force * 0.01;
+        }
+
+        // Damping
+        p.speedX *= 0.99;
+        p.speedY *= 0.99;
+
+        // Move
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Wrap
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 220, 255, ${p.opacity})`;
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+    resize();
+    // Desktop: 80-100 particles, mobile: 30
+    const isMobile = window.innerWidth < 768;
+    createParticles(isMobile ? 30 : 80);
+    draw();
+  })();
 });
 
 // ======== Mobile Sidebar ========
