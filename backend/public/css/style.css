@@ -2258,8 +2258,8 @@ input {
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: blur(40px) brightness(0.3) saturate(0.5);
-  transform: scale(1.1);
+  filter: blur(60px) brightness(0.25) saturate(0.6);
+  transform: scale(1.15);
   z-index: -1;
   transition: background-image 0.6s ease;
 }
@@ -2313,12 +2313,31 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.1);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    0 0 0 2px rgba(255,255,255,0.1),
+    0 0 40px var(--accent-glow);
   transition: transform 0.5s ease;
+  position: relative;
 }
 
 .fullscreen-cd.playing {
   animation: spinCd 20s linear infinite;
+}
+
+/* Glow ring animation when playing */
+.fullscreen-cd.playing::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,212,255,0.15);
+  animation: cdRingPulse 3s ease-in-out infinite;
+}
+
+@keyframes cdRingPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
 }
 
 @keyframes spinCd {
