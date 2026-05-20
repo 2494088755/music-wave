@@ -23,9 +23,6 @@
   --accent-red: #ff4757;
   --accent-orange: #ffa502;
   --accent-blue: #3b82f6;
-  /* Player */
-  --player-bg: rgba(10,10,26,0.95);
-
   /* Borders */
   --border-color: rgba(255,255,255,0.08);
   --border-light: rgba(255,255,255,0.05);
@@ -62,7 +59,6 @@
   --glass-border-active: rgba(0,212,255,0.15);
   --glass-blur: 12px;
 
-  --player-bar-bg: rgba(10,10,26,0.88);
   --modal-bg: rgba(10,10,26,0.92);
   --fullscreen-bg: rgba(0,0,0,0.92);
   --top-bar-start: rgba(10,10,26,0.9);
@@ -100,12 +96,9 @@
   --accent-red: #e74c3c;
   --accent-orange: #d4901a;
   --accent-blue: #3b82f6;
-  --player-bg: rgba(240,242,248,0.95);
-
   --border-color: rgba(0,0,0,0.08);
   --border-light: rgba(0,0,0,0.04);
 
-  --player-bar-bg: rgba(240,242,248,0.92);
   --modal-bg: rgba(255,255,255,0.95);
   --top-bar-start: rgba(240,242,248,0.92);
   --content-gradient-top: transparent;
