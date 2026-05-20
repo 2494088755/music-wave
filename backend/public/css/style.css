@@ -1126,15 +1126,37 @@ input {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   height: var(--player-height);
-  background: var(--player-bar-bg);
-  border-top: 1px solid var(--border-light);
+  background: rgba(5, 5, 16, 0.7);
+  border-top: none;
   display: flex;
   align-items: center;
   padding: 0 24px 18px;
   z-index: 100;
   gap: 16px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 -1px 20px rgba(0,212,255,0.06);
+}
+
+/* Thin glowing top border */
+.player-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.15), transparent);
+  pointer-events: none;
+}
+
+[data-theme="light"] .player-bar {
+  background: rgba(240, 242, 248, 0.75);
+  box-shadow: 0 -1px 20px rgba(0,153,204,0.05);
+}
+
+[data-theme="light"] .player-bar::before {
+  background: linear-gradient(90deg, transparent, rgba(0,153,204,0.1), transparent);
 }
 
 .player-song-info {
@@ -1151,14 +1173,18 @@ input {
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-tertiary);
-  border: 2px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 20px rgba(0,212,255,0.1);
-  transition: transform 0.3s ease;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 0 20px rgba(0,212,255,0.08),
+    inset 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .player-cover.playing {
   animation: coverSpin 8s linear infinite;
-  box-shadow: 0 0 30px var(--accent-glow);
+  box-shadow:
+    0 0 30px var(--accent-glow),
+    inset 0 0 10px rgba(0,0,0,0.2);
 }
 
 @keyframes coverSpin {
