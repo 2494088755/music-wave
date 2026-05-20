@@ -247,13 +247,20 @@ input {
 /* ============ Sidebar ============ */
 .sidebar {
   width: var(--sidebar-width);
-  background: var(--menu-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: rgba(8, 8, 22, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  border-right: 1px solid var(--border-light);
+  border-right: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 4px 0 40px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] .sidebar {
+  background: rgba(248, 249, 252, 0.7);
+  border-right: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 4px 0 40px rgba(0,0,0,0.06);
 }
 
 .sidebar-header {
@@ -347,7 +354,23 @@ input {
   color: var(--accent-color);
   font-weight: 600;
   border: 1px solid var(--glass-border-active);
-  box-shadow: inset 0 0 20px rgba(0,212,255,0.04);
+  box-shadow:
+    inset 0 0 20px rgba(0,212,255,0.04),
+    0 0 12px var(--accent-glow);
+  position: relative;
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 .nav-item .nav-icon {
