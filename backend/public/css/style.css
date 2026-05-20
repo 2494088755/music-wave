@@ -3537,4 +3537,7 @@ input {
   .card:hover {
     transform: none;
   }
+  .card-playing-indicator {
+    display: none;
+  }
 }
