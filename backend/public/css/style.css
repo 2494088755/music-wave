@@ -23,8 +23,6 @@
   --accent-red: #ff4757;
   --accent-orange: #ffa502;
   --accent-blue: #3b82f6;
-  --accent-purple: #a855f7;
-
   /* Player */
   --player-bg: rgba(10,10,26,0.95);
 
@@ -102,8 +100,6 @@
   --accent-red: #e74c3c;
   --accent-orange: #d4901a;
   --accent-blue: #3b82f6;
-  --accent-purple: #7c3aed;
-
   --player-bg: rgba(240,242,248,0.95);
 
   --border-color: rgba(0,0,0,0.08);
@@ -150,9 +146,11 @@ body {
     /* Base gradient */
     linear-gradient(180deg, #050510 0%, #0a0a1a 40%, #0d0d20 100%);
   background-attachment: fixed;
+  min-height: 100vh;
   min-height: 100dvh;
   color: var(--text-primary);
   overflow: hidden;
+  height: 100vh;
   height: 100dvh;
   user-select: none;
   -webkit-font-smoothing: antialiased;
@@ -215,6 +213,7 @@ input {
 /* ============ Layout ============ */
 .app-layout {
   display: flex;
+  height: 100vh;
   height: 100dvh;
   flex-direction: column;
   position: relative;
