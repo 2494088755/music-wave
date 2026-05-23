@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>百度一下，你就知道</title>
-  <link rel="stylesheet" href="css/baidu.css">
+  <link rel="stylesheet" href="css/baidu.css?v=2">
   <link rel="icon" href="https://www.baidu.com/favicon.ico">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='72' rx='28' ry='22' fill='%23242ef5'/%3E%3Cellipse cx='25' cy='42' rx='12' ry='10' fill='%23242ef5'/%3E%3Cellipse cx='50' cy='32' rx='11' ry='9' fill='%23242ef5'/%3E%3Cellipse cx='75' cy='42' rx='12' ry='10' fill='%23242ef5'/%3E%3Cellipse cx='35' cy='26' rx='9' ry='7' fill='%23242ef5'/%3E%3Cellipse cx='65' cy='26' rx='9' ry='7' fill='%23242ef5'/%3E%3C/svg%3E">
 </head>
@@ -93,6 +93,7 @@
       <button class="mini-ctrl-btn" id="miniPrevBtn" title="上一首">&#9664;&#9664;</button>
       <button class="mini-ctrl-btn play-btn" id="miniPlayBtn" title="播放">&#9654;</button>
       <button class="mini-ctrl-btn" id="miniNextBtn" title="下一首">&#9654;&#9654;</button>
+      <button class="mini-ctrl-btn like-btn" id="miniLikeBtn" title="喜欢">&#9825;</button>
       <button class="mini-ctrl-btn mode-btn" id="miniModeBtn" title="列表循环">&#8635;</button>
     </div>
     <div class="mini-mode-text" id="miniModeText" style="display:none;">列表循环</div>
@@ -137,8 +138,41 @@
 <!-- ============ Audio Element ============ -->
 <audio id="baiduAudio"></audio>
 
+<!-- ============ Playlist Picker Modal ============ -->
+<div class="baidu-modal-overlay" id="playlistPickerModal">
+  <div class="baidu-modal">
+    <div class="baidu-modal-header">
+      <span>收藏到歌单</span>
+      <button class="baidu-modal-close" onclick="closePlaylistPicker()">&times;</button>
+    </div>
+    <div class="baidu-modal-body" id="playlistPickerBody">
+      <div class="mini-loading"><div class="mini-spinner"></div></div>
+    </div>
+    <div class="baidu-modal-footer">
+      <button class="baidu-modal-btn" onclick="showCreatePlaylistInPicker()">+ 创建新歌单</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Create Playlist Modal ============ -->
+<div class="baidu-modal-overlay" id="createPlaylistInPickerModal">
+  <div class="baidu-modal" style="max-width:320px;">
+    <div class="baidu-modal-header">
+      <span>创建歌单</span>
+      <button class="baidu-modal-close" onclick="closeCreatePlaylistInPicker()">&times;</button>
+    </div>
+    <div class="baidu-modal-body">
+      <input class="baidu-modal-input" id="pickerNewPlaylistName" placeholder="歌单名称" maxlength="50">
+    </div>
+    <div class="baidu-modal-footer" style="justify-content:flex-end;gap:8px;">
+      <button class="baidu-modal-btn" onclick="closeCreatePlaylistInPicker()">取消</button>
+      <button class="baidu-modal-btn baidu-modal-btn-primary" onclick="confirmCreatePlaylistInPicker()">创建</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ Scripts ============ -->
 <script src="js/netease.js"></script>
-<script src="js/baidu.js"></script>
+<script src="js/baidu.js?v=5"></script>
 </body>
 </html>

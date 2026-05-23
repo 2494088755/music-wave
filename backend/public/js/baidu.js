@@ -17,6 +17,7 @@ const BPlayer = {
   playMode: 'list', // 'list' | 'shuffle' | 'single'
   _shuffleOrder: [],
   _shuffleIndex: 0,
+  likedSongs: [],
 };
 
 // ======== DOM References ========
@@ -65,6 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
     trashFmSong();
   });
 
+  // Like button (normal mode)
+  $('miniLikeBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleLike();
+  });
+
   // Play mode toggle
   $('miniModeBtn').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -100,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Init play mode UI
   updatePlayModeUI();
+
+  // Load liked songs from localStorage (shared with main site)
+  loadLikedSongs();
 
   // Load default playlists in background
   loadRecommendPlaylists();
@@ -186,6 +196,7 @@ async function playCurrent() {
   // Update UI immediately
   BPlayer.currentSong = song;
   updateMiniUI();
+  updateLikeBtn();
   updateWeatherNowPlaying();
   showMiniPlayer();
 
@@ -513,17 +524,11 @@ async function openSavedPlaylist(id, name) {
     BPlayer.currentIndex = -1;
     onQueueChanged();
 
-    items.innerHTML = songs.map((s, i) =>
-      '<div class="playlist-item" data-index="' + i + '" onclick="playPlaylistItem(' + i + ')">' +
-      '<span class="playlist-item-idx">' + (i + 1) + '</span>' +
-      (s.cover ? '<img class="playlist-item-img" src="' + s.cover + '?param=50y50" loading="lazy">' : '') +
-      '<div class="playlist-item-info">' +
-      '<div class="playlist-item-title">' + escapeHtml(s.name) + '</div>' +
-      '<div class="playlist-item-artist">' + escapeHtml(s.artist) + '</div>' +
-      '</div>' +
-      '<span class="playlist-item-dur">' + formatTime(s.duration) + '</span>' +
-      '</div>'
-    ).join('');
+    _currentSongs = songs;
+    _sortMode = 'default';
+    _currentPlaylistId = id;
+    _isSavedPlaylist = true;
+    renderSortedPlaylist();
   } catch (e) {
     items.innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">加载失败</div>';
   }
@@ -555,19 +560,106 @@ async function openRemotePlaylist(id, name) {
     BPlayer.currentIndex = -1;
     onQueueChanged();
 
-    items.innerHTML = songs.map((s, i) =>
-      '<div class="playlist-item" data-index="' + i + '" onclick="playPlaylistItem(' + i + ')">' +
+    // Add _origIdx for default sort
+    songs.forEach((s, i) => s._origIdx = i);
+    _currentSongs = songs;
+    _sortMode = 'default';
+    _currentPlaylistId = null;
+    _isSavedPlaylist = false;
+    renderSortedPlaylist();
+  } catch (e) {
+    items.innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">加载失败</div>';
+  }
+}
+
+// ======== Playlist Song Sorting ========
+let _currentSongs = [];
+let _sortMode = 'default';
+let _currentPlaylistId = null;
+let _isSavedPlaylist = false;
+
+function renderSortedPlaylist() {
+  const items = $('playlistItems');
+  const songs = [..._currentSongs];
+
+  switch (_sortMode) {
+    case 'name':
+      songs.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+      break;
+    case 'artist':
+      songs.sort((a, b) => (a.artist || '').localeCompare(b.artist || ''));
+      break;
+    case 'duration':
+      songs.sort((a, b) => (a.duration || 0) - (b.duration || 0));
+      break;
+    default:
+      // Restore original order — use _origIdx if available
+      songs.sort((a, b) => (a._origIdx || 0) - (b._origIdx || 0));
+      break;
+  }
+
+  items.innerHTML =
+    '<div class="playlist-sort-bar">' +
+    '  <span style="color:#bbb;margin-right:4px;">排序:</span>' +
+    ['default', 'name', 'artist', 'duration'].map(m =>
+      '<button class="playlist-sort-btn' + (m === _sortMode ? ' active' : '') + '" data-sort="' + m + '">' +
+      ({ default: '默认', name: '名称', artist: '歌手', duration: '时长' })[m] +
+      '</button>'
+    ).join('') +
+    '</div>' +
+    songs.map((s, i) =>
+      '<div class="playlist-item' + (_isSavedPlaylist ? ' is-saved' : '') + '" data-index="' + s._origIdx + '">' +
       '<span class="playlist-item-idx">' + (i + 1) + '</span>' +
       (s.cover ? '<img class="playlist-item-img" src="' + s.cover + '?param=50y50" loading="lazy">' : '') +
-      '<div class="playlist-item-info">' +
+      '<div class="playlist-item-info" onclick="playPlaylistItem(' + s._origIdx + ')">' +
       '<div class="playlist-item-title">' + escapeHtml(s.name) + '</div>' +
       '<div class="playlist-item-artist">' + escapeHtml(s.artist) + '</div>' +
       '</div>' +
       '<span class="playlist-item-dur">' + formatTime(s.duration) + '</span>' +
+      (_isSavedPlaylist ? '<button class="playlist-remove-btn" data-song-id="' + s.id + '" title="移除">&#10005;</button>' : '') +
       '</div>'
     ).join('');
-  } catch (e) {
-    items.innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">加载失败</div>';
+
+  // Attach sort click handlers
+  items.querySelectorAll('.playlist-sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _sortMode = btn.dataset.sort;
+      renderSortedPlaylist();
+    });
+  });
+
+  // Attach remove handlers for saved playlists
+  if (_isSavedPlaylist) {
+    items.querySelectorAll('.playlist-remove-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const songId = btn.dataset.songId;
+        if (!_currentPlaylistId || !songId) return;
+        if (!confirm('确定从歌单中移除该歌曲？')) return;
+        try {
+          const res = await fetch('/api/playlist/remove-song', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ playlistId: _currentPlaylistId, songId }),
+          });
+          const result = await res.json();
+          if (result.code === 200) {
+            _currentSongs = _currentSongs.filter(s => s.id != songId);
+            // Also remove from likedSongs if no longer in any playlist
+            BPlayer.likedSongs = BPlayer.likedSongs.filter(s => s.id != songId);
+            saveLikedSongs();
+            renderSortedPlaylist();
+            if (_currentSongs.length === 0) {
+              document.getElementById('playlistItems').innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">歌单为空</div>';
+            }
+          } else {
+            alert(result.msg || '移除失败');
+          }
+        } catch (e) {
+          alert('移除失败');
+        }
+      });
+    });
   }
 }
 
@@ -650,18 +742,6 @@ async function fmNext() {
     console.warn('FM next error:', e);
   }
   BPlayer._fmLoading = false;
-}
-
-/** Like current FM song */
-async function likeFmSong() {
-  if (!BPlayer.currentSong) return;
-  try {
-    await NeteaseAPI.likeFmSong(BPlayer.currentSong.id, true);
-    $('miniFmLike').style.color = '#e74c3c';
-    setTimeout(() => { $('miniFmLike').style.color = ''; }, 1500);
-  } catch (e) {
-    console.warn('FM like error:', e);
-  }
 }
 
 /** Trash current FM song and play next */
@@ -750,6 +830,249 @@ function updatePlayModeUI() {
 function onQueueChanged() {
   if (BPlayer.playMode === 'shuffle') {
     generateShuffleOrder();
+  }
+}
+
+// ======== Like / Favorites (shared with main site via localStorage) ========
+
+/** Load liked songs from localStorage (same key as main player) */
+function loadLikedSongs() {
+  try {
+    const raw = localStorage.getItem('music_liked_songs');
+    BPlayer.likedSongs = raw ? JSON.parse(raw) : [];
+  } catch (e) { BPlayer.likedSongs = []; }
+  updateLikeBtn();
+}
+
+/** Save liked songs to localStorage */
+function saveLikedSongs() {
+  try {
+    localStorage.setItem('music_liked_songs', JSON.stringify(BPlayer.likedSongs));
+  } catch (e) {}
+}
+
+/** Toggle like: if already liked, remove; otherwise show picker */
+async function toggleLike() {
+  if (!BPlayer.currentSong) return;
+  const song = BPlayer.currentSong;
+  const id = song.id;
+
+  const liked = BPlayer.likedSongs.some(s => s.id === id || s.id == id);
+  if (!liked) {
+    await showPlaylistPicker();
+    return;
+  }
+
+  // Already liked → remove from likedSongs and all playlists
+  BPlayer.likedSongs = BPlayer.likedSongs.filter(s => !(s.id === id || s.id == id));
+  saveLikedSongs();
+  updateLikeBtn();
+
+  // Remove from all playlists via API
+  try {
+    const res = await fetch('/api/playlist/list');
+    const data = await res.json();
+    const playlists = data.data || [];
+    for (const pl of playlists) {
+      if (pl.songs && pl.songs.some(s => s.id == id)) {
+        await fetch('/api/playlist/remove-song', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ playlistId: pl.id, songId: id }),
+        });
+      }
+    }
+  } catch (e) {}
+
+  setWeatherText(' 已取消收藏');
+  setTimeout(() => updateWeatherNowPlaying(), 2000);
+}
+
+// ======== Playlist Picker ========
+
+function openPlaylistPicker() {
+  $('playlistPickerModal').classList.add('open');
+}
+
+function closePlaylistPicker() {
+  $('playlistPickerModal').classList.remove('open');
+}
+
+async function showPlaylistPicker() {
+  const body = $('playlistPickerBody');
+  body.innerHTML = '<div class="mini-loading"><div class="mini-spinner"></div></div>';
+  openPlaylistPicker();
+
+  try {
+    const res = await fetch('/api/playlist/list');
+    const data = await res.json();
+    const playlists = data.data || [];
+
+    if (playlists.length === 0) {
+      body.innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">还没有歌单，先创建一个吧</div>';
+      return;
+    }
+
+    // Sort by updatedAt descending (newest first)
+    playlists.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+
+    body.innerHTML = playlists.map(p =>
+      '<div class="picker-item" data-playlist-id="' + p.id + '">' +
+      '<span class="picker-item-icon">&#9835;</span>' +
+      '<div class="picker-item-info">' +
+      '<div class="picker-item-name">' + escapeHtml(p.name) + '</div>' +
+      '<div class="picker-item-count">' + p.songCount + ' 首歌曲</div>' +
+      '</div>' +
+      '</div>'
+    ).join('');
+
+    // Attach click handlers
+    body.querySelectorAll('.picker-item').forEach(el => {
+      el.addEventListener('click', () => {
+        addCurrentToPlaylist(el.dataset.playlistId);
+      });
+    });
+  } catch (e) {
+    body.innerHTML = '<div style="text-align:center;padding:30px;color:#999;font-size:13px;">加载歌单失败</div>';
+  }
+}
+
+async function addCurrentToPlaylist(playlistId) {
+  const song = BPlayer.currentSong;
+  if (!song) return;
+
+  try {
+    const res = await fetch('/api/playlist/add-song', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        playlistId,
+        song: {
+          id: song.id,
+          name: song.name,
+          artist: song.artist,
+          cover: song.cover || '',
+          duration: song.duration || 0,
+          source: 'netease',
+        },
+      }),
+    });
+    const result = await res.json();
+    if (result.code === 200 || (result.code === 400 && result.msg === '歌曲已在歌单中')) {
+      // Save to likedSongs so the heart stays filled
+      const id = song.id;
+      if (!BPlayer.likedSongs.some(s => s.id === id || s.id == id)) {
+        BPlayer.likedSongs.push({
+          id: id,
+          name: song.name,
+          artist: song.artist,
+          cover: song.cover || '',
+          duration: song.duration || 0,
+          source: 'netease',
+          likedAt: Date.now(),
+        });
+        saveLikedSongs();
+      }
+      setWeatherText(' 已添加到歌单');
+      setTimeout(() => updateWeatherNowPlaying(), 2000);
+      updateLikeBtn();
+      closePlaylistPicker();
+    } else {
+      setWeatherText(result.msg || '添加失败');
+      setTimeout(() => updateWeatherNowPlaying(), 2000);
+    }
+  } catch (e) {
+    setWeatherText('添加失败');
+    setTimeout(() => updateWeatherNowPlaying(), 2000);
+  }
+}
+
+function showCreatePlaylistInPicker() {
+  closePlaylistPicker();
+  $('createPlaylistInPickerModal').classList.add('open');
+  $('pickerNewPlaylistName').value = '';
+  setTimeout(() => $('pickerNewPlaylistName').focus(), 100);
+}
+
+function closeCreatePlaylistInPicker() {
+  $('createPlaylistInPickerModal').classList.remove('open');
+}
+
+async function confirmCreatePlaylistInPicker() {
+  const name = $('pickerNewPlaylistName').value.trim();
+  if (!name) {
+    setWeatherText('请输入歌单名称');
+    setTimeout(() => updateWeatherNowPlaying(), 2000);
+    return;
+  }
+  try {
+    const res = await fetch('/api/playlist/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, description: '' }),
+    });
+    const data = await res.json();
+    if (data.code === 200) {
+      closeCreatePlaylistInPicker();
+      setWeatherText('歌单已创建');
+      setTimeout(() => updateWeatherNowPlaying(), 2000);
+      // Re-open picker with the new playlist
+      showPlaylistPicker();
+    } else {
+      setWeatherText('创建失败');
+      setTimeout(() => updateWeatherNowPlaying(), 2000);
+    }
+  } catch (e) {
+    setWeatherText('创建失败');
+    setTimeout(() => updateWeatherNowPlaying(), 2000);
+  }
+}
+
+/** Update like button state — filled if song is in likedSongs */
+function updateLikeBtn() {
+  const btn = $('miniLikeBtn');
+  if (!btn) return;
+  if (!BPlayer.currentSong) {
+    btn.classList.remove('liked');
+    btn.innerHTML = '&#9825;';
+    return;
+  }
+  const id = BPlayer.currentSong.id;
+  const liked = BPlayer.likedSongs.some(s => s.id === id || s.id == id);
+  if (liked) {
+    btn.classList.add('liked');
+    btn.innerHTML = '&#9829;';
+  } else {
+    btn.classList.remove('liked');
+    btn.innerHTML = '&#9825;';
+  }
+}
+
+/** Also save FM likes to localStorage (in addition to NetEase API) */
+async function likeFmSong() {
+  if (!BPlayer.currentSong) return;
+  try {
+    await NeteaseAPI.likeFmSong(BPlayer.currentSong.id, true);
+    // Also save to localStorage liked songs
+    const id = BPlayer.currentSong.id;
+    const idx = BPlayer.likedSongs.findIndex(s => s.id === id || s.id == id);
+    if (idx < 0) {
+      BPlayer.likedSongs.push({
+        id: id,
+        name: BPlayer.currentSong.name,
+        artist: BPlayer.currentSong.artist,
+        cover: BPlayer.currentSong.cover,
+        duration: BPlayer.currentSong.duration || 0,
+        source: 'netease',
+        likedAt: Date.now(),
+      });
+      saveLikedSongs();
+      updateLikeBtn();
+    }
+    $('miniFmLike').style.color = '#e74c3c';
+    setTimeout(() => { $('miniFmLike').style.color = ''; }, 1500);
+  } catch (e) {
+    console.warn('FM like error:', e);
   }
 }
 

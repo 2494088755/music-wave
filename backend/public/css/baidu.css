@@ -345,6 +345,14 @@ body {
   color: #4e6ef2;
 }
 
+/* Like button */
+.mini-ctrl-btn.like-btn {
+  color: #ccc;
+  font-size: 15px;
+}
+.mini-ctrl-btn.like-btn:hover { color: #e74c3c; background: #fef0f0; }
+.mini-ctrl-btn.like-btn.liked { color: #e74c3c; }
+
 /* Mode indicator text */
 .mini-mode-text {
   text-align: center;
@@ -480,6 +488,28 @@ body {
 }
 .playlist-panel-close:hover { color: #333; }
 
+/* Sort bar */
+.playlist-sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.playlist-sort-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #bbb;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: color 0.15s, background 0.15s;
+}
+.playlist-sort-btn:hover { color: #666; background: #f5f5f5; }
+.playlist-sort-btn.active { color: #4e6ef2; background: #f0f3ff; font-weight: 500; }
+
 .playlist-items {
   flex: 1;
   overflow-y: auto;
@@ -534,6 +564,145 @@ body {
   color: #bbb;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+}
+.playlist-remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ddd;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: color 0.15s, opacity 0.15s, background 0.15s;
+  line-height: 1;
+}
+.playlist-item.is-saved:hover .playlist-remove-btn {
+  opacity: 1;
+}
+.playlist-remove-btn:hover {
+  color: #e74c3c !important;
+  background: #fef0f0;
+  opacity: 1 !important;
+}
+
+/* ============ Playlist Picker Modal ============ */
+.baidu-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+.baidu-modal-overlay.open { display: flex; }
+
+.baidu-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 360px;
+  max-width: 90vw;
+  max-height: 70vh;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.baidu-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+.baidu-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  font-size: 18px;
+  padding: 4px;
+  line-height: 1;
+}
+.baidu-modal-close:hover { color: #333; }
+.baidu-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+  min-height: 60px;
+}
+.baidu-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-top: 1px solid #eee;
+}
+.baidu-modal-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.baidu-modal-btn:hover { background: #f5f5f5; }
+.baidu-modal-btn-primary {
+  background: #4e6ef2;
+  border-color: #4e6ef2;
+  color: #fff;
+}
+.baidu-modal-btn-primary:hover { background: #3a5ce5; }
+
+/* Playlist picker items */
+.picker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.picker-item:hover { background: #f5f5f5; }
+.picker-item:active { background: #eee; }
+.picker-item-icon {
+  font-size: 18px;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
+  color: #4e6ef2;
+}
+.picker-item-info { flex: 1; min-width: 0; }
+.picker-item-name {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+.picker-item-count {
+  font-size: 11px;
+  color: #999;
+  margin-top: 1px;
+}
+
+/* Create playlist input */
+.baidu-modal-input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.baidu-modal-input:focus {
+  border-color: #4e6ef2;
 }
 
 /* ============ Search hint ============ */
